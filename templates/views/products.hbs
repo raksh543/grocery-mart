@@ -1,28 +1,170 @@
 <html>
     <head>
         <title>
-            Grocery Mart
+            Products
         </title>
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     </head>
     <body>
         <div class="main-content">
             {{>header}}
-            Beverages
-            Bread/Bakery
-            Canned/Jarred Goods
-            Dairy
-            Dry/Baking Goods
-            Frozen Foods
-            Meat
-            Produce
-            Cleaners
-            Paper Goods
-            Personal Care
-            Others
+            <h3>Cilck to add item in your cart<h3>
+            <table class="products" style="width: 100%;position: absolute;">
+                <tr style="margin-top: 16px;">
+                    <td><center><img src="/img/beverages.png">
+                    <br>Beverages<br><br>
+                        <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Add</th>
+                                <th>Reduce</th>
+                            </tr>
+                            <tr>
+                                <td>Coffee</td>
+                                <td>50 gm</td>
+                                <td>25</td>
+                                <td><button onclick="addProduct(Coffee,25)">+</button></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Tea</td>
+                                <td>50gm</td>
+                                <td>20</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Orange Juice</td>
+                                <td>250ml</td>
+                                <td>50</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Strawberry Juice</td>
+                                <td>250ml</td>
+                                <td>50</td> 
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                        </table></center>
+                    </td>
+                    <td><center><img src="/img/bakery.png">
+                    <br>Bread/Bakery<br><br>
+                    <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Add</th>
+                                <th>Reduce</th>
+                            </tr>
+                            <tr>
+                                <td>Coffee</td>
+                                <td>50 gm</td>
+                                <td>25</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Tea</td>
+                                <td>50gm</td>
+                                <td>20</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Orange Juice</td>
+                                <td>250ml</td>
+                                <td>50</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Strawberry Juice</td>
+                                <td>250ml</td>
+                                <td>50</td> 
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                        </table></center></td>
+                    <td><center><img src="/img/canned.png">
+                    <br>Canned/Jarred Goods<br><br>
+                    <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Add</th>
+                                <th>Reduce</th>
+                            </tr>
+                            <tr>
+                                <td>Coffee</td>
+                                <td>50 gm</td>
+                                <td>25</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Tea</td>
+                                <td>50gm</td>
+                                <td>20</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Orange Juice</td>
+                                <td>250ml</td>
+                                <td>50</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Strawberry Juice</td>
+                                <td>250ml</td>
+                                <td>50</td> 
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                        </table></center></td>
+                   
+                </tr>
+                <tr>
+                    <td><center><img src="/img/baking.png">
+                    <br>Dry/Baking Goods</center></td>
+                     <td><center><img src="/img/dairy.png">
+                    <br>Dairy</center></td>
+                    <td><center><img src="/img/frozen.png">
+                    <br>Frozen Foods</center></td>
+                </tr>
+                <tr>
+                    <td><center><img src="/img/meat.png">
+                    <br>Meat</center></td>
+                    <td><center><img src="/img/produce.png">
+                    <br>Produce</td></td>
+                    <td><center><img src="/img/soap.png">
+                    <br>Personal Care</center></td>
+                    
+                </tr>
+                <tr>
+                    <td><center><img src="/img/cleaners.png">
+                    <br>Cleaners</center></td>
+                    <td><center><img src="/img/paper.png">
+                    <br>Paper goods</center></td>
+                    <td><center><img src="/img/cart.png">
+                    <br>Go to Cart</center></td>
+                   
+                </tr>
+                
 
+            </table>
         </div>
-        {{>footer}}
+        <script src="/js/app.js"> </script>
+        {{!-- {{>footer}} --}}
     </body>
 </html>

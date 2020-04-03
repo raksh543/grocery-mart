@@ -1,7 +1,32 @@
+<head>
+    {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> --}}
+</head>
 <header>
-    <a href="/">Grocery Shop</a>
-    <a href="/products">Products</a>
-    <a href="/online_services">Online Services</a>
-    <button><a href="/signin">Sign in / Sign up</a></button>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: lightgreen; padding-top:10px;padding-bottom:10px;padding-left:16px;padding-right:16px">
+  <a class="navbar-brand" href="/" style="font-size: x-large;"><img style="width: 35px;height:35px; float:left;margin-right:10px;" src="/img/navicon.png">Grocery Mart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="float: right;display:flex">
+    <div class="navbar-nav">
+      <span style="width: 520px;"></span>
+      <a class="nav-item nav-link active" href="/products">Products <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/onlineservices">Online Services</a>
+      <button id="input_signin_signup" style="background-color:green;float: right;border-radius:16px;text-align:center;padding-top:0px;padding-bottom:0px;padding-left:16px;margin-right:16px;"><a href="/signin" style="color: white;">Sign in / Sign up</a></button>
+      <a class="nav-item nav-link" href="/cart">Cart</a>
+    </div>
+  </div>
+</nav>
+{{!-- <nav>
+    <a href="/"><img src="/img/navicon.png">
+    Grocery Shop</a>
+    <ul class="navlinks">
+    <li classs="nav1"><a href="/products">Products</a></li>
+    <li classs="nav1"></li><a href="/online_services">Online Services</a></li>
+    <li classs="nav2"><button id="input_signin_signup" style="float: right;border-radius:16px;"><a href="/signin" style="color: white;">Sign in / Sign up</a></button></li>
+    <li classs="nav1"><a href="/cart"> Cart</a></li>
+    <li><a href="/cart"><img src="/img/navcart.png" style="width: 40%;height:70%;float:inline-end"></a></li>
+    </ul>
+</nav> --}}
 </header>

@@ -3,26 +3,25 @@ body{
     font-family:arial;
     margin:0 auto;
     padding: 0 16px;
-
-    display:flex; 
+    /* display:flex; 
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; */
 }
 
 .main-content{
     flex-grow: 1;
 }
 
-footer{
+/* footer{
     color:#888888;
     border-top:1px solid #eeeeee;
     padding:16px 0;
     margin-top: 16px;
-}
+} */
 
 header{
-    margin-top:16px;
-    margin-bottom:40px
+    margin-bottom:40px;
+    font-size: x-large;
 }
 
 h1{
@@ -52,3 +51,124 @@ button{
     color: white;
     padding: 8px
 }
+tr{
+    text-align: center;
+}
+.nav1{
+    color: white;
+}
+.nav1:hover{
+    color: rgb(20, 20, 87);
+}
+.navlinks{
+    display: flex;
+    position: absolute;
+    right: 5%;
+    justify-content: space-around;
+}
+.navlinks li{
+    list-style: none;
+}
+.navlinks a{
+    text-decoration: none;
+    font-weight: bold;
+}
+.div2{
+    float: left;
+    opacity: 1;
+    justify-content: space-around;
+    border: 1px solid rgb(20, 20, 87);
+    border-block-color: rgb(20, 20, 87); 
+    width: 20%;
+    height: 180px;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-bottom: 4%; 
+    border-radius: 10px;
+}
+.div2 img{
+    padding-top:10px;
+    padding-left:90px;
+    width: 70%;
+    height:70%;
+}
+
+.heading{
+    color:  rgb(20, 20, 87);
+    font-family: 'Nanum Gothic', sans-serif;
+    letter-spacing: 0px;
+    margin-left:4%;
+    padding-top:2%;
+}
+.div3{
+    float: left;
+    background-size: 430px, 150px;
+    opacity: 1;
+    justify-content: space-around;
+    border: 1px solid rgb(20, 20, 87);
+    border-block-color: rgb(20, 20, 87); 
+    display: flex;
+    height: 250px;
+    width: 28%;
+    margin-top: 2%;
+    margin-left: 4%;
+    justify-content: center;
+    margin-bottom: 10%; 
+    border-radius: 10px;
+}
+.div3 h4{
+    font-family: 'Nanum Gothic', sans-serif;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-top: 170px;
+    color: white;
+}
+.lower{
+    background-color : rgba(22, 22, 22, 0.267); 
+    height: 310px;
+    width: 100%;
+    opacity: 0.5;
+}
+.lower1{
+    background-color : rgba(95, 95, 95, 0.267); 
+    height: 250px;
+    width: 100%;
+    opacity: 0.5;
+    margin-top: 6%;
+
+}
+
+.lower2{
+    margin-top:0%;
+    background-color: rgb(95, 91, 91);
+    height:50px;
+}
+.lower2 h5{
+    padding-left: 10%;
+    padding-top: 15px;
+    color: white;
+    font-family: sans-serif;  
+}
+/* .nav2{
+    color: rgb(20, 20, 87);
+    padding-left:20px;
+    padding-right:180px;
+}
+.nav2:hover{
+    color: white;
+} */
+
+/* .products tr td:hover{
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes example {
+    from {background-color: lightgreen;}
+    to {background-color: white;}
+  } */
+  

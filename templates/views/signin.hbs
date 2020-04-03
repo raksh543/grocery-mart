@@ -10,34 +10,41 @@
     </head>
     <body>
         <div class="main-content">
-            {{>header}}
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;padding-top:10px;padding-bottom:10px;padding-left:16px;padding-right:16px">
+  <a class="navbar-brand" href="/" style="font-size: x-large;"><img style="width: 35px;height:35px; float:left;margin-right:20px;" src="/img/navicon.png">Home</a>
+</nav>
 
             <section >
 	
 	<div class="column2"style="background-color:#ffffff">
 		<div id="white">
-			<h1>Create Account</h1><br>
+			<span id="headings">Create Account</span><br>
 			<img src="https://i.ibb.co/2yHwRKg/fb.png">
 			<img src="https://i.ibb.co/KV23QM7/google.png">
 			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br>
 			<p>or use your emailfor registration</p><br>
-			Enter email <input type="email" style="margin-left:25;"></input><br><br>
-			Enter password <input type="password" ></input><br><br><br>
-			<button id="whitebutton">Sign In</button>
+			<form action="/doSignIn" method="POST">
+			Enter email <input id="input_email" type="email" name="email" style="margin-left:25;"></input><br><br>
+			Enter password <input id="input_password" type="password" name="password"></input><br><br><br>
+			<p style="color: red;">{{message}}</p>
+			<input type="submit" id="whitebutton" class="input_signin"></input>
+			</form>
+			
 		</div>
 	</div>
 	
 	<div class="column1" style="margin:0 0 0 0;padding:0 10 0 10" >
 	
 		<div id="coloured">
-				<h1 id="welcome">To create account</h1>
+				<span id="headings" id="welcome">To create account</span>
 				<p>Enter your personal details and start using internet banking facilities.<p><br><br>
-				<button class="colouredbutton"><a href="signup" style="color: white;text-decoration:none">Sign Up</a></button>
+				<button class="colouredbutton" id="input_signup"><a href="signup" style="color: white;text-decoration:none">Sign Up</a></button>
 		</div>
 	</div>
 </section>
 
         </div>
-        {{>footer}}
+		<script src="/js/app.js"> </script>
     </body>
 </html>

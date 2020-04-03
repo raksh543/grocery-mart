@@ -7,7 +7,7 @@ section{
 .column1{
 	text-align:center;
 	width:25%;
-	background-color:#060064;
+	background-color:green;
 
 }
 
@@ -28,7 +28,7 @@ section{
 }
 
 #white{
-	color:#060064;
+	color:green;
 	position: relative;
 	top: 50%;
 	justify-content:center;	
@@ -47,7 +47,7 @@ section{
 }
 
 #whiteButton{
-	background-color:#060064;
+	background-color:green;
 	border-radius:16px;
 	border-color:white;
 	border-width:2px;
@@ -56,6 +56,6 @@ section{
 	
 }
 
-h1{
+#headings{
     size: 16px;
 }
