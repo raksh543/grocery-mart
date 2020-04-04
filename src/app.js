@@ -5,6 +5,7 @@ const path=require('path')
 const validator=require('validator')
 var mongoose = require('mongoose');
 const UserSchema=require('../public/models/userschema')
+const MongoClient = require('mongodb').MongoClient;
 
 const app=express()
 const port=process.env.PORT || 3030
@@ -22,7 +23,7 @@ app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-mongoose.connect("mongodb://localhost:27017/grocery-mart",{ useNewUrlParser: true });//creating or joining to practice database
+mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
 
 flag=false;
@@ -192,6 +193,33 @@ app.get('/products',(req,res)=>{
     res.render('products',{
         title:'Products',
         name:'Rakshita'
+    })
+})
+
+app.post('/addtocart',(req,res)=>{
+    var coffee=req.body.p1
+    var tea=req.body.p2
+    var orange=req.body.p3
+    var strawberry=req.body.p4
+    var total=(25*parseInt(coffee))+(20*parseInt(tea))+(50*parseInt(orange))+(50*parseInt(strawberry))
+    console.log(coffee)
+    res.render('cart',{
+        coffee:coffee,
+        tea:tea,
+        orange:orange,
+        strawberry:strawberry,
+        total:total
+    })
+
+})
+
+
+app.get('/cart',(req,res)=>{
+   
+
+    res.render('cart',{
+        title:'Products',
+        name:'Rakshita',
     })
 })
 

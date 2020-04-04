@@ -26,20 +26,31 @@
             }
             
         </script>
+        {{!-- <script>
+           
+        </script> --}}
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="main-content">
             {{>header}}
-            <h3>Cilck to add item in your cart<h3>
-            <table  style="width: 100%;position: absolute;cell-padding:" >
+            <h3 style="float: left;">Cilck to add item in your cart</h3>
+                <form action="/addtocart" method="POST" style="float: right;">
+                <input type="hidden" name="p1" id="nacho1" value="0" ></input>
+                <input type="hidden" name="p2" id="nacho2" value="0" ></input>
+                <input type="hidden" name="p3" id="nacho3" value="0" ></input>
+                <input type="hidden" name="p4" id="nacho4" value="0" ></input>
+                <input type="submit" style="float: right;" onclick=addtocart() value="Add to cart" ></input>
+                </form><br><br><br>
+                {{!-- <button onclick=addtocart()></button> --}}
+            <table  style="margin-left:50px;width: 100%;position: absolute;cell-padding:" >
 
                 <tr style="margin-top: 16px;">
                     <td class="oneproduct" onclick=displaylist("list1") style="padding-top: 3%;"><center><img src="/img/beverages.png">
                     <br>Beverages<br><br>
                     <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list1")>Click here to hide products list</p>
+                    <p id="hide" style="display: none;" onclick=hidelist("list1")>Click + to add item to cart</p>
                         
                         <table id="list1" style="display: none;">
                             <tr>
@@ -53,12 +64,12 @@
                                         <td>50 gm</td>
                                         <td>25</td>
                                         <div>
-                                            <td><span class="minus bg-red">-</span></td>
-                                            <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                            <td><span class="minus bg-red cfm">-</span></td>
+                                            <td><input id="coffee" type="number" class="count" name="coffee" value="0" disabled=""
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
-                                            <td><span class="plus bg-green">+</span></td>
+                                            <td><span class="plus bg-green cfp">+</span></td>
                                         </div>
 
                                     </tr>
@@ -67,12 +78,12 @@
                                 <td>50gm</td>
                                 <td>20</td>
                                 <div>
-                                            <td><span class="minus bg-red">-</span></td>
-                                            <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                            <td><span class="minus bg-red tem">-</span></td>
+                                            <td><input id="tea" type="number" class="count" name="tea" value="0" disabled=""
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
-                                            <td><span class="plus bg-green">+</span></td>
+                                            <td><span class="plus bg-green tep">+</span></td>
                                         </div>
                             </tr>
                             <tr>
@@ -80,12 +91,12 @@
                                 <td>250ml</td>
                                 <td>50</td>
                                 <div>
-                                            <td><span class="minus bg-red">-</span></td>
-                                            <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                            <td><span class="minus bg-red orm">-</span></td>
+                                            <td><input id="orange" type="number" class="count" name="orange" value="0" disabled=""
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
-                                            <td><span class="plus bg-green">+</span></td>
+                                            <td><span class="plus bg-green orp">+</span></td>
                                         </div>
                             </tr>
                             <tr>
@@ -93,12 +104,12 @@
                                 <td>250ml</td>
                                 <td>50</td> 
                                 <div>
-                                            <td><span class="minus bg-red">-</span></td>
-                                            <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                            <td><span class="minus bg-red stm">-</span></td>
+                                            <td><input id="strawberry" type="number" class="count" name="strawberry" value="0" disabled=""
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
-                                            <td><span class="plus bg-green">+</span></td>
+                                            <td><span class="plus bg-green stp">+</span></td>
                                         </div>
                             </tr>
                         </table></center>
@@ -106,7 +117,7 @@
                     <td class="oneproduct" onclick=displaylist("list2") style="padding-top: 3%;"><center><img src="/img/bakery.png">
                     <br>Bread/Bakery<br><br>
                     <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list2")>Click here to hide products list</p>
+                    <p id="hide" style="display: none;" onclick=hidelist("list2")>Click + to add item to cart</p>
                         
                         <table id="list2" style="display: none;">
                             <tr>
@@ -122,7 +133,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -135,7 +146,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -148,7 +159,7 @@
                                <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -161,7 +172,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -171,7 +182,7 @@
                     <td class="oneproduct" onclick=displaylist("list3") style="padding-top: 3%;"><center><img src="/img/canned.png">
                     <br>Canned/Jarred Goods<br><br>
                     <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list3")>Click here to hide products list</p>
+                    <p id="hide" style="display: none;" onclick=hidelist("list3")>Click + to add item to cart</p>
                         
                         <table id="list3" style="display: none;">
                             <tr>
@@ -187,7 +198,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -200,7 +211,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -213,7 +224,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -226,7 +237,7 @@
                                 <div>
                                             <td><span class="minus bg-red">-</span></td>
                                             <td><input type="number" class="count" name="qty" value="0" disabled=""
-                                                    style=" width: 4px; height: 20px;">
+                                                    style=" width: 4px; height: 20px;"></input>
                                             </td>
                                             {{!-- <td><button onclick="addProduct(Coffee,25)">+</button></td> --}}
                                             <td><span class="plus bg-green">+</span></td>
@@ -264,21 +275,80 @@
                 
 
             </table>
+            
         </div>
         <script src="/js/app.js"> </script>
         <script>
         $(document).ready(function () {
-            $('.count').prop('disabled', true);
-            $(document).on('click', '.plus', function () {
-                $('.count').val(parseInt($('.count').val()) + 1);
+            $('#coffee').prop('disabled', true);
+            $(document).on('click', '.cfp', function () {
+                $('#coffee').val(parseInt($('#coffee').val()) + 1);
             });
-            $(document).on('click', '.minus', function () {
-                $('.count').val(parseInt($('.count').val()) - 1);
-                if ($('.count').val() < 0) {
-                    $('.count').val(0);
+            $(document).on('click', '.cfm', function () {
+                $('#coffee').val(parseInt($('#coffee').val()) - 1);
+                if ($('#coffee').val() < 0) {
+                    $('#coffee').val(0);
                 }
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#strawberry').prop('disabled', true);
+            $(document).on('click', '.stp', function () {
+                $('#strawberry').val(parseInt($('#strawberry').val()) + 1);
+            });
+            $(document).on('click', '.stm', function () {
+                $('#strawberry').val(parseInt($('#strawberry').val()) - 1);
+                if ($('#strawberry').val() < 0) {
+                    $('#strawberry').val(0);
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#tea').prop('disabled', true);
+            $(document).on('click', '.tep', function () {
+                $('#tea').val(parseInt($('#tea').val()) + 1);
+            });
+            $(document).on('click', '.tem', function () {
+                $('#tea').val(parseInt($('#tea').val()) - 1);
+                if ($('#tea').val() < 0) {
+                    $('#tea').val(0);
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#orange').prop('disabled', true);
+            $(document).on('click', '.orp', function () {
+                $('#orange').val(parseInt($('#orange').val()) + 1);
+            });
+            $(document).on('click', '.orm', function () {
+                $('#orange').val(parseInt($('#orange').val()) - 1);
+                if ($('#orange').val() < 0) {
+                    $('#orange').val(0);
+                }
+            });
+        });
+    </script>
+    <script>
+        function addtocart(){
+            var coffee=document.getElementById("coffee").value
+            var tea=document.getElementById("tea").value
+            var orange=document.getElementById("orange").value
+            var strawberry=document.getElementById("strawberry").value
+            
+                document.getElementById("nacho1").value=coffee
+                document.getElementById("nacho2").value=tea
+                document.getElementById("nacho3").value=orange
+                document.getElementById("nacho4").value=strawberry
+                console.log(coffee)
+            
+            
+        }
     </script>
         {{!-- {{>footer}} --}}
     </body>

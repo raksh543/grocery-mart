@@ -5,12 +5,52 @@
         </title>
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     </head>
     <body>
         <div class="main-content">
             {{>header}}
 
-            <h3>You
+
+            <h3 class="heading">You have added following things in your cart</h3>
+            
+         <div class="div3" style="background-image: url(img/bg_vec02)">
+        <table style="width: 100%;height:100%;text-align:center;" border=1>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Coffee</td>
+                <td id="am1">25</td>
+                <td>{{coffee}}</td>
+            </tr>
+            <tr>
+                <td>Tea</td>
+                <td id="am1">20</td>
+                <td>{{tea}}</td>
+            </tr>
+            <tr>
+                <td>Orange Juice</td>
+                <td id="am1">50</td>
+                <td>{{orange}}</td>
+            </tr>
+            <tr>
+                <td>Strawberry Juice</td>
+                <td id="am1">50</td>
+                <td>{{strawberry}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Total Price</th>
+                <th>{{total}}</th>
+            </tr>
+        </table>
+        </div>
+        <input type="submit" style="float: right; margin-right:10%;margin-top:9%;background-color:rgb(0, 134, 40);color:white;padding:8px 16px; border-radius:5px;cursor:pointer" value="Proceed to checkout">
+        
+
 
         </div>
         {{>footer}}
