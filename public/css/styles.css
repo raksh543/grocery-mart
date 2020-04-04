@@ -87,7 +87,7 @@ tr{
     border-block-color: rgb(20, 20, 87); 
     width: 20%;
     height: 180px;
-    margin-top: 2%;
+    margin-top: 3%;
     margin-left: 4%;
     margin-bottom: 4%; 
     border-radius: 10px;
@@ -115,6 +115,7 @@ tr{
     border: 1px solid rgb(20, 20, 87);
     display: flex;
     width: 25%;
+    height: 195px;
     margin-top: 3.5%;
     margin-left: 6%;
     justify-content: center;
@@ -125,7 +126,7 @@ tr{
     font-family: 'Nanum Gothic', sans-serif;
     letter-spacing: 1px;
     text-align: center;
-    padding-top: 170px;
+    padding-top: 160px;
     color: white;
 }
 .lower{
