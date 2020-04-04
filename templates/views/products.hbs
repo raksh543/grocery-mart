@@ -32,25 +32,25 @@
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-    <body>
+    <body style="display:flex;flex-direction:column">
         <div class="main-content">
             {{>header}}
-            <h3 style="float: left;">Cilck to add item in your cart</h3>
+            <h3 style="float: left;margin-left:4%">Cilck to add item in your cart</h3>
                 <form action="/addtocart" method="POST" style="float: right;">
                 <input type="hidden" name="p1" id="nacho1" value="0" ></input>
                 <input type="hidden" name="p2" id="nacho2" value="0" ></input>
                 <input type="hidden" name="p3" id="nacho3" value="0" ></input>
                 <input type="hidden" name="p4" id="nacho4" value="0" ></input>
-                <input type="submit" style="float: right;" onclick=addtocart() value="Add to cart" ></input>
+                <input type="submit" style="cursor:pointer;: right;margin-right:10 %;border-radius:12px;padding:10px;" onclick=addtocart() value="Add to cart" ></input>
                 </form><br><br><br>
                 {{!-- <button onclick=addtocart()></button> --}}
-            <table  style="margin-left:50px;width: 100%;position: absolute;cell-padding:" >
+            <table  style="width: 100%;position: absolute;cell-padding:" >
 
                 <tr style="margin-top: 16px;">
-                    <td class="oneproduct" onclick=displaylist("list1") style="padding-top: 3%;"><center><img src="/img/beverages.png">
+                    <td class="oneproduct" onclick=displaylist("list1") style="padding-top: 3%;" ><center><img src="/img/beverages.png">
                     <br>Beverages<br><br>
-                    <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list1")>Click + to add item to cart</p>
+                    <p id="show" style="color:blue;cursor:pointer;">Click here to see products</p>
+                    <p id="hide" style="display: none;color:blue" onclick=hidelist("list1")>Click + to add item to cart</p>
                         
                         <table id="list1" style="display: none;">
                             <tr>
@@ -116,8 +116,8 @@
                     </td>
                     <td class="oneproduct" onclick=displaylist("list2") style="padding-top: 3%;"><center><img src="/img/bakery.png">
                     <br>Bread/Bakery<br><br>
-                    <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list2")>Click + to add item to cart</p>
+                    <p id="show" style="color:blue">Click here to see products</p>
+                    <p id="hide" style="display: none;color:blue" onclick=hidelist("list2")>Click + to add item to cart</p>
                         
                         <table id="list2" style="display: none;">
                             <tr>
@@ -181,8 +181,8 @@
                         </table></center></td>
                     <td class="oneproduct" onclick=displaylist("list3") style="padding-top: 3%;"><center><img src="/img/canned.png">
                     <br>Canned/Jarred Goods<br><br>
-                    <p id="show">Click here to see products</p>
-                    <p id="hide" style="display: none;" onclick=hidelist("list3")>Click + to add item to cart</p>
+                    <p id="show" style="color:blue;">Click here to see products</p>
+                    <p id="hide" style="display: none;color:blue" onclick=hidelist("list3")>Click + to add item to cart</p>
                         
                         <table id="list3" style="display: none;">
                             <tr>
@@ -277,6 +277,7 @@
             </table>
             
         </div>
+
         <script src="/js/app.js"> </script>
         <script>
         $(document).ready(function () {
@@ -350,6 +351,6 @@
             
         }
     </script>
-        {{!-- {{>footer}} --}}
+
     </body>
 </html>

@@ -3,9 +3,15 @@ body{
     font-family:arial;
     margin:0 auto;
     padding: 0 16px;
-    /* display:flex; 
-    flex-direction: column;
-    min-height: 100vh; */
+     /* display:flex; 
+     flex-direction: column; */
+    /*min-height: 100vh; */
+}
+footer{
+    position: relative;
+   left: 0;
+   bottom: 0;
+   width: 100%;
 }
 
 .main-content{
@@ -102,18 +108,16 @@ tr{
 }
 .div3{
     float: left;
-    background-size: 430px, 150px;
+    background-size: 100%;
     opacity: 1;
     justify-content: space-around;
     border: 1px solid rgb(20, 20, 87);
-    border-block-color: rgb(20, 20, 87); 
     display: flex;
-    height: 33%;
-    width: 28%;
-    margin-top: 2%;
-    margin-left: 4%;
+    width: 25%;
+    margin-top: 3.5%;
+    margin-left: 6%;
     justify-content: center;
-    margin-bottom: 10%; 
+    margin-bottom: 3.5%; 
     border-radius: 10px;
 }
 .div3 h4{
@@ -124,10 +128,9 @@ tr{
     color: white;
 }
 .lower{
-    background-color : rgba(22, 22, 22, 0.267); 
-    height: 310px;
+    background-color : rgba(54, 54, 54, 0.267); 
+    height: 300px;
     width: 100%;
-    opacity: 0.5;
 }
 .lower1{
     background-color : rgba(95, 95, 95, 0.267); 
