@@ -109,6 +109,7 @@ tr{
 .div3{
     float: left;
     background-size: 100%;
+    background-repeat: no-repeat;
     opacity: 1;
     justify-content: space-around;
     border: 1px solid rgb(20, 20, 87);
