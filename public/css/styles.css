@@ -115,7 +115,7 @@ tr{
     border: 1px solid rgb(20, 20, 87);
     display: flex;
     width: 25%;
-    height: 195px;
+    height: 55%;
     margin-top: 3.5%;
     margin-left: 6%;
     justify-content: center;
@@ -123,15 +123,14 @@ tr{
     border-radius: 10px;
 }
 .div3 h4{
-    font-family: 'Nanum Gothic', sans-serif;
-    letter-spacing: 1px;
+    font-family: sans-serif;
     text-align: center;
     padding-top: 160px;
     color: white;
 }
 .lower{
     background-color : rgba(54, 54, 54, 0.267); 
-    height: 300px;
+    height: 280px;
     width: 100%;
 }
 .lower1{
