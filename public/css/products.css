@@ -1,0 +1,12 @@
+.oneproduct:hover{
+    background-color: rgb(215, 252, 252);
+    border-radius:15%;
+    background-position-x: 10%;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes example {
+    from {background-color:rgb(215, 252, 252);}
+    to {background-color:rgb(242, 255, 255);}
+  }

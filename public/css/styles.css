@@ -87,8 +87,8 @@ tr{
     border-radius: 10px;
 }
 .div2 img{
-    padding-top:10px;
-    padding-left:90px;
+    padding-top:5%;
+    padding-left:30%;
     width: 70%;
     height:70%;
 }
@@ -108,7 +108,7 @@ tr{
     border: 1px solid rgb(20, 20, 87);
     border-block-color: rgb(20, 20, 87); 
     display: flex;
-    height: 250px;
+    height: 33%;
     width: 28%;
     margin-top: 2%;
     margin-left: 4%;
@@ -148,6 +148,53 @@ tr{
     padding-top: 15px;
     color: white;
     font-family: sans-serif;  
+}
+
+.count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    /* font-size: 25px; */
+    /* font-weight: 700; */
+    /* line-height: 30px; */
+    background-color: white;
+    padding: 0 2px;
+    min-width: 35px;
+    text-align: center;
+    border: none;
+}
+
+.plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    background-color: white;
+    width: 30px;
+    height: 23px;
+    /* font: 30px/1 Arial, sans-serif; */
+    text-align: center;
+    border-radius: 50%;
+}
+
+.minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    background-color: white;
+    width: 30px;
+    height: 23px;
+    /* font: 30px/1 Arial, sans-serif; */
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+.minus:hover {
+    background-color: #ec0f0f !important;
+}
+
+.plus:hover {
+    background-color: #22ec66 !important;
 }
 /* .nav2{
     color: rgb(20, 20, 87);

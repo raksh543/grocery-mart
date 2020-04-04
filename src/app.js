@@ -196,7 +196,7 @@ app.get('/products',(req,res)=>{
 })
 
 app.get('/online_services',(req,res)=>{
-    res.render('online_services',{
+    res.render('404',{
         title:'Products',
         name:'Rakshita'
     })
@@ -213,3 +213,5 @@ app.get('*',(req,res)=>{
 app.listen(port,()=>{
     console.log('Server is up on the port'+port)
 })
+
+module.exports=flag
