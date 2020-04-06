@@ -3,6 +3,28 @@
         <title>
             Grocery Mart
         </title>
+        {{!-- <style>
+.imgcontainer {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+  position: absolute;
+  margin-top: 15vh;
+  width: 10vw;
+  height: 10vh;
+  top:20%;
+  left:12%;
+  font-size: .1vw;
+  border-radius: 8px;
+  background-color: black;
+  opacity: 0.8;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+</style> --}}
         <link rel="stylesheet" href="/css/navbar.css">
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
@@ -57,7 +79,7 @@
 
         <div style="margin-left: 10%;margin-right:10%;margin-top:5%;margin-bottom:5%">
           <p>
-            <center><h2 style="letter-spacing: 1px;color:rgb(36, 36, 36)">WELCOME TO GROCERY MART </h2></center><h4 style="letter-spacing: 0  .5px;color:rgb(36, 36, 36)">You can buy fruits, vegetables, beverages, personal care products, household & all grocery items Online with Oristen Online Grocery Store Karnal. Download Oristen app and order all your daily essentials with click of a button and get them delivered at your doorstep with our trusted online grocery delivery service.
+            <center><h2 style="letter-spacing: 1px;color:rgb(36, 36, 36);font-size:2vw">WELCOME TO GROCERY MART </h2></center><h4 style="letter-spacing: 0  .5px;color:rgb(36, 36, 36);font-size:1.3vw">You can buy fruits, vegetables, beverages, personal care products, household & all grocery items Online with Oristen Online Grocery Store Karnal. Download Oristen app and order all your daily essentials with click of a button and get them delivered at your doorstep with our trusted online grocery delivery service.
 
             Online Grocery shopping comes with lots of benefits. You can check out the complete article. 
 
@@ -104,16 +126,28 @@
 
          <div class="lower">
         
-          <div class="div3" style="background-image: url(/img/bg_vec2.jpg)">
-              <h4 style="color: black;">15% OFF ON YOUR FIRST ORDER</h4><br>
+          {{!-- <div class="div3" style="background-image: url(/img/bg_vec2.jpg);height:20vh;">
+              <h4 style="color: blue;font-size:1.2vw">15% OFF ON YOUR FIRST ORDER</h4><br>
               TnC applied    
-          </div>
-          <div class="div3" style="background-image:url(/img/sbi.jfif)">
-              <h4>10% DISCOUNT ON SBI CARD PAYMENTS</h4>
-          </div>
-          <div class="div3" style="background-image: url(/img/paytm.jpg)">
-              <h4 style="color: blue;">UPTO 100 PAYTM CASHBACK</h4>
-          </div>
+          </div> --}}
+          {{!-- <div class="imgcontainer"> --}}
+            <img class="div3" src="/img/bg_vec2.jpg" style="height:25vh;">
+            {{!-- <div class="text-block">
+              <h4>Nature</h4>
+              <p>What a beautiful sunrise</p>
+            </div>
+          </div> --}}
+              {{!-- <p style="color: blue;font-size:1.2vw;margin-left:1%">15% OFF ON YOUR FIRST ORDER</p><br>
+              TnC applied     --}}
+          
+          {{!-- <div class="div3" style="background-image:url(/img/sbi.jfif)"> --}}
+          <img class="div3" src="/img/sbi.jfif" style="height:25vh;">
+              {{!-- <h4 style="color: blue;font-size:1.2vw">10% DISCOUNT ON SBI CARD PAYMENTS</h4> --}}
+          
+          {{!-- <div class="div3" style="background-image: url(/img/paytm.jpg)"> --}}
+          <img class="div3" src="/img/paytm.jpg" style="height:25vh;">
+              {{!-- <h4 style="color: blue;font-size:1.2vw">UPTO 100 PAYTM CASHBACK</h4> --}}
+          
         </div>
       
 
