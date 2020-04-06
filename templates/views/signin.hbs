@@ -14,7 +14,7 @@
         <div class="main-content">
           {{>header}}
 
-            <section >
+            {{!-- <section >
 	
 	<div class="column2"style="background-color:#ffffff">
 		<div id="white">
@@ -42,8 +42,51 @@
 				<button class="colouredbutton" id="input_signup"><a href="signup" style="color: white;text-decoration:none">Sign Up</a></button>
 		</div>
 	</div>
-</section>
+</section> --}}
+            <div class="ccontainer" style="background-color: lightyellow;">
+    <div class="crow">
+      <div class="ccol-25">
+      </div>
+      <div class="ccol-75"> 
+        <p style="float: left; color:black">Create new account?</p>       
+				<button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a href="signup" style="color: white;text-decoration:none">Sign up here</a></button>
+      </div>
+    </div>
+  </div>
 
+    <div class="ccontainer">
+			<form method="POST" action="/doSignup">
+      <div class="crow" style="color: black;"><center>
+        <span id="headings">Log in to your account</span id="headings"><br><br>
+			<img src="https://i.ibb.co/2yHwRKg/fb.png">
+			<img src="https://i.ibb.co/KV23QM7/google.png">
+			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
+			<p>or use your email for login</p><br><br></center
+      </div>
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="email" style="color: black;">Enter email</label>
+      </div>
+      <div class="ccol-75">
+        <input id="input_email" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
+      </div>
+    </div>
+
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="subject" style="color: black;">Enter password</label>
+      </div>
+      <div class="ccol-75">
+        <input id="input_password" type="password" name="password" required minlength="7" style="color: black;" placeholder="Your password.."></input>
+        <p style="color: red;">{{message}}</p>
+      </div>
+    </div>
+ 
+    <div class="crow">
+      <input type="submit" name="submit" value="Login" style="width: 180px;color:white">
+    </div>
+  </form>
+</div>
         </div>
 	 {{>footer}}
 		<script src="/js/app.js"> </script>

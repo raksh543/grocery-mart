@@ -11,12 +11,12 @@
         
     </head>
     <body>
-      {{>header}}
+      
         <div class="main-content">
+            {{>header}}
 
-
-            <section >
-	<div class="column1" style="margin-top:0px;padding:0 10 0 10;height:100%">
+            {{!-- <section >
+	<div class="column1" style="margin:0 0 0 0;padding:0 10 0 10;height:100%">
 	
 		<div id="coloured">
 				<span id="headings" id="welcome">Welcome Back!</span id="headings">
@@ -42,7 +42,78 @@
 			</form>
 		</div>
 	</div>
-</section>
+</section> --}}
+    
+  <div class="ccontainer" style="background-color: lightyellow;">
+    <div class="crow">
+      <div class="ccol-25">
+      </div>
+      <div class="ccol-75"> 
+        <p style="float: left; color:black">Already have an account?</p>       
+				<button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a href="signin" style="color: white;text-decoration:none">Log in here</a></button>
+      </div>
+    </div>
+  </div>
+
+    <div class="ccontainer">
+			<form method="POST" action="/doSignup">
+      <div class="crow" style="color: black;"><center>
+        <span id="headings">Create Account</span id="headings"><br><br>
+			<img src="https://i.ibb.co/2yHwRKg/fb.png">
+			<img src="https://i.ibb.co/KV23QM7/google.png">
+			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
+			<p>or use your emailfor registration</p><br><br></center
+      </div>
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="name" style="color: black;">Enter name</label>
+      </div>
+      <div class="ccol-75">
+        <input id="n1" type="text" name="name2" style="color: black;" placeholder="Your name..." required></input>
+      </div>
+    </div>
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="email" style="color: black;">Email</label>
+      </div>
+      <div class="ccol-75">
+        <input id="e1" type="email" name="email2" style="color: black;" placeholder="Your email.." required></input>
+      </div>
+    </div>
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="country" style="color: black;">Country</label>
+      </div>
+      <div class="ccol-75">
+        <select id="country" name="country" style="color: black;">
+          <option value="australia">India</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+    </div>
+    <div class="crow">
+      <div class="ccol-25">
+        <label for="subject" style="color: black;">Enter password</label>
+      </div>
+      <div class="ccol-75">
+        <input id="p1" type="password" name="password" required minlength="7" style="color: black;" placeholder="Your password.."></input>
+      </div>
+    </div>
+       <div class="crow">
+      <div class="ccol-25">
+        <label for="subject" style="color: black;">Re-enter password</label>
+      </div>
+      <div class="ccol-75">
+        <input id="p2" type="password" name="passwordTwo" style="color: black;" required minlength="7" placeholder="confirm password.."></input>
+        <p style="color: red;">{{msg1}}</p>
+      </div>
+    </div>
+    <div class="crow">
+      <input type="submit" name="submit" value="Signup" style="width: 180px;color:white">
+    </div>
+  </form>
+</div>
 
         </div>
 {{>footer}}
