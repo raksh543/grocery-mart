@@ -2,11 +2,16 @@ body{
     color:#333333;
     font-family:arial;
     margin:0 auto;
-    padding: 0 16px;
+    padding:0;
      /* display:flex; 
      flex-direction: column; */
     /*min-height: 100vh; */
 }
+footer2{
+    font-family: Arial;
+    font-weight: 1;
+}
+
 footer{
     position: relative;
    left: 0;
@@ -27,7 +32,7 @@ footer{
 
 header{
     margin-bottom:40px;
-    font-size: x-large;
+    font-size: large;
 }
 
 h1{
@@ -60,6 +65,10 @@ button{
 tr{
     text-align: center;
 }
+.navbar-expand-lg{
+    overflow: hidden;
+}
+
 .nav1{
     color: white;
 }
@@ -200,6 +209,15 @@ tr{
 .plus:hover {
     background-color: #22ec66 !important;
 }
+@media screen and (min-width: 48em) {
+    body {
+        text-align: justify;
+    }
+}
+.navbar {
+    border-bottom: #008ed6 3px solid;
+}
+
 /* .nav2{
     color: rgb(20, 20, 87);
     padding-left:20px;

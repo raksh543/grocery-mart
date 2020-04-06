@@ -3,14 +3,40 @@
         <title>
             Grocery Mart
         </title>
+        <link rel="stylesheet" href="/css/navbar.css">
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
+              <!--header starts here-->
+      <div class="topnav" id="myTopnav">
+        <a href="/" class="active">Grocery Mart</a>
+        
+        <a href="/products">Products</a>
+        <a href="/onlineservices">Services</a>
+        <a href="cart">Cart</a>
+        <a id="signupButton" href="/signup" style="border: 1px;background-color:red;float:right;margin-right:20px">Signup/Login</a>
+       
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+       <!--header ends here-->
         <div class="main-content">
-            {{>header}}
+            
 
         </div>
         {{>footer}}
+              <script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+
+}
+</script>
     </body>
 </html>

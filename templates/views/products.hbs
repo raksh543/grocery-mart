@@ -3,11 +3,24 @@
         <title>
             Products
         </title>
+        <link rel="stylesheet" href="/css/navbar.css">
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/products.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/nice-select.css">
+        <link rel="stylesheet" href="css/flaticon.css">
+        <link rel="stylesheet" href="css/gijgo.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/slicknav.css">
+        <link rel="stylesheet" href="css/style.css">
+        
         <script>
             function displaylist(element){
                 if(document.getElementById(element).style.display="none"){
@@ -32,9 +45,23 @@
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-    <body style="display:flex;flex-direction:column">
+    <body>
+               <!--header starts here-->
+      <div class="topnav" id="myTopnav">
+        <a href="/" class="active">Grocery Mart</a>
+        
+        <a href="/products">Products</a>
+        <a href="/onlineservices">Services</a>
+        <a href="cart">Cart</a>
+        <a id="signupButton" href="/signup" style="border: 1px;background-color:red;float:right;margin-right:20px">Signup/Login</a>
+       
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+       <!--header ends here-->
         <div class="main-content">
-            {{>header}}
+           
             <h3 style="float: left;margin-left:4%">Cilck to add item in your cart</h3>
                 <form action="/addtocart" method="POST" style="float: right;">
                 <input type="hidden" name="p1" id="nacho1" value="0" ></input>
@@ -44,7 +71,7 @@
                 <input type="submit" style="cursor:pointer;: right;margin-right:10 %;border-radius:12px;padding:10px;" onclick=addtocart() value="Add to cart" ></input>
                 </form><br><br><br>
                 {{!-- <button onclick=addtocart()></button> --}}
-            <table  style="width: 100%;position: absolute;cell-padding:" >
+            <table  style="width: 100%;position:relative;" >
 
                 <tr style="margin-top: 16px;">
                     <td class="oneproduct" onclick=displaylist("list1") style="padding-top: 3%;" ><center><img src="/img/beverages.png">
@@ -351,6 +378,17 @@
             
         }
     </script>
+    {{>footer}}
+          <script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
 
+}
+</script>
     </body>
 </html>

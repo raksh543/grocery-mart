@@ -5,7 +5,8 @@ const path=require('path')
 const validator=require('validator')
 var mongoose = require('mongoose');
 const UserSchema=require('../public/models/userschema')
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
+//const router=express.Router()
 
 const app=express()
 const port=process.env.PORT || 3030
@@ -19,6 +20,7 @@ app.set('view engine', 'hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
+//app.use(router)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -65,6 +67,8 @@ flag=false;
 
 // });
 var Member=mongoose.model("Member",UserSchema);
+var pruduct=mongoose.model("Product",UserSchema);
+var usercart=mongoose.model("UserCart",UserSchema);
 
 app.get('/',(req,res)=>{
     res.render('index',{
@@ -191,6 +195,12 @@ app.get('/signin',(req,res)=>{
 
 app.get('/products',(req,res)=>{
     res.render('products',{
+        title:'Products',
+        name:'Rakshita'
+    })
+})
+app.get('/homepage',(req,res)=>{
+    res.render('homepage',{
         title:'Products',
         name:'Rakshita'
     })
