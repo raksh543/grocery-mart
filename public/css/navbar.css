@@ -45,6 +45,7 @@ display: block;
 .topnav.responsive {position: relative;}
 .topnav.responsive .icon {
 position: absolute;
+margin-right: 0px;;
 right: 0;
 top: 0;
 }
