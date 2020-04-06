@@ -2,6 +2,7 @@ section{
 	display:flex;
 	flex-direction:col;
 	height:100%;
+	margin-top: 0px;
 }
 
 .column1{
@@ -14,7 +15,6 @@ section{
 .column2{
 	width:75%;
 	text-align:center;
-	
 }
 
 #coloured{

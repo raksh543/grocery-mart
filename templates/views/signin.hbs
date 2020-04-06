@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="/css/styles.css">        
     </head>
     <body>
-        {{>header}}
+        
         <div class="main-content">
-
+          {{>header}}
 
             <section >
 	
@@ -24,6 +24,7 @@
 			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br>
 			<p>or use your emailfor registration</p><br>
 			<form action="/doSignIn" method="POST">
+      
 			Enter email <input id="input_email" type="email" name="email" style="margin-left:25;"></input><br><br>
 			Enter password <input id="input_password" type="password" name="password"></input><br><br><br>
 			<p style="color: red;">{{message}}</p>
