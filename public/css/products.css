@@ -123,12 +123,15 @@
   .pcol-48 {
 	float: left;
 	width: 48%;
-	margin-top: 6px;
+    margin-top: 6px;
+    font-size: small;
   }
   .pcol-16 {
 	float: left;
 	width: 16%;
-	margin-top: 6px;
+    margin-top: 6px;
+    margin-right: 1px;
+    font-size: small;
   }  .pcol {
 	float: left;
 	width: 33%;
