@@ -158,6 +158,14 @@
 	.pcontainer{
 		width: 100%;
 		margin-left: 0%;
-		margin-right: 0%;
-	}
+        margin-right: 0%;
+        padding: 0px;
+    }
+    .pcol-48{
+        font-size: 2vw;
+    }
+    .pcol-16{
+        font-size: 2vw;
+    }
+    
   }
