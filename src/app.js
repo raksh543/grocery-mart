@@ -106,7 +106,7 @@ app.post('/doSignup',(req,res)=>{
     Member.findOne({'name':username},function(err,person)
     {
         if(person)
-        res.render('signup',{msg1:"User already exist!"});
+        res.render('signup',{msg1:"User already exist login to your account!"});
         else{
             var  newmember=new Member({
                 name:username,
@@ -127,7 +127,7 @@ app.post('/doSignup',(req,res)=>{
                             return;
                         }
                         else{
-                            res.render('index',{success:"successfully registereds"});
+                            res.render('signin',{success:"successfully registereds"});
                             flag=person;
                         }
                     })
