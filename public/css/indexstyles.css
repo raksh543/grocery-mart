@@ -1,0 +1,75 @@
+.heading{
+    color: rgb(36, 36, 36);
+    font-size: xx-large;
+    margin-left: 10%;
+    margin-bottom:20px;
+    margin-top:20px
+}
+
+.headingtext{
+    color: rgb(136, 136, 136);
+    font-size: medium;
+}
+
+.icontainer{
+    width: 100%;
+    
+}
+
+.irow{
+    width: 100%;
+}
+.icol-20{
+    width: 25%;
+    float: left;
+}
+
+.icol-33{
+    width: 30%;
+    float: left;
+    margin-left: 1%;
+    margin-right:1%;
+    border: 1px solid rgb(20, 20, 87);
+    border-radius: 8px;
+}
+
+.icol-20 img{
+    height: 70px;
+    width: 70px;
+}
+
+.icol-20 p{
+    color: black;
+}
+.div3{
+    float: left;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 1;
+    justify-content: space-around;
+    border: 1px solid rgb(20, 20, 87);
+    display: flex;
+    width: 25%;
+    height: 55%;
+    margin-top: 3.5%;
+    margin-left: 6%;
+    justify-content: center;
+    margin-bottom: 3.5%; 
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 600px){
+    .icol-20{
+        width: 50%;
+        float: left;
+    }
+    .heading{
+        color: black;
+        font-size: large;
+        margin-left: 10%;
+    }
+    .icol-33{
+        width: 100%;
+        
+    }
+}
