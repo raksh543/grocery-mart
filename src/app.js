@@ -5,7 +5,8 @@ const path=require('path')
 const validator=require('validator')
 var mongoose = require('mongoose');
 const UserSchema=require('../public/models/userschema')
-// //const MongoClient = require('mongodb').MongoClient;
+var ProductsSchema=require('../public/models/product')
+//const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
 const app=express()
@@ -20,55 +21,20 @@ app.set('view engine', 'hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
-// app.use(router)
+
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// app.use(router)
 
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
 
 flag=false;
-//creating registration schema
-// var UserSchema=new mongoose.Schema({
-//     name:{
-//         type: String,
-//         trim: true,
-//         required:true
-//     },
-//     email:{
-//         type: String,
-//         unique: true,
-//         required: true,
-//         trim: true,
-//         lowercase: true,
-//         validate(value) {
-//             if (!validator.isEmail(value)) {
-//                 throw new Error('Email is invalid')
-//             }
-//         }
-//     },
-//     password:{
-//         type: String,
-//         required: true,
-//         minlength: 7,
-//         trim: true,
-//         validate(value) {
-//             if (value.toLowerCase().includes('password')) {
-//                 throw new Error('Password cannot contain "password"')
-//             }
-//         }
-//     },
-//     passwordTwo:{
-//         type: String,
-//         trim: true
-//     }
 
-
-// });
 var Member=mongoose.model("Member",UserSchema);
-var pruduct=mongoose.model("Product",UserSchema);
-var usercart=mongoose.model("UserCart",UserSchema);
+// var pruduct=mongoose.model("Product",UserSchema);
+// var usercart=mongoose.model("UserCart",UserSchema);
 
 app.get('/',(req,res)=>{
     res.render('index',{
@@ -76,6 +42,19 @@ app.get('/',(req,res)=>{
         name:'Rakshita'
     })
 })
+
+var Product=mongoose.model("Product",ProductsSchema)
+app.get('/beverages',function(req,res,next){
+    Product.find(function(err,docs){
+        var productChunks =[];
+        var chunkSize=3;
+        for ( var i=0; i<docs.length; i+= chunkSize){
+            productChunks.push(docs.slice(i, i+chunkSize));
+        }
+     res.render('beverages',{title:'Beverages', products: productChunks});
+   
+    });
+ });
 
 app.post('/doSignup',(req,res)=>{
     msg1=null

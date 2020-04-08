@@ -28,5 +28,5 @@ var ProductsSchema=new Schema({
 
 
 });
-
-module.exports=mongoose.model('Product', ProductsSchema)
+module.exports=ProductsSchema
+// module.exports=mongoose.model('Product', ProductsSchema)
