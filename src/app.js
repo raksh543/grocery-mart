@@ -5,8 +5,8 @@ const path=require('path')
 const validator=require('validator')
 var mongoose = require('mongoose');
 const UserSchema=require('../public/models/userschema')
-//const MongoClient = require('mongodb').MongoClient;
-//const router=express.Router()
+// //const MongoClient = require('mongodb').MongoClient;
+// var router=require('../public/routes/index')
 
 const app=express()
 const port=process.env.PORT || 3030
@@ -20,7 +20,7 @@ app.set('view engine', 'hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
-//app.use(router)
+// app.use(router)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -127,7 +127,8 @@ app.post('/doSignup',(req,res)=>{
                             return;
                         }
                         else{
-                            res.render('signin',{success:"successfully registereds"});
+                            res.redirect('signin');
+                            // res.render('signin',{success:"successfully registereds"});
                             flag=person;
                         }
                     })
