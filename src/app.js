@@ -4,9 +4,15 @@ const bcrypt = require('bcryptjs')
 const path=require('path')
 const validator=require('validator')
 var mongoose = require('mongoose');
-const UserSchema=require('../public/models/userschema')
+var session=require('express-session')
+var csrf = require('csurf')
+//  var passport=require('passport')
+//  var flash=require('connect-flash')
+// const UserSchema=require('../public/models/userschema')
+var Member=require('../public/models/userschema')
 //const MongoClient = require('mongodb').MongoClient;
-//const router=express.Router()
+// const router=express.Router()
+var router=require('../public/routes/index')
 
 const app=express()
 const port=process.env.PORT || 3030
@@ -20,55 +26,29 @@ app.set('view engine', 'hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
-//app.use(router)
+
+
+
+
+app.use(router)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(session({secret: 'mysupersecret', resave:false, saveUninitialized:false}))
+// app.use(flash)
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+
+var csrfProtection=csrf();
+app.use(csrfProtection)
 
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
-
 flag=false;
-//creating registration schema
-// var UserSchema=new mongoose.Schema({
-//     name:{
-//         type: String,
-//         trim: true,
-//         required:true
-//     },
-//     email:{
-//         type: String,
-//         unique: true,
-//         required: true,
-//         trim: true,
-//         lowercase: true,
-//         validate(value) {
-//             if (!validator.isEmail(value)) {
-//                 throw new Error('Email is invalid')
-//             }
-//         }
-//     },
-//     password:{
-//         type: String,
-//         required: true,
-//         minlength: 7,
-//         trim: true,
-//         validate(value) {
-//             if (value.toLowerCase().includes('password')) {
-//                 throw new Error('Password cannot contain "password"')
-//             }
-//         }
-//     },
-//     passwordTwo:{
-//         type: String,
-//         trim: true
-//     }
-
-
-// });
-var Member=mongoose.model("Member",UserSchema);
-var pruduct=mongoose.model("Product",UserSchema);
-var usercart=mongoose.model("UserCart",UserSchema);
+// var Member=mongoose.model("Member",UserSchema);
+// var pruduct=mongoose.model("Product",UserSchema);
+// var usercart=mongoose.model("UserCart",UserSchema);
 
 app.get('/',(req,res)=>{
     res.render('index',{
@@ -127,7 +107,8 @@ app.post('/doSignup',(req,res)=>{
                             return;
                         }
                         else{
-                            res.render('signin',{success:"successfully registereds"});
+                            res.redirect('signin');
+                            // res.redirect('signin',{success:"successfully registereds"});
                             flag=person;
                         }
                     })
@@ -138,17 +119,9 @@ app.post('/doSignup',(req,res)=>{
 })
 
 app.get('/signup',(req,res)=>{
-    msg1=null
-    // const name=req.body.name
-    // const email=req.body.email
-    // const pass1=req.body.password
-    // const pass2=req.body.password2
-    // const submit=req.body.submit
-    //console.log(req.query.name)
     res.render('signup',{
-       
+        csrfToken: req.csrfToken()
     })
-   // console.log(name)
 })
 
 app.post('/doSignIn',(req,res)=>{

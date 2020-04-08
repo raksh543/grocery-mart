@@ -38,4 +38,5 @@ var UserSchema=new mongoose.Schema({
 
 });
 
-module.exports=UserSchema
+
+module.exports=mongoose.model('Member',UserSchema);
