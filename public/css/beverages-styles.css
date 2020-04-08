@@ -1,0 +1,11 @@
+.thumbnail img{
+    width: 200px;
+    height: 200px;
+}
+
+.addtocart{
+    background-color: rgb(0, 214, 46);
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 4px;
+}
