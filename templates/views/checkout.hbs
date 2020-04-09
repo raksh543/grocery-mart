@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>
+            Sign up
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/navbar.css">
+        <link rel="icon" href="/img/grocery2.png">
+        <link rel="stylesheet" href="/css/login_styles.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        
+    </head>
+    <body>
+      
+        <div class="main-content">
+            {{>header}}
+
+        <div class="ccontainer">
+            <div class="crow" style="color: black;">
+                        <h1>Checkout</h1><br>
+                        <h4>Your total: Rs{{ total }}</h4>
+            </div>
+            <form method="POST" action="/checkout">
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="name" style="color: black;">Name</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="address" style="color: black;">Address</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="text" name="address" style="color: black;" placeholder="Your address..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="card-holder-name" style="color: black;">Card holder name</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="text" name="card-name" style="color: black;" placeholder="Card holder name..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="card number" style="color: black;">Credit card number</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="number" name="card-number" style="color: black;" placeholder="Card number..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="card-expiry-month" style="color: black;">Card expiry month</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="number" name="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="card-expiry-year" style="color: black;">Expiration year</label>
+                </div>
+                <div class="ccol-75">
+                    <input id="n1" type="number" name="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                
+                <div class="ccol-25">
+                    <label for="card-cvc" style="color: black;">CVC</label>
+                </div>
+                <div class="ccol-75">
+                    <input type="number" name="card-cvc" style="color: black;" placeholder="Your cvc..." required></input>
+                </div>
+                </div>
+                <div class="crow">
+                <input type="submit" name="submit" value="Buy now" style="width: 180px;color:white">
+                </div>
+            </form>
+        </div>
+
+        </div>
+{{>footer}}
+		<script src="/js/app.js"> </script>
+
+    </body>
+</html>

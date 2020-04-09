@@ -41,7 +41,7 @@ app.use(session(
         resave:false,
         saveUninitialized:false,
         store: new MongoStore({ mongooseConnection:mongoose.connection}),
-        cookie:{maxAge: 10 * 60 * 1000}
+        cookie:{maxAge: 60 * 60 * 1000}
         }))
 app.use(flash())
 app.use(passport.initialize())
@@ -193,6 +193,14 @@ app.get('/shopping-cart',(req, res, next)=>{
     }
     var cart=new Cart(req.session.cart)
     res.render('shopping-cart', {products: cart.generateArray(), totalPrice:cart.totalPrice})
+})
+
+app.get('/checkout', (req, res, next)=>{
+    if(!req.session.cart){
+        return res.redirect('/shopping-cart')
+    }
+    var cart=new Cart(req.session.cart)
+    res.render('checkout', {total: cart.totalPrice})
 })
 
 app.get('/online_services',(req,res)=>{
