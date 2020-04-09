@@ -2,8 +2,8 @@ const express=require('express')
 const hbs=require('hbs')
 const bcrypt = require('bcryptjs')
 const path=require('path')
-const validator=require('validator')
 var mongoose = require('mongoose');
+var validator=require('express-validator')
 var csrf=require('csurf')
 var cookieParser = require('cookie-parser')
 var session=require('express-session')
@@ -33,9 +33,10 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(validator())
 app.use(cookieParser())
 app.use(session(
-    {
+    { 
         secret:'mysupersecret',
         resave:false,
         saveUninitialized:false,
@@ -106,46 +107,20 @@ app.post('/doSignup',passport.authenticate('local.signup',{
     failureFlash:true
 }))
 
-
-app.post('/doSignIn',(req,res)=>{
-    var email=req.body.email
-    var query={email:email };
- Member.findOne(query,function(err,person){
-     console.log(query)
-        if(err)res.status(404);
-            if(!person){
-                
-                res.render('signin',{message:'Wrong email-id'});
-             }
-             else{
-               
-                bcrypt.compare(req.body.password,person.password,function(err,isMatch){
-                    if(err){
-
-                        console.log(err);
-                    }
-                    if(isMatch){
-                        flag=person;
-                        //res.sendFile(__dirname+"/faultform.html");
-                        res.redirect('/');
-                    }else{
-                        //console.log(req.body.password);
-                         //var msg="Wrong password";
-                        res.render('signin',{message:'wrong password'});                     
-                    }
-                });
-             }
-    });
-
-})
-
-app.get('/signin',(req,res)=>{
-
+app.get('/signin',(req,res, next)=>{
+    var messages=req.flash('error');
     res.render('signin',{
-        title:'Products',
-        name:'Rakshita'
+        csrfToken:req.csrfToken(),
+        messages: messages,
+        hasErrors:messages.length>0
     })
 })
+
+app.post('/doSignIn',passport.authenticate('local.signin',{
+    successRedirect:'/profile',
+    failureRedirect:'/signin',
+    failureFlash:true
+}))
 
 app.get('/profile',(req,res, next)=>{
     res.render('profile',{

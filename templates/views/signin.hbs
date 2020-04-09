@@ -61,8 +61,19 @@
 			<img src="https://i.ibb.co/2yHwRKg/fb.png">
 			<img src="https://i.ibb.co/KV23QM7/google.png">
 			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
-			<p>or use your email for login</p><br><br></center
+			<p>or use your email for login</p><br><br></center>
       </div>
+        {{# if hasErrors}}
+            <div class="crow">
+              {{# each messages }}
+                <center>
+                <p  style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px"> {{this}} </p>
+                </center>
+              {{/each}}
+              
+            </div>
+
+        {{/if}}
     <div class="crow">
       <div class="ccol-25">
         <label for="email" style="color: black;">Enter email</label>
@@ -83,7 +94,8 @@
     </div>
  
     <div class="crow">
-      <input type="submit" value="Login" style="width: 180px;color:white">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+     <input type="submit" value="Login" style="width: 180px;color:white">
     </div>
   </form>
 </div>
