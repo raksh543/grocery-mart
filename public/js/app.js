@@ -1,49 +1,39 @@
-
-
 console.log("Client side javascript is running")
 
+Stripe.setPublishableKey('pk_test_VgEg9d0xqcY7X7WQet0lfRoC00p4FukC7d');
 
+var $form=$('#checkout-form')
 
+$form.submit(function(event){
+    $form.find('button').prop('disabled', true);
+    Stripe.card.createToken({
+        number: $('#card-number').val(),
+        cvc: $('#card-cvc').val(),
+        exp_month: $('#card-expiry-month').val(),
+        exp_year: $('#card-expiry-year').val(),
+        name: $('#card-name').val()
+      }, stripeResponseHandler);
+      return false;
+});
 
-// // const signin_signup=document.querySelector('#input_signin_signup')
-// // const signin=document.querySelectorAll('[type=submit]')
-// // const signup=document.querySelector('#input_signup')
-// // const input_email=document.querySelector('#input_name')
-// // const input_password=document.querySelector('#input_password')
-
-// // const db=client.db(databaseName)
-
-// // signin.addEventListener('submit',(e)=>{
-// //     e.preventDefault()
-// //     db.collection('users').insertOne({
-// //         name:input_email,
-// //         password:input_password
-// //     },(error,result)=>{
-// //         if(error){
-// //             return console.log('Unable to insert in database')
-// //         }
-// //         console.log(result.ops)
-// //     })
-
-// // })
-
-
-
-// // signin_signup.addEventListener('submit',(e)=>{
-    
-// // })
-// const doSignUp=document.querySelectorAll('form')
-// const n1=document.querySelector('#n1')
-// const e1=document.querySelector('#e')
-// const p1=document.querySelector('#p1')
-// const p2=document.querySelector('#p2')
-
-// doSignUp.addEventListner('submit',(e)=>{
-//     e.preventDefault()
-
-//     const name=n1.value
-//     fetch('/signup?name='+name).then((response)=>{
-//         console.log(name)
-//     })
-// })
-
+function stripeResponseHandler(status, response) {
+  
+    if (response.error) { // Problem!
+  
+      // Show the errors on the form
+      $('#charged-error').text(response.error.message);
+      $form.find('button').prop('disabled', false); // Re-enable submission
+  
+    } else { // Token was created!
+  
+      // Get the token ID:
+      var token = response.id;
+  
+      // Insert the token into the form so it gets submitted to the server:
+      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+  
+      // Submit the form:
+      $form.get(0).submit();
+  
+    }
+  }

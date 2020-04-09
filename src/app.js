@@ -178,12 +178,12 @@ app.get('/cart/:id',(req,res,next)=>{
 
     Product.findById(productId, function(err, product){
         if(err){
-            return res.redirect('/')
+            return res.redirect('/beverages')
         }
         cart.add(product, product.id)
         req.session.cart = cart
         console.log(req.session.cart)
-        res.redirect('/')
+        res.redirect('/beverages')
     })
 })
 

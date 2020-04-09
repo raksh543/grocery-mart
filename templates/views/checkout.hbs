@@ -8,6 +8,7 @@
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/login_styles.css">
         <link rel="stylesheet" href="/css/styles.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         
     </head>
     <body>
@@ -18,16 +19,19 @@
         <div class="ccontainer">
             <div class="crow" style="color: black;">
                         <h1>Checkout</h1><br>
-                        <h4>Your total: Rs{{ total }}</h4>
+                        <h4>Your total: Rs{{ total }}</h4><center>
+                        <p id="charged-error" style="background-color: rgb(255, 174, 174);color:maroon;width:100%:padding:12px;border-radius:4px" >
+                            
+                        </p></center>
             </div>
-            <form method="POST" action="/checkout">
+            <form method="POST" action="/checkout" id="checkout-form">
                 <div class="crow">
                 
                 <div class="ccol-25">
                     <label for="name" style="color: black;">Name</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
+                    <input id="n1" type="text" id="name" style="color: black;" placeholder="Your name..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -36,7 +40,7 @@
                     <label for="address" style="color: black;">Address</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="text" name="address" style="color: black;" placeholder="Your address..." required></input>
+                    <input id="n1" type="text" id="address" style="color: black;" placeholder="Your address..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -45,16 +49,16 @@
                     <label for="card-holder-name" style="color: black;">Card holder name</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="text" name="card-name" style="color: black;" placeholder="Card holder name..." required></input>
+                    <input id="n1" type="text" id="card-name" style="color: black;" placeholder="Card holder name..." required></input>
                 </div>
                 </div>
                 <div class="crow">
                 
                 <div class="ccol-25">
-                    <label for="card number" style="color: black;">Credit card number</label>
+                    <label for="card-number" style="color: black;">Credit card number</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="number" name="card-number" style="color: black;" placeholder="Card number..." required></input>
+                    <input id="n1" type="number" id="card-number" style="color: black;" placeholder="Card number..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -63,7 +67,7 @@
                     <label for="card-expiry-month" style="color: black;">Card expiry month</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="number" name="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
+                    <input id="n1" type="number" id="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -72,7 +76,7 @@
                     <label for="card-expiry-year" style="color: black;">Expiration year</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="number" name="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
+                    <input id="n1" type="number" id="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -81,7 +85,7 @@
                     <label for="card-cvc" style="color: black;">CVC</label>
                 </div>
                 <div class="ccol-75">
-                    <input type="number" name="card-cvc" style="color: black;" placeholder="Your cvc..." required></input>
+                    <input type="number" id="card-cvc" style="color: black;" placeholder="Your cvc..." required></input>
                 </div>
                 </div>
                 <div class="crow">
@@ -92,7 +96,7 @@
 
         </div>
 {{>footer}}
-		<script src="/js/app.js"> </script>
-
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+		<script src="/js/app.js"> </script> 
     </body>
 </html>
