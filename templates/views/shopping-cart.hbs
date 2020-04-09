@@ -12,6 +12,8 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
         {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> --}}
@@ -56,7 +58,7 @@
          --}}
 
          
-                    <div class="container">
+                    {{!-- <div class="container">
             <table id="cart" class="table table-hover table-condensed">
                             <thead>
                                 <tr>
@@ -101,9 +103,50 @@
                                 </tr>
                             </tfoot>
                         </table>
-        </div>
-       
-        </div> 
+        </div> --}}
+        {{# if products}}
+            <div class="row">
+                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
+                    <ul class="list-group">
+                        {{# each products}}
+                            <li class="list-group-item">
+                                <span class="badge">{{ this.qty }}</span>
+                                <strong>{{ this.item.title }}</strong>
+                                <span class="label label-success" style="padding: 5px 7px;;">Rs {{ this.price}}</span>
+                                <div class="btn-group" >
+                                    <button class=" btn-primary btnxs dropdown-toggle" style="border-radius:4px" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Reduce by 1</a></li>
+                                        <li><a href="#">Remove all</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        {{/each}}
+                        
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
+                    <strong>Total: {{totalPrice}} </strong>
+                </div>
+            </div> 
+            <hr>
+            <div class="row">
+                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
+                    <button type="button" style="border-radius: 4px;" class="btn-success">Checkout</button>
+                </div>
+            </div> 
+        {{else}}
+            <div class="row">
+                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
+                    <h2>No items in cart</h2>
+                </div>
+            </div> 
+        {{/if}}
+
 
         {{>footer}}
 

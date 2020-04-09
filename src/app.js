@@ -8,10 +8,10 @@ var csrf=require('csurf')
 var cookieParser = require('cookie-parser')
 var session=require('express-session')
 var passport=require('passport')
-var LocalStrategy=require('passport-local').Strategy;
 var flash=require('connect-flash')
 var MongoStore=require('connect-mongo')(session)
 
+var Cart=require('../public/models/cart')
 const UserSchema=require('../public/models/userschema')
 var ProductsSchema=require('../public/models/product')
 //const MongoClient = require('mongodb').MongoClient;
@@ -47,11 +47,12 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-// app.use((req,res,next)=>{
-//     res.locals.login=req.isAuthenticated();
-//     res.locals.session=req.session;
-//     next();
-// })
+//this is middleware
+app.use((req,res,next)=>{
+    res.locals.login=req.isAuthenticated();
+    res.locals.session=req.session;
+    next();
+})
 // app.use(router)
 
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
@@ -90,8 +91,26 @@ app.get('/beverages',function(req,res,next){
     });
  });
 
-var csrfProtection=csrf();
+ var csrfProtection=csrf();
 app.use(csrfProtection)
+
+app.get('/profile',isLoggedIn,(req,res, next)=>{
+    res.render('profile',{
+        title:'Products',
+        name:'Rakshita'
+    })
+})
+
+app.get('/logout',isLoggedIn, (req,res,next)=>{
+    req.logout();
+    res.redirect('/')
+})
+
+// app.use('/',notLoggedIn,function(req,res,next){
+//     next();
+// })
+
+
 app.get('/signup',(req,res, next)=>{
     var messages=req.flash('error');
     res.render('signup',{
@@ -121,14 +140,6 @@ app.post('/doSignIn',passport.authenticate('local.signin',{
     failureRedirect:'/signin',
     failureFlash:true
 }))
-
-app.get('/profile',(req,res, next)=>{
-    res.render('profile',{
-        title:'Products',
-        name:'Rakshita'
-    })
-})
-
 
 app.get('/products',(req,res)=>{
     res.render('products',{
@@ -161,13 +172,27 @@ app.post('/addtocart',(req,res)=>{
 })
 
 
-app.get('/cart',(req,res)=>{
-   
+app.get('/cart/:id',(req,res,next)=>{
+    var productId=req.params.id;
+    var cart = new Cart((req.session.cart ? req.session.cart : {})) 
 
-    res.render('cart',{
-        title:'Products',
-        name:'Rakshita',
+    Product.findById(productId, function(err, product){
+        if(err){
+            return res.redirect('/')
+        }
+        cart.add(product, product.id)
+        req.session.cart = cart
+        console.log(req.session.cart)
+        res.redirect('/')
     })
+})
+
+app.get('/shopping-cart',(req, res, next)=>{
+    if(!req.session.cart){
+        return res.render('shopping-cart', {products:null})
+    }
+    var cart=new Cart(req.session.cart)
+    res.render('shopping-cart', {products: cart.generateArray(), totalPrice:cart.totalPrice})
 })
 
 app.get('/online_services',(req,res)=>{
@@ -188,5 +213,21 @@ app.get('*',(req,res)=>{
 app.listen(port,()=>{
     console.log('Server is up on the port'+port)
 })
+
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/');
+
+}
+
+function notLoggedIn(req,res,next){
+    if(!req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/');
+
+}
 
 module.exports=flag

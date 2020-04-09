@@ -10,9 +10,14 @@
         
         <a href="/products">Products</a>
         <a href="/onlineservices">Services</a>
-        <a href="cart">Cart</a>
-        <a id="signupButton" href="/signup" style="border: 1px;background-color:red;float:right;margin-right:20px">Signup/Login</a>
-       
+        <a href="/shopping-cart">Cart <span style="border-radius: 50px;background-color:gray;padding:2px 7px;">{{session.cart.totalQty}}</span></a>
+        {{# if login}}
+          <a id="signupButton" href="/profile" style="border: 1px;background-color:rgb(157, 201, 0);float:right;margin-right:20px">User Account</a>
+          <a id="signupButton" href="/logout" style="border: 1px;background-color:rgb(157, 201, 0);float:right;margin-right:20px">Logout</a>
+      
+        {{else}}
+          <a id="signupButton" href="/signup" style="border: 1px;background-color:red;float:right;margin-right:20px">Signup/Login</a>
+        {{/if}}
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
