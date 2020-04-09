@@ -62,14 +62,27 @@
 			<img src="https://i.ibb.co/2yHwRKg/fb.png">
 			<img src="https://i.ibb.co/KV23QM7/google.png">
 			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
-			<p>or use your emailfor registration</p><br><br></center
+			<p>or use your email for registration</p><br><br>
+        </center>
       </div>
+        {{# if hasErrors}}
+            <div class="crow">
+              {{# each messages }}
+              <center>
+              <p  style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px"> {{this}} </p>
+              </center>
+              {{/each}}
+              
+            </div>
+
+        {{/if}}
     <div class="crow">
+     
       <div class="ccol-25">
         <label for="name" style="color: black;">Enter name</label>
       </div>
       <div class="ccol-75">
-        <input id="n1" type="text" name="name2" style="color: black;" placeholder="Your name..." required></input>
+        <input id="n1" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
       </div>
     </div>
     <div class="crow">
@@ -77,7 +90,7 @@
         <label for="email" style="color: black;">Email</label>
       </div>
       <div class="ccol-75">
-        <input id="e1" type="email" name="email2" style="color: black;" placeholder="Your email.." required></input>
+        <input id="e1" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
       </div>
     </div>
     <div class="crow">
@@ -110,6 +123,7 @@
       </div>
     </div>
     <div class="crow">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <input type="submit" name="submit" value="Signup" style="width: 180px;color:white">
     </div>
   </form>

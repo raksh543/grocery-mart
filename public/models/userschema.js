@@ -1,11 +1,11 @@
 const mongoose=require('mongoose')
 const validator=require('validator')
+var bcrypt=require('bcrypt-nodejs')
 
 var UserSchema=new mongoose.Schema({
     name:{
         type: String,
-        trim: true,
-        required:true
+        trim: true
     },
     email:{
         type: String,
@@ -37,5 +37,13 @@ var UserSchema=new mongoose.Schema({
 
 
 });
+
+UserSchema.methods.encryptPassword=function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null)
+}
+
+UserSchema.methods.validPassword=function(password){
+    return bcrypt.compareSync(password, this.password)
+}
 
 module.exports=UserSchema

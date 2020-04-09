@@ -7,8 +7,6 @@ var mongoose = require('mongoose');
 var csrf=require('csurf')
 var cookieParser = require('cookie-parser')
 var session=require('express-session')
-var passport=require('passport')
-var LocalStrategy=require('passport-local').Strategy;
 var flash=require('connect-flash')
 var MongoStore=require('connect-mongo')(session)
 
@@ -43,8 +41,6 @@ app.use(session(
         cookie:{maxAge: 10 * 60 * 1000}
         }))
 app.use(flash())
-app.use(passport.initialize())
-app.use(passport.session())
 
 // app.use((req,res,next)=>{
 //     res.locals.login=req.isAuthenticated();
@@ -61,13 +57,6 @@ flag=false;
 var Member=mongoose.model("Member",UserSchema);
 // var pruduct=mongoose.model("Product",UserSchema);
 // var usercart=mongoose.model("UserCart",UserSchema);
-
-//---------------------------------in config/passport.js------
-require('../config/passport')
-
-//-------------------------------------
-
-
 
 app.get('/',(req,res)=>{
     res.render('index',{
@@ -92,19 +81,79 @@ app.get('/beverages',function(req,res,next){
 var csrfProtection=csrf();
 app.use(csrfProtection)
 app.get('/signup',(req,res, next)=>{
-    var messages=req.flash('error');
+    msg1=null
+    // const name=req.body.name
+    // const email=req.body.email
+    // const pass1=req.body.password
+    // const pass2=req.body.password2
+    // const submit=req.body.submit
+    //console.log(req.query.name)
     res.render('signup',{
-        csrfToken:req.csrfToken(),
-        messages: messages,
-        hasErrors:messages.length>0
+        csrfToken:req.csrfToken()
     })
-}) 
+   // console.log(name)
+})
 
-app.post('/doSignup',passport.authenticate('local.signup',{
-    successRedirect:'/profile',
-    failureRedirect:'/signup',
-    failureFlash:true
-}))
+app.post('/doSignup',(req,res)=>{
+    msg1=null
+    //var name=req.body.name;
+    var email=req.body.email2;
+    var password=req.body.password;
+    var passwordTwo=req.body.passwordTwo;
+    if(passwordTwo!=password){
+        res.render('signup',{msg1:"Passwords do not match"});
+    }
+   
+    
+//    //validation of registration form
+//     req.checkBody('name','Name is required').notEmpty();
+//     req.checkBody('email','E-mail is required').notEmpty();
+//     req.checkBody('email',' Valid E-mail is required').isEmail();
+//     req.checkBody('password','Password is required').notEmpty();
+//     req.checkBody('password2', 'Passwords do not match').equals(password);
+
+//     var errors=req.validationErrors();
+//     if(errors){
+        
+
+//         res.render('index',{errors:errors});
+        
+//     }
+    var username= req.body.name2;
+    Member.findOne({'name':username},function(err,person)
+    {
+        if(person)
+        res.render('signup',{msg1:"User already exist login to your account!"});
+        else{
+            var  newmember=new Member({
+                name:username,
+                email:email,
+                password:password    
+            });
+            
+    
+            bcrypt.genSalt(10,function(err,salt){
+                bcrypt.hash(newmember.password,salt,function(err,hash){
+                    if(err){
+                        console.log(err);
+                    }
+                    newmember.password=hash;
+                    newmember.save(function(err){
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        else{
+                            res.redirect('/');
+                            // res.render('signin',{success:"successfully registereds"});
+                            flag=person;
+                        }
+                    })
+                })
+            })
+        }
+    });
+})
 
 
 app.post('/doSignIn',(req,res)=>{
@@ -147,7 +196,7 @@ app.get('/signin',(req,res)=>{
     })
 })
 
-app.get('/profile',(req,res, next)=>{
+app.get('/profile',(req,res)=>{
     res.render('profile',{
         title:'Products',
         name:'Rakshita'
