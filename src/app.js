@@ -147,8 +147,8 @@ app.get('/products',(req,res)=>{
         name:'Rakshita'
     })
 })
-app.get('/homepage',(req,res)=>{
-    res.render('homepage',{
+app.get('/testing',(req,res)=>{
+    res.render('testing',{
         title:'Products',
         name:'Rakshita'
     })

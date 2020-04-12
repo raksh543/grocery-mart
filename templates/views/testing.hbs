@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Grocery Mart
+    </title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/owl.carousel.min.cc">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <style type="text/css">
+        .wrapper{
+            width:100%;
+            height:auto;
+            overflow: hidden;
+            display: inline-block;
+
+        }
+        .item
+{
+    display: inline-block;
+    width:50%
+
+}    </style>
+    
+</head>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+    <div class="owl-carousel owl-theme">
+    <div class="item"><h4>1</h4></div>
+    <div class="item"><h4>2</h4></div>
+    <div class="item"><h4>3</h4></div>
+    <div class="item"><h4>4</h4></div>
+    <div class="item"><h4>5</h4></div>
+    <div class="item"><h4>6</h4></div>
+    <div class="item"><h4>7</h4></div>
+    <div class="item"><h4>8</h4></div>
+    <div class="item"><h4>9</h4></div>
+    <div class="item"><h4>10</h4></div>
+    <div class="item"><h4>11</h4></div>
+    <div class="item"><h4>12</h4></div>
+</div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link href="css/owl.carousel.min.js">
+<script>
+$(".owl-carousel").owlCarousel({
+      autoPlay: 3000,
+      items : 1, // THIS IS IMPORTANT
+      responsive : {
+            480 : { items : 1  }, // from zero to 480 screen width 4 items
+            768 : { items : 2  }, // from 480 screen widthto 768 6 items
+            1024 : { items : 3   // from 768 screen width to 1024 8 items
+            }
+        },
+  });
+</script>
+
+</body>
+
+</html>

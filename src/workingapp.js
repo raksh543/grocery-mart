@@ -145,6 +145,7 @@ app.post('/doSignup',(req,res)=>{
                         }
                         else{
                             res.redirect('/');
+                            // res.send(newmember)
                             // res.render('signin',{success:"successfully registereds"});
                             flag=person;
                         }

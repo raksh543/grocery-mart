@@ -7,17 +7,6 @@ body{
      flex-direction: column; */
     /*min-height: 100vh; */
 }
-footer2{
-    font-family: Arial;
-    font-weight: 1;
-}
-
-footer{
-    position: relative;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-}
 
 .main-content{
     flex-grow: 1;
@@ -33,6 +22,9 @@ footer{
 header{
     margin-bottom:40px;
     font-size: large;
+    /* position: fixed;
+    width: 100%;
+    z-index: 9999; */
 }
 
 h1{
@@ -64,95 +56,6 @@ button{
 }
 tr{
     text-align: center;
-}
-.navbar-expand-lg{
-    overflow: hidden;
-}
-
-.nav1{
-    color: white;
-}
-.nav1:hover{
-    color: rgb(20, 20, 87);
-}
-.navlinks{
-    display: flex;
-    position: absolute;
-    right: 5%;
-    justify-content: space-around;
-}
-.navlinks li{
-    list-style: none;
-}
-.navlinks a{
-    text-decoration: none;
-    font-weight: bold;
-}
-.div2{
-    float: left;
-    opacity: 1;
-    justify-content: space-around;
-    border: 1px solid rgb(20, 20, 87);
-    border-block-color: rgb(20, 20, 87); 
-    width: 20%;
-    height: 180px;
-    margin-top: 3%;
-    margin-left: 4%;
-    margin-bottom: 4%; 
-    border-radius: 10px;
-}
-.div2 img{
-    padding-top:5%;
-    padding-left:30%;
-    width: 70%;
-    height:70%;
-}
-.div3{
-    float: left;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    opacity: 1;
-    justify-content: space-around;
-    border: 1px solid rgb(20, 20, 87);
-    display: flex;
-    width: 25%;
-    height: 55%;
-    margin-top: 3.5%;
-    margin-left: 6%;
-    justify-content: center;
-    margin-bottom: 3.5%; 
-    border-radius: 10px;
-}
-.div3 h4{
-    font-family: sans-serif;
-    text-align: center;
-    padding-top: 160px;
-    color: white;
-}
-.lower{
-    background-color : rgba(54, 54, 54, 0.267); 
-    height: 280px;
-    width: 100%;
-}
-.lower1{
-    background-color : rgba(95, 95, 95, 0.267); 
-    height: 250px;
-    width: 100%;
-    opacity: 0.5;
-    margin-top: 6%;
-
-}
-
-.lower2{
-    margin-top:0%;
-    background-color: rgb(95, 91, 91);
-    height:50px;
-}
-.lower2 h5{
-    padding-left: 10%;
-    padding-top: 15px;
-    color: white;
-    font-family: sans-serif;  
 }
 
 .count {

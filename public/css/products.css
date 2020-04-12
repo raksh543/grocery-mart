@@ -11,70 +11,6 @@
     to {background-color:rgb(242, 255, 255);}
   }
 
-  /* section{
-	display:flex;
-	flex-direction:col;
-	height:100%;
-}
-
-.column1{
-	text-align:center;
-	width:25%;
-	background-color:navy;
-
-}
-
-.column2{
-	width:75%;
-	text-align:center;
-	float:right;
-}
-
-#coloured{
-	color:white;
-	position: relative;
-	top: 50%;
-	justify-content:center;	
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	
-}
-
-#white{
-	color:navy;
-	position: relative;
-	top: 50%;
-	justify-content:center;	
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	
-}
-
-.colouredbutton{
-	background-color:#00000000;
-	border-radius:16px;
-	border-color:white;
-	border-width:2px;
-	padding:10px 50px 10px 50px;
-	color:white;
-}
-
-#whiteButton{
-	background-color:navy;
-	border-radius:16px;
-	border-color:white;
-	border-width:2px;
-	padding:10px 50px 10px 50px;
-	color:white;
-	
-}
-
-#headings{
-    size: 16px;
-} */
-
-/* --------------------------------------------------------- */
-
 
 * {
 	box-sizing: border-box;
@@ -148,7 +84,22 @@
 	display: table;
 	clear: both;
   }
+  #carouseling{
+	width:100%;
+	height:70%;
+  }
+  #corauseltext{
+	position:absolute;
+	top:30%;
+	right:60%;
+	left:15%;
+	font-size: x-large;
+  }
   
+  #corauseltext h2{
+	font-size: 40px;
+  }
+ 
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
 	.pcol, input[type=submit] {
@@ -166,6 +117,22 @@
     }
     .pcol-16{
         font-size: 2.2vw;
-    }
+	}
+	#carouseling{
+		width:100%;
+		height:50%;
+	  }
+	  #corauseltext{
+		position:absolute;
+		top:10%;
+		right:60%;
+		left:10%;
+		font-size: medium;
+	  }
+	  #corauseltext h2{
+		font-size: x-large;
+	  }
+	 
+	  
     
   }

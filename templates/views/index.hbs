@@ -1,181 +1,655 @@
 <html>
-    <head>
-        <title>
-            Grocery Mart
-        </title>
-        {{!-- <style>
-.imgcontainer {
-  position: relative;
-  font-family: Arial;
-}
 
-.text-block {
-  position: absolute;
-  margin-top: 15vh;
-  width: 10vw;
-  height: 10vh;
-  top:20%;
-  left:12%;
-  font-size: .1vw;
-  border-radius: 8px;
-  background-color: black;
-  opacity: 0.8;
-  color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-</style> --}}
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="stylesheet" href="/css/indexstyles.css">
-        <link rel="icon" href="/img/grocery2.png">
-        <link rel="stylesheet" href="/css/styles.css">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-      </head>
-        
-    </head>
-    <body>
-      {{>header}}
-      <div class="main-content">
+<head>
+  <title>
+    Grocery Mart
+  </title>
 
-      <!--Carousel starts here-->
-      <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 0;">
-          <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/indexstyles.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="icon" href="/img/grocery2.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</head>
 
-          <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="/img/bg_vec1.jpg" alt="Los Angeles" style="width:100%;height:70%">
-          </div>
+</head>
 
-          <div class="item">
-            <img src="/img/bg_vec2.jpg" alt="Chicago" style="width:100%;height:70%">
-          </div>
-    
-          <div class="item">
-            <img src="/img/bg_vec02.jpg" alt="New york" style="width:100%;height:70%">
-          </div>
+<body>
+  {{>header}}
+  <div class="main-content">
+
+
+
+    {{!-- <!--Carousel starts here-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <center>
+            <img src="/img/basic-1.png" alt="Los Angeles" style="width:80%;height:70%"></center>
         </div>
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
+        <div class="item">
+          <img src="/img/bg_vec2.jpg" alt="Chicago" style="width:100%;height:70%">
+        </div>
+
+        <div class="item">
+          <img src="/img/bg_vec02.jpg" alt="New york" style="width:100%;height:70%">
+        </div>
       </div>
-      <!--Carousel ends here-->
-           
 
-        <div style="margin-left: 10%;margin-right:10%;margin-top:5%;margin-bottom:5%">
-          <p>
-            <center><p class="heading" >WELCOME TO GROCERY MART </h2></center><p class="headingtext">You can buy fruits, vegetables, beverages, personal care products, household & all grocery items Online with Oristen Online Grocery Store Karnal. Download Oristen app and order all your daily essentials with click of a button and get them delivered at your doorstep with our trusted online grocery delivery service.
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!--Carousel ends here--> --}}
 
-            Online Grocery shopping comes with lots of benefits. You can check out the complete article. 
+      <div class="container" style="position: relative;">
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-horizontal-xl">
+          <li><center><a href="#fruits" class="list-group-item list-group-item-action list-group-item-primary" >Fruits & Vegetables</a></center></li>
+          <li><center><a href="#foodgrain" class="list-group-item list-group-item-action list-group-item-primary">Foodgrain, oil & Masala</a></center></li>
+          <li><center><a href="#bakery" class="list-group-item list-group-item-action list-group-item-primary">Bakery & Dairy</a></center></li>
+          <li><center><a href="#snacks" class="list-group-item list-group-item-action list-group-item-primary">Snacks & Branded foods</a></center></li>
+          <li><center><a href="#beauty" class="list-group-item list-group-item-action list-group-item-primary">Beauty & Hyigene</a></center></li>
+          <li><center><a href="#cleaning" class="list-group-item list-group-item-action list-group-item-primary">Cleaning & household</a></center></li>
+          <li><center><a href="#kitchen" class="list-group-item list-group-item-action list-group-item-primary">Kitchen, garden & Pets</a></center></li>
+          <li><center><a href="#meat" class="list-group-item list-group-item-action list-group-item-primary">Eggs, Meat & Fish</a></center></li>
 
-            Don’t forget to check our offer section for attractive offers. You can follow us on Facebook and Instagram also for daily attractive offers.Lorem ipsum dolor sit amet, consectetur adipiscing elit.<h4>
-          </p>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+    <!--Carousel starts here-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+        <li data-target="#myCarousel" data-slide-to="7"></li>
+        <li data-target="#myCarousel" data-slide-to="8"></li>
+        <li data-target="#myCarousel" data-slide-to="9"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img id="carouseling" src="/img/Group-fruits.png" alt="Los Angeles">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
         </div>
 
-          <p class="heading"><a href="products" style="text-decoration: none;cursor:pointer;">
-            Expolre by Category</a></p>
+        <div class="item">
+          <img id="carouseling" src="/img/Group-babycare.png" alt="Chicago">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
 
+          </span>
+        </div>
+
+        <div class="item">
+          <img id="carouseling" src="/img/Group-bakery.png" alt="New york">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+        <div class="item">
+          <img id="carouseling" src="/img/Group-beauty.png" alt="Los Angeles">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+
+        <div class="item">
+          <img id="carouseling" src="/img/Group-beverages.png" alt="Chicago">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+
+        <div class="item">
+          <img id="carouseling" src="/img/Group-cleaning.png" alt="New york">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+        <div class="item">
+          <img id="carouseling" src="/img/Group-foodgrains.png" alt="Los Angeles">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+
+        <div class="item">
+          <img id="carouseling" src="/img/Group-kitchen.png" alt="Chicago">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+
+        <div class="item">
+          <img id="carouseling" src="/img/Group-meat.png" alt="New york">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+        <div class="item">
+          <img id="carouseling" src="/img/Group-snacks.png" alt="Los Angeles">
+          <span id="corauseltext">
+            <h2> Fruits and Vegetables</h2>
+            <h1>Get upto <span style="color: red;">50% </span>off</h1><br>
+            <a href="#" style="padding:12px;background-color:green;border-radius:8px;color:white;margin-top:20px">BUY
+              NOW </a>
+
+          </span>
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!--Carousel ends here-->
+
+
+    <div style="margin-left: 10%;margin-right:10%;margin-top:5%;margin-bottom:5%">
+      <p>
         <center>
-        <div class="icontainer">
-          <div class="irow">
-            <div class="icol-20">
-              <a href="beverages"><img src="/img/beverages.png" alt="beverages"><br>
-              <p>Beverages</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/bakery.png" alt="beverages"><br>
-              <p>Bread/Bakery</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/canned.png" alt="beverages"><br>
-              <p>Canned/Jarred goods</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/produce.png" alt="beverages"><br>
-              <p>Produce</p>
-            </div>
-          </div>
-          <div class="irow">
-            <div class="icol-20">
-              <img src="/img/dairy.png" alt="beverages"><br>
-              <p>Dairy</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/paper.png" alt="beverages"><br>
-              <p>Paper goods</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/meat.png" alt="beverages"><br>
-              <p>Meat</p>
-            </div>
-            <div class="icol-20">
-              <img src="/img/navicon.png" alt="beverages"><br>
-              <p>Explore more</p>
+          <p style="font-size: 25px;color:rgb(80, 80, 80)">Welcome to Grocery Mart</p>
+        </center>
+        <hr width="90%">
+        <p class="headingtext">You can buy fruits, vegetables, beverages, personal care products, household & all
+          grocery items Online with Oristen Online Grocery Store Karnal. Download Oristen app and order all your daily
+          essentials with click of a button and get them delivered at your doorstep with our trusted online grocery
+          delivery service.
+
+          Online Grocery shopping comes with lots of benefits. You can check out the complete article.
+
+          Don’t forget to check our offer section for attractive offers. You can follow us on Facebook and Instagram
+          also for daily attractive offers.Lorem ipsum dolor sit amet, consectetur adipiscing elit.<h4>
+        </p>
+    </div>
+
+
+    <br>
+
+    <center>
+      <p style="font-size: 25px;color:rgb(80, 80, 80)">Explore by categories</p>
+    </center>
+    <hr width="90%">
+    {{!-- <center>
+      <div class="card-group">
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/bakery.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Bakery</p>
             </div>
           </div>
         </div>
-        </center>
-        <br>
-
-        
-         <p class="heading">Deals That Will Interest You</p>
-         <center>
-        <div class="icontainer lower">
-          <div class="irow">
-            <div class="icol-33 div3">
-              <img src="/img/bg_vec2.jpg" >
-            </div>
-            <div class="icol-33 div3">
-              <img src="/img/sbi.jfif" >
-            </div>
-            <div class="icol-33 div3">
-              <img src="/img/paytm.jpg" >
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/beverages.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Beverages</p>
             </div>
           </div>
         </div>
-        </center>
-
-         {{!-- <div class="lower"> --}}
-        
-          {{!-- <div class="div3" style="background-image: url(/img/bg_vec2.jpg);height:20vh;">
-              <h4 style="color: blue;font-size:1.2vw">15% OFF ON YOUR FIRST ORDER</h4><br>
-              TnC applied    
-          </div> --}}
-          {{!-- <div class="imgcontainer"> --}}
-            {{!-- <img class="div3" src="/img/bg_vec2.jpg" style="height:25vh;"> --}}
-            {{!-- <div class="text-block">
-              <h4>Nature</h4>
-              <p>What a beautiful sunrise</p>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/Canned.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Canned/Jarred</p>
             </div>
+          </div>
+        </div>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/produce.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Produce</p>
+            </div>
+          </div>
+        </div>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/dairy.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Dairy</p>
+            </div>
+          </div>
+        </div>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/paper.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Paper Goods</p>
+            </div>
+          </div>
+        </div>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/meat.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Meat</p>
+            </div>
+          </div>
+        </div>
+        <div class="icol-20">
+          <div class="card category" style="width: 18rem;">
+            <img src="/img/navicon.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Explore more</p>
+            </div>
+          </div>
+        </div>
+        {{!-- <div class="icol-20">
+            <img src="/img/bakery.png" alt="beverages"><br>
+            <p>Bread/Bakery</p>
           </div> --}}
-              {{!-- <p style="color: blue;font-size:1.2vw;margin-left:1%">15% OFF ON YOUR FIRST ORDER</p><br>
-              TnC applied     --}}
-          
-          {{!-- <div class="div3" style="background-image:url(/img/sbi.jfif)"> --}}
-          {{!-- <img class="div3" src="/img/sbi.jfif" style="height:25vh;"> --}}
-              {{!-- <h4 style="color: blue;font-size:1.2vw">10% DISCOUNT ON SBI CARD PAYMENTS</h4> --}}
-          
-          {{!-- <div class="div3" style="background-image: url(/img/paytm.jpg)"> --}}
-          {{!-- <img class="div3" src="/img/paytm.jpg" style="height:25vh;"> --}}
-              {{!-- <h4 style="color: blue;font-size:1.2vw">UPTO 100 PAYTM CASHBACK</h4> --}}
-     
-        {{>footer}}
+  </div>
+  </center> --}}
 
-    </body>
+
+
+  <center>
+    <p  id="fruits" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Fruits & Vegetables</p>
+  </center>
+  <hr width="90%">
+  <!--Style one starts here-->
+  <div class="container diffcategories " style="background-color: rgb(225, 250, 225);">
+    <div class="row justify-content-center" style="height:50%;">
+      <div id="carddiffcat" class="col carddiffcat" style="background-image: url(/img/sq-fruits.png);background-size:cover;
+  background-repeat: no-repeat;">
+        {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+        {{!-- <a href="/products" id="buyProductLink"> Start Shopping </a> --}}
+      </div>
+      <div class="col">
+        <div class="row justify-content-center" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col2
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col3
+          </div>
+        </div>
+        <div class="row justify-content-center" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col4
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col5
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--Style one ends here-->
+  <center>
+    <p id="foodgrain" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Foodgrain, oil & Masala</p>
+  </center>
+  <hr width="90%">
+  <!--Style 2 starts here-->
+  <div class="container" style="background-color: rgb(255, 235, 235);">
+    <div class="row " style="height: 30%;">
+      <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/sq-foodgrain.png);background-size:cover;
+  background-repeat: no-repeat;">
+        {{!-- <img src="/img/sq-fruits.png" class="card-img" alt="..."> --}}
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown" ;>
+        col2
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col3
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col4
+      </div>
+    </div>
+  </div>
+  <!--Style 2 ends here-->
+
+  <center>
+    <p id="bakery" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Bakery & Dairy</p>
+  </center>
+  <hr width="90%">
+  <!--style  starts here-->
+  <div class="container diffcategories" style="background-color: rgb(255, 255, 223);">
+    <div class="row" style="height:50%;">
+      <div class="col">
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col2
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col3
+          </div>
+        </div>
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col4
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col5
+          </div>
+        </div>
+
+      </div>
+
+      <div id="carddiffcat" class="col card carddiffcat"
+        style="border-color:yellow;background-image: url(/img/sq-snacks.png);">
+        {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+      </div>
+    </div>
+  </div>
+  <!--style 3 ends here-->
+
+  <center>
+    <p id="snacks" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Snacks & Branded foods</p>
+  </center>
+  <hr width="90%">
+  <!--Style one starts here-->
+  <div class="container diffcategories" style="background-color: rgb(225, 250, 225);">
+    <div class="row" style="height:50%;">
+      <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/sq-snacks.png);">
+        {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+      </div>
+      <div class="col">
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col2
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col3
+          </div>
+        </div>
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col4
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col5
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--Style one ends here-->
+
+  <center>
+    <p id="beauty" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Beauty & Hyigene</p>
+  </center>
+  <hr width="90%">
+  <!--Style 2 starts here-->
+  <div class="container" style="background-color: rgb(255, 235, 235);">
+    <div class="row" style="height:30%;" >
+      <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/sq-beauty.png);">
+        col1
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown" ;>
+        col2
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col3
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col4
+      </div>
+    </div>
+  </div>
+  <!--Style 2 ends here-->
+
+  <center>
+    <p id="cleaning" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Cleaning & household</p>
+  </center>
+  <hr width="90%">
+  <!--style 3 starts here-->
+  <div class="container diffcategories" style="background-color: rgb(255, 255, 223);">
+    <div class="row" style="height:50%;">
+      <div class="col">
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col2
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col3
+          </div>
+        </div>
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col4
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;">
+            col5
+          </div>
+        </div>
+
+      </div>
+
+      <div id="carddiffcat" class="col card carddiffcat"
+        style="border-color:yellow;background-image: url(/img/sq-cleaning.png);">
+        {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+      </div>
+    </div>
+  </div>
+  <!--style 3 ends here-->
+
+  <center>
+    <p id="kitchen" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Kitchen, garden & Pets</p>
+  </center>
+  <hr width="90%">
+  <!--Style one starts here-->
+  <div class="container diffcategories" style="background-color: rgb(225, 250, 225);">
+    <div class="row" style="height:50%;">
+      <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/sq-pets.png);">
+        {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+      </div>
+      <div class="col">
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col2
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col3
+          </div>
+        </div>
+        <div class="row" style="height:50%;">
+          <div id="carddiffcat" class="col card carddiffcat">
+            col4
+          </div>
+          <div id="carddiffcat" class="col card carddiffcat">
+            col5
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--Style one ends here-->
+  <center>
+    <p id="meat" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Eggs, Meat & Fish</p>
+  </center>
+  <hr width="90%">
+  <!--Style 2 starts here-->
+  <div class="container" style="background-color: rgb(255, 235, 235);">
+    <div class="row" style="height:30%">
+      <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/sq-meat.png);">
+        col1
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown" ;>
+        col2
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col3
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:brown;">
+        col4
+      </div>
+    </div>
+  </div>
+  <!--Style 2 ends here-->
+
+
+  <br><br>
+
+  <center>
+    <p style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px"> Deals That Will Interest You</p>
+  </center>
+  <hr width="90%">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12" style="margin: 10px 0;">
+        <div class="card brandcard" style="background-color: rgb(246, 248, 255);">
+          <img src="/img/bg_vec2.jpg" class="card-img-top" alt="...">
+          <div class="card-body" style="color: black;">
+            <br>
+            <h4><strong>For our new customers</strong></h4>
+            <p class="card-text">15% OFF ON YOUR FIRST ORDER</p><br>
+            <a href="#" class="btn-primary" style="padding: 10px 12px;border-radius:4px;background-color:#007bff;">Get offer coupon</a><br><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12" style="margin: 10px 0;">
+        <div class="card brandcard" style="background-color: rgb(246, 248, 255);">
+          <img src="/img/sbi.jfif" class="card-img-top" alt="...">
+          <div class="card-body" style="color: black;">
+            <br>
+            <h4><strong>For sbi card users</strong></h4>
+            <p class="card-text">10% DISCOUNT ON SBI CARD PAYMENTS</p><br>
+            <a href="#" class="btn-primary" style="padding: 10px 12px;border-radius:4px;background-color:#007bff;">Get offer coupon</a><br><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12" style="margin: 10px 0;">
+        <div class="card brandcard" style="background-color: rgb(246, 248, 255);">
+          <img src="/img/paytm.jpg" class="card-img-top" alt="...">
+          <div class="card-body" style="color: black;">
+            <br>
+            <h4><strong>For our new customers</strong></h4>
+            <p class="card-text">15% OFF ON YOUR FIRST ORDER</p><br>
+            <a href="#" class="btn-primary" style="padding: 10px 12px;border-radius:4px;background-color:#007bff;">Get offer coupon</a><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <center>
+    <p style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px"> Brands</p>
+  </center>
+  <hr width="90%">
+  <!--Style 2 starts here-->
+  <div class="container">
+    <div class="row" style="height:25%">
+      <div id="carddiffcat" class="col card" style="border-color:rgb(238, 241, 255);border-radius:2px">
+        <img src="/img/brand-colgate.png" class="card-img-top" alt="...">
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:rgb(238, 241, 255);border-radius:2px">
+        <img src="/img/brand-cadbury.png" class="card-img-top" alt="...">
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:rgb(238, 241, 255);border-radius:2px">
+        <img src="/img/brand-nestle.png" class="card-img-top" alt="...">
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:rgb(238, 241, 255);border-radius:2px">
+        <img src="/img/brand-johnsons.png" class="card-img-top" alt="...">
+      </div>
+      <div id="carddiffcat" class="col card" style="border-color:rgb(238, 241, 255);border-radius:2px">
+        <img src="/img/brand-amul.png" class="card-img-top" alt="...">
+      </div>
+    </div>
+  </div>
+  <!--Style 2 ends here-->
+
+
+
+
+
+
+
+
+
+  </div>
+
+  {{>footer}}
+
+</body>
+
 </html>
