@@ -1,32 +1,33 @@
-const express=require('express')
-const hbs=require('hbs')
+const express = require('express')
+const hbs = require('hbs')
 const bcrypt = require('bcryptjs')
-const path=require('path')
+const path = require('path')
 var mongoose = require('mongoose');
-var validator=require('express-validator')
-var csrf=require('csurf')
+var validator = require('express-validator')
+var csrf = require('csurf')
 var cookieParser = require('cookie-parser')
-var session=require('express-session')
-var passport=require('passport')
-var flash=require('connect-flash')
-var MongoStore=require('connect-mongo')(session)
+var session = require('express-session')
+var passport = require('passport')
+var flash = require('connect-flash')
+var MongoStore = require('connect-mongo')(session)
 
-var Cart=require('../public/models/cart')
-const UserSchema=require('../public/models/userschema')
-var ProductsSchema=require('../public/models/product')
+var Cart = require('../public/models/cart')
+const UserSchema = require('../public/models/userschema')
+var ProductsSchema = require('../public/models/product')
+var OrderSchema = require('../public/models/orders')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
-const app=express()
-const port=process.env.PORT || 3030
+const app = express()
+const port = process.env.PORT || 3030
 
-const publicDirectoryPath=path.join(__dirname,'../public')
-const viewPath=path.join(__dirname,'../templates/views')
-const partialsPath=path.join(__dirname,'../templates/partials')
+const publicDirectoryPath = path.join(__dirname, '../public')
+const viewPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 
 app.set('view engine', 'hbs')
-app.set('views',viewPath)
+app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
 
 
@@ -36,21 +37,21 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(validator())
 app.use(cookieParser())
 app.use(session(
-    { 
-        secret:'mysupersecret',
-        resave:false,
-        saveUninitialized:false,
-        store: new MongoStore({ mongooseConnection:mongoose.connection}),
-        cookie:{maxAge: 60 * 60 * 1000}
-        }))
+    {
+        secret: 'mysupersecret',
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+        cookie: { maxAge: 60 * 60 * 1000 }
+    }))
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
 //this is middleware
-app.use((req,res,next)=>{
-    res.locals.login=req.isAuthenticated();
-    res.locals.session=req.session;
+app.use((req, res, next) => {
+    res.locals.login = req.isAuthenticated();
+    res.locals.session = req.session;
     next();
 })
 // app.use(router)
@@ -58,9 +59,11 @@ app.use((req,res,next)=>{
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
 
-flag=false;
+flag = false;
 
-var Member=mongoose.model("Member",UserSchema);
+var Member = mongoose.model("Member", UserSchema);
+var Product = mongoose.model("Product", ProductsSchema);
+var Order=mongoose.model("Order",OrderSchema)
 // var pruduct=mongoose.model("Product",UserSchema);
 // var usercart=mongoose.model("UserCart",UserSchema);
 
@@ -71,37 +74,47 @@ require('../config/passport')
 
 
 
-app.get('/',(req,res)=>{
-    res.render('index',{
-        title:'Grocery Mart',
-        name:'Rakshita'
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: 'Grocery Mart',
+        name: 'Rakshita'
     })
 })
 
-var Product=mongoose.model("Product",ProductsSchema)
-app.get('/beverages',function(req,res,next){
-    Product.find(function(err,docs){
-        var productChunks =[];
-        var chunkSize=3;
-        for ( var i=0; i<docs.length; i+= chunkSize){
-            productChunks.push(docs.slice(i, i+chunkSize));
-        }
-     res.render('beverages',{title:'Beverages', products: productChunks});
-   
-    });
- });
 
- var csrfProtection=csrf();
+app.get('/beverages', function (req, res, next) {
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.render('beverages', { title: 'Beverages', products: productChunks });
+
+    });
+});
+
+var csrfProtection = csrf();
 app.use(csrfProtection)
 
-app.get('/profile',isLoggedIn,(req,res, next)=>{
-    res.render('profile',{
-        title:'Products',
-        name:'Rakshita'
+app.get('/profile', isLoggedIn, (req, res, next) => {
+    Order.find({
+        user: req.user
+    },(err, orders)=>{
+        if(err){
+            return res.write('Error!');
+        }
+        var cart;
+        orders.forEach(function(order){
+            cart = new Cart(order.cart)
+            order.items = cart.generateArray()
+        })
+        res.render('profile',{ orders:orders})
+
     })
 })
 
-app.get('/logout',isLoggedIn, (req,res,next)=>{
+app.get('/logout', isLoggedIn, (req, res, next) => {
     req.logout();
     res.redirect('/')
 })
@@ -111,73 +124,89 @@ app.get('/logout',isLoggedIn, (req,res,next)=>{
 // })
 
 
-app.get('/signup',(req,res, next)=>{
-    var messages=req.flash('error');
-    res.render('signup',{
-        csrfToken:req.csrfToken(),
+app.get('/signup', (req, res, next) => {
+    var messages = req.flash('error');
+    res.render('signup', {
+        csrfToken: req.csrfToken(),
         messages: messages,
-        hasErrors:messages.length>0
+        hasErrors: messages.length > 0
     })
-}) 
+})
 
-app.post('/doSignup',passport.authenticate('local.signup',{
-    successRedirect:'/profile',
-    failureRedirect:'/signup',
-    failureFlash:true
-}))
+app.post('/doSignup', passport.authenticate('local.signup', {
+    failureRedirect: '/signup',
+    failureFlash: true
+}), function (req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        // console.log(newUser)
+        // res.send(newUser)
+        res.redirect('/profile')
+    }
+})
 
-app.get('/signin',(req,res, next)=>{
-    var messages=req.flash('error');
-    res.render('signin',{
-        csrfToken:req.csrfToken(),
+app.get('/signin', (req, res, next) => {
+    var messages = req.flash('error');
+    res.render('signin', {
+        csrfToken: req.csrfToken(),
         messages: messages,
-        hasErrors:messages.length>0
+        hasErrors: messages.length > 0
     })
 })
 
-app.post('/doSignIn',passport.authenticate('local.signin',{
-    successRedirect:'/profile',
-    failureRedirect:'/signin',
-    failureFlash:true
-}))
-
-app.get('/products',(req,res)=>{
-    res.render('products',{
-        title:'Products',
-        name:'Rakshita'
-    })
-})
-app.get('/testing',(req,res)=>{
-    res.render('testing',{
-        title:'Products',
-        name:'Rakshita'
-    })
+app.post('/doSignIn', passport.authenticate('local.signin', {
+    failureRedirect: '/signin',
+    failureFlash: true
+}), function (req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/profile')
+    }
 })
 
-app.post('/addtocart',(req,res)=>{
-    var coffee=req.body.p1
-    var tea=req.body.p2
-    var orange=req.body.p3
-    var strawberry=req.body.p4
-    var total=(25*parseInt(coffee))+(20*parseInt(tea))+(50*parseInt(orange))+(50*parseInt(strawberry))
+app.get('/products', (req, res) => {
+    res.render('products', {
+        title: 'Products',
+        name: 'Rakshita'
+    })
+})
+app.get('/testing', (req, res) => {
+    res.render('testing', {
+        title: 'Products',
+        name: 'Rakshita'
+    })
+})
+
+app.post('/addtocart', (req, res) => {
+    var coffee = req.body.p1
+    var tea = req.body.p2
+    var orange = req.body.p3
+    var strawberry = req.body.p4
+    var total = (25 * parseInt(coffee)) + (20 * parseInt(tea)) + (50 * parseInt(orange)) + (50 * parseInt(strawberry))
     console.log(coffee)
-    res.render('cart',{
-        coffee:coffee,
-        tea:tea,
-        orange:orange,
-        strawberry:strawberry,
-        total:total
+    res.render('cart', {
+        coffee: coffee,
+        tea: tea,
+        orange: orange,
+        strawberry: strawberry,
+        total: total
     })
 
 })
 
 
-app.get('/cart/:id',(req,res,next)=>{
-    var productId=req.params.id;
-    var cart = new Cart((req.session.cart ? req.session.cart : {})) 
+app.get('/cart/:id', (req, res, next) => {
+    var productId = req.params.id;
+    var cart = new Cart((req.session.cart ? req.session.cart : {}))
 
-    Product.findById(productId, function(err, product){
-        if(err){
+    Product.findById(productId, function (err, product) {
+        if (err) {
             return res.redirect('/beverages')
         }
         cart.add(product, product.id)
@@ -187,55 +216,124 @@ app.get('/cart/:id',(req,res,next)=>{
     })
 })
 
-app.get('/shopping-cart',(req, res, next)=>{
-    if(!req.session.cart){
-        return res.render('shopping-cart', {products:null})
-    }
-    var cart=new Cart(req.session.cart)
-    res.render('shopping-cart', {products: cart.generateArray(), totalPrice:cart.totalPrice})
+app.get('/reduce/:id',(req,res,next)=>{
+    var productId= req.params.id;
+    var cart = new Cart((req.session.cart ? req.session.cart : {}))
+
+    cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart')
 })
 
-app.get('/checkout', (req, res, next)=>{
-    if(!req.session.cart){
+app.get('/remove/:id',(req,res,next)=>{
+    var productId= req.params.id;
+    var cart = new Cart((req.session.cart ? req.session.cart : {}))
+
+    cart.removeItem(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart')
+})
+
+app.get('/shopping-cart', (req, res, next) => {
+    if (!req.session.cart) {
+        return res.render('shopping-cart', { products: null })
+    }
+    var cart = new Cart(req.session.cart)
+    res.render('shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice })
+})
+
+app.get('/checkout', isUserLoggedIn, (req, res, next) => {
+    if (!req.session.cart) {
         return res.redirect('/shopping-cart')
     }
-    var cart=new Cart(req.session.cart)
-    res.render('checkout', {total: cart.totalPrice})
+    var cart = new Cart(req.session.cart)
+    var errMsg = req.flash('error')[0];
+    res.render('checkout', { total: cart.totalPrice, csrfToken:req.csrfToken(), errMsg: errMsg, noError: !errMsg })
 })
 
-app.get('/online_services',(req,res)=>{
-    res.render('404',{
-        title:'Products',
-        name:'Rakshita'
+app.post('/checkout', isUserLoggedIn, (req, res, next) => {
+    if (!req.session.cart) {
+        return res.redirect('/shopping-cart')
+    }
+    var cart = new Cart(req.session.cart)
+
+    var stripe = require('stripe')('sk_test_ibdmQudewKOFQONKNrhpqcJQ00QKbE1M9a');
+
+    // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+    stripe.charges.create(
+        {
+            amount: cart.totalPrice,
+            currency: 'inr',
+            source: req.body.stripeToken,
+            description: 'Test charge'
+        },
+        function (err, charge) {
+            // asynchronously called
+            if (err) {
+                req.flash('error', err.message);
+                return res.redirect('/checkout')
+            }
+            var order = new Order({
+                user: req.user,
+                cart: cart,
+                address: req.body.address,
+                name: req.body.name,
+                paymentId: charge.id
+            });
+            order.save((err, result) => {
+                if(err){
+                    req.flash('error', 'Payment failed');
+                }else{
+                req.flash('success', 'Successfully bought product!');
+                req.session.cart = null;
+                res.redirect('/');
+            }
+            })
+        })
+})
+
+app.get('/online_services', (req, res) => {
+    res.render('404', {
+        title: 'Products',
+        name: 'Rakshita'
     })
 })
 
-app.get('*',(req,res)=>{
-    res.render('404',{
-        title:'404',
-        name:'Rakshita Jain',
-        errorMessage:'Page not found'
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Rakshita Jain',
+        errorMessage: 'Page not found'
     })
 })
 
-app.listen(port,()=>{
-    console.log('Server is up on the port'+port)
+app.listen(port, () => {
+    console.log('Server is up on the port' + port)
 })
 
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/');
 
 }
 
-function notLoggedIn(req,res,next){
-    if(!req.isAuthenticated()){
+function notLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
         return next();
     }
     res.redirect('/');
 
 }
 
-module.exports=flag
+function isUserLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    req.session.oldUrl = req.url;
+    res.redirect('/signin');
+
+}
+
+module.exports = flag

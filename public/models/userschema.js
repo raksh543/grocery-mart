@@ -38,6 +38,10 @@ var UserSchema=new mongoose.Schema({
 
 });
 
+// UserSchema.methods.matchPassword=function(password, passwordTwo){
+
+// }
+
 UserSchema.methods.encryptPassword=function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null)
 }

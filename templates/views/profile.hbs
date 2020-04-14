@@ -1,24 +1,81 @@
 <html>
-    <head>
-        <title>
-            Sign up
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="icon" href="/img/grocery2.png">
-        <link rel="stylesheet" href="/css/login_styles.css">
-        <link rel="stylesheet" href="/css/styles.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        
-    </head>
-    <body>
-        {{>header}}
-        <div class="main-content" style="color:black">
-            
-        <h2>User profile</h2>
+
+<head>
+    <title>
+        Profile
+    </title>
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/indexstyles.css">
+    <link rel="stylesheet" href="/css/products.css">
+    <link rel="icon" href="/img/grocery2.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+</head>
+
+<body>
+    {{>header}}
+    <div class="main-content">
+
+
+
+        <center>
+            <p style="font-size: 25px;color:rgb(80, 80, 80)">User Profile</p>
+        </center>
+        <hr width="90%">
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>My Orders</h2>
+                {{# each orders}}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                {{# each this.item}}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{this.item.title}} | {{this.qty}} Units
+                                        <span class="badge badge-primary badge-pill">{{this.price}}</span>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                        <div class="panel-footer"><strong>Total Price: Rs {{this.cart.totalPrice}}</strong></div>
+                    </div>
+                {{/each}}
+
+            </div>
         </div>
-{{>footer}}
-        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-		<script src="/js/app.js"> </script> 
-    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    {{>footer}}
+
+</body>
+
 </html>

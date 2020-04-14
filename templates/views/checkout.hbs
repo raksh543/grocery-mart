@@ -1,102 +1,121 @@
 <html>
-    <head>
-        <title>
-            Sign up
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="icon" href="/img/grocery2.png">
-        <link rel="stylesheet" href="/css/login_styles.css">
-        <link rel="stylesheet" href="/css/styles.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        
-    </head>
-    <body>
-      
-        <div class="main-content">
-            {{>header}}
+
+<head>
+    <title>
+        Sign up
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="icon" href="/img/grocery2.png">
+    <link rel="stylesheet" href="/css/login_styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="main-content">
+        {{>header}}
 
         <div class="ccontainer">
-            <div class="crow" style="color: black;">
-                        <h1>Checkout</h1><br>
-                        <h4>Your total: Rs{{ total }}</h4><center>
-                        <p id="charged-error" style="background-color: rgb(255, 174, 174);color:maroon;width:100%:padding:12px;border-radius:4px" >
-                            
-                        </p></center>
+            <div class="crow form-row" style="color: black;">
+                <h1>Checkout</h1><br>
+                <h4>Your total: Rs{{ total }}</h4>
+                <center>
+                    <p id="charged-error"
+                        style="background-color: rgb(255, 174, 174);color:maroon;width:100%:padding:12px;border-radius:4px"
+                        {{#if noErrors}}hidden{{/if}}>
+                        {{errMsg}}
+                    </p>
+                </center>
             </div>
-            <form method="POST" action="/checkout" id="checkout-form">
-                <div class="crow">
-                
-                <div class="ccol-25">
-                    <label for="name" style="color: black;">Name</label>
+
+            <form method="POST" action="/checkout" id="payment-form">
+                <div class="crow form-row">
+
+                    <div class="ccol-25">
+                        <label for="name" style="color: black;">Name</label>
+                    </div>
+                    <div class="ccol-75">
+                        <input type="text" id="name" name="name" style="color: black;" placeholder="Your name..."
+                            required></input>
+                    </div>
                 </div>
-                <div class="ccol-75">
-                    <input id="n1" type="text" id="name" style="color: black;" placeholder="Your name..." required></input>
+                <div class="crow form-row">
+
+                    <div class="ccol-25">
+                        <label for="address" style="color: black;">Address</label>
+                    </div>
+                    <div class="ccol-75">
+                        <input type="text" id="address" data-stripe="address_zip" name="address" style="color: black;"
+                            placeholder="Your address..." required></input>
+                    </div>
                 </div>
+                <div class="crow form-row">
+
+                    <div class="ccol-25">
+                        <label for="card-holder-name" style="color: black;">Card holder name</label>
+                    </div>
+                    <div class="ccol-75">
+                        <input type="text" id="card-name" style="color: black;" placeholder="Card holder name..."
+                            required></input>
+                    </div>
                 </div>
-                <div class="crow">
-                
-                <div class="ccol-25">
-                    <label for="address" style="color: black;">Address</label>
+                <div class="crow form-row">
+
+                    <div class="ccol-25">
+                        <label for="card-number" style="color: black;">Credit card number</label>
+                    </div>
+                    <div class="ccol-75">
+                        <input type="number" id="card-number" data-stripe="number" style="color: black;"
+                            placeholder="Card number..." required></input>
+                    </div>
                 </div>
-                <div class="ccol-75">
-                    <input id="n1" type="text" id="address" style="color: black;" placeholder="Your address..." required></input>
-                </div>
-                </div>
-                <div class="crow">
-                
-                <div class="ccol-25">
-                    <label for="card-holder-name" style="color: black;">Card holder name</label>
-                </div>
-                <div class="ccol-75">
-                    <input id="n1" type="text" id="card-name" style="color: black;" placeholder="Card holder name..." required></input>
-                </div>
-                </div>
-                <div class="crow">
-                
-                <div class="ccol-25">
-                    <label for="card-number" style="color: black;">Credit card number</label>
-                </div>
-                <div class="ccol-75">
-                    <input id="n1" type="number" id="card-number" style="color: black;" placeholder="Card number..." required></input>
-                </div>
-                </div>
-                <div class="crow">
-                
-                <div class="ccol-25">
+                <div class="crow form-row">
+                  
+                    <div class="ccol-25">
                     <label for="card-expiry-month" style="color: black;">Card expiry month</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="number" id="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
+                    <input type="number" id="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
                 </div>
                 </div>
-                <div class="crow">
+                <div class="crow form-row">
                 
                 <div class="ccol-25">
                     <label for="card-expiry-year" style="color: black;">Expiration year</label>
                 </div>
                 <div class="ccol-75">
-                    <input id="n1" type="number" id="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
+                    <input type="number" id="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
                 </div>
-                </div>
-                <div class="crow">
-                
-                <div class="ccol-25">
-                    <label for="card-cvc" style="color: black;">CVC</label>
-                </div>
-                <div class="ccol-75">
-                    <input type="number" id="card-cvc" style="color: black;" placeholder="Your cvc..." required></input>
-                </div>
-                </div>
-                <div class="crow">
-                <input type="submit" name="submit" value="Buy now" style="width: 180px;color:white">
-                </div>
-            </form>
         </div>
+        <div class="crow form-row">
 
+            <div class="ccol-25">
+                <label for="card-cvc" style="color: black;">CVC</label>
+            </div>
+            <div class="ccol-75">
+                <input type="number" id="card-cvc" data-stripe="cvc" style="color: black;" placeholder="Your cvc..."
+                    required></input>
+            </div>
         </div>
-{{>footer}}
-        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-		<script src="/js/app.js"> </script> 
-    </body>
+        <div class="crow form-row">
+            {{!-- <button type="submit" >Done</button> --}}
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" name="stripeToken" id="stripeToken"></input>
+            <input id="clickhere"type="button" name="button" value="Submit Payment" style="width: 180px;color:white">
+            <input type="submit" id="submit" name="button" value="Submit Payment" style="width: 180px;color:white">
+        </div>
+        </form>
+    </div>
+
+    </div>
+    {{>footer}}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="/js/app.js"> </script>
+</body>
+
 </html>
