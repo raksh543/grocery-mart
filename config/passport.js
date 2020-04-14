@@ -3,7 +3,6 @@ var mongoose=require('mongoose')
 var UserSchema=require('../public/models/userschema')
 var LocalStrategy=require('passport-local').Strategy;
 
-
 var Member=mongoose.model("Member",UserSchema);
 passport.serializeUser(function(user,done){
     done(null,user.id)
@@ -43,10 +42,12 @@ passport.use('local.signup', new LocalStrategy({
         newUser.password=newUser.encryptPassword(req.body.password);
         if(req.body.password==req.body.passwordTwo){
             newUser.save(function(err, result){
+                console.log(newUser)
                 if(err){
                     return done(err)
                 }
                 return done(null, newUser)
+                
             })
         }else{
             return done(null, false, {message:'Passwords do not match.'})

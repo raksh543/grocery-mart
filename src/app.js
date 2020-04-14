@@ -144,6 +144,7 @@ app.post('/doSignup', passport.authenticate('local.signup', {
     } else {
         // console.log(newUser)
         // res.send(newUser)
+        // console.log(passport)
         res.redirect('/profile')
     }
 })
@@ -270,7 +271,7 @@ app.post('/checkout', isUserLoggedIn, (req, res, next) => {
         function (err, charge) {
             // asynchronously called
             if (err) {
-                req.flash('error', err.message);
+                req.flash('error', 'Wrong card details');
                 return res.redirect('/checkout')
             }
             var order = new Order({

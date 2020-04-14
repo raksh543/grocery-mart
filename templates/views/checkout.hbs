@@ -80,7 +80,7 @@
                     <label for="card-expiry-month" style="color: black;">Card expiry month</label>
                 </div>
                 <div class="ccol-75">
-                    <input type="number" id="card-expiry-month" style="color: black;" placeholder="Month..." required></input>
+                    <input type="number" id="card-expiry-month" size="2" style="color: black;" placeholder="Month..." required></input>
                 </div>
                 </div>
                 <div class="crow form-row">
@@ -89,7 +89,7 @@
                     <label for="card-expiry-year" style="color: black;">Expiration year</label>
                 </div>
                 <div class="ccol-75">
-                    <input type="number" id="card-expiry-year" style="color: black;" placeholder="Year..." required></input>
+                    <input type="number" id="card-expiry-year" size="4" style="color: black;" placeholder="Year..." required></input>
                 </div>
         </div>
         <div class="crow form-row">
@@ -106,8 +106,8 @@
             {{!-- <button type="submit" >Done</button> --}}
             <input type="hidden" name="_csrf" value="{{csrfToken}}">
             <input type="hidden" name="stripeToken" id="stripeToken"></input>
-            <input id="clickhere"type="button" name="button" value="Submit Payment" style="width: 180px;color:white">
-            <input type="submit" id="submit" name="button" value="Submit Payment" style="width: 180px;color:white">
+            <br><input id="clickhere"type="button" name="button" value="Submit Payment" style="width: 180px;color:white;float:right;background-color:rgb(43, 209, 71)">
+            <input type="submit" id="submit" name="button" hidden style="width:0;height:0px">
         </div>
         </form>
     </div>
