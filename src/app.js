@@ -74,11 +74,28 @@ require('../config/passport')
 
 
 
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Grocery Mart',
-        name: 'Rakshita'
-    })
+app.get('/', (req, res,next) => {
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.render('index', { title: 'Beverages', products: productChunks });
+
+    });
+})
+
+app.get('/testing', (req, res,next) => {
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        
+        for (var i = 0; i < docs.length; i ++) {
+            productChunks.push(docs);
+        }
+        res.render('testing', { title: 'Beverages', products: productChunks });
+
+    });
 })
 
 
@@ -177,29 +194,24 @@ app.get('/products', (req, res) => {
         name: 'Rakshita'
     })
 })
-app.get('/testing', (req, res) => {
-    res.render('testing', {
-        title: 'Products',
-        name: 'Rakshita'
-    })
-})
 
-app.post('/addtocart', (req, res) => {
-    var coffee = req.body.p1
-    var tea = req.body.p2
-    var orange = req.body.p3
-    var strawberry = req.body.p4
-    var total = (25 * parseInt(coffee)) + (20 * parseInt(tea)) + (50 * parseInt(orange)) + (50 * parseInt(strawberry))
-    console.log(coffee)
-    res.render('cart', {
-        coffee: coffee,
-        tea: tea,
-        orange: orange,
-        strawberry: strawberry,
-        total: total
-    })
 
-})
+// app.post('/addtocart', (req, res) => {
+//     var coffee = req.body.p1
+//     var tea = req.body.p2
+//     var orange = req.body.p3
+//     var strawberry = req.body.p4
+//     var total = (25 * parseInt(coffee)) + (20 * parseInt(tea)) + (50 * parseInt(orange)) + (50 * parseInt(strawberry))
+//     console.log(coffee)
+//     res.render('cart', {
+//         coffee: coffee,
+//         tea: tea,
+//         orange: orange,
+//         strawberry: strawberry,
+//         total: total
+//     })
+
+// })
 
 
 app.get('/cart/:id', (req, res, next) => {
@@ -213,7 +225,7 @@ app.get('/cart/:id', (req, res, next) => {
         cart.add(product, product.id)
         req.session.cart = cart
         console.log(req.session.cart)
-        res.redirect('/beverages')
+        res.redirect(req.get('referer'))
     })
 })
 

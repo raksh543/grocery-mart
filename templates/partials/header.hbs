@@ -2,6 +2,14 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{!-- <style>
+      .a{
+        color:white;
+      }
+      .a:hover{
+        color:black;
+      }
+    </style> --}}
   </head>
 <header>
      <div class="topnav" id="myTopnav">
@@ -11,17 +19,17 @@
         <a href="/products">Categories</a>
                 
         <a href="/onlineservices">Services</a>
-        <a href="/shopping-cart">Cart 
+        <a href="/shopping-cart"><span><i class="fa fa-shopping-cart" style="color: white;" aria-hidden="true"></i></span> Cart 
         {{# if products}}
         <span style="border-radius: 50px;background-color:gray;padding:2px 7px;">{{session.cart.totalQty}}</span>
         {{/if}}
         </a>
         {{# if login}}
-          <a id="signupButton" href="/profile" style="border: 1px;background-color:rgb(157, 201, 0);float:right;margin-right:20px">User Account</a>
-          <a id="signupButton" href="/logout" style="border: 1px;background-color:rgb(157, 201, 0);float:right;margin-right:20px">Logout</a>
+          <a id="signupButton" href="/profile" style="border: 1px;float:right;margin-right:20px"><span><i class="fa fa-user-o" style="color: white;" aria-hidden="true"></i></span> User Profile</a>
+          <a id="signupButton" href="/logout" style="border: 1px;float:right;margin-right:20px"><span><i class="fa fa-sign-out" style="color: white;" aria-hidden="true"></i></span> Logout</a>
       
         {{else}}
-          <a id="signupButton" href="/signup" style="border: 1px;background-color:red;float:right;margin-right:20px">Signup/Login</a>
+          <a id="signupButton" href="/signup" style="border: 1px;color:white;background-color:rgb(219, 0, 0);float:right;margin-right:20px;border-radius:4px"><span><i class="fa fa-sign-in" style="color: white;" aria-hidden="true"></i></span> Signup/Login</a>
         {{/if}}
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>

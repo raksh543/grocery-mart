@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/products.css">
   <link rel="icon" href="/img/grocery2.png">
   <link rel="stylesheet" href="/css/styles.css">
+   <link rel="stylesheet" href="/css/multiitemcarousel.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -227,7 +228,8 @@
     </div>
     <!--Carousel ends here-->
 
-
+<br><br>
+<div style="background-color: #f8f6f6;padding-top:10px;padding-bottom:10px">
     <div style="margin-left: 10%;margin-right:10%;margin-top:5%;margin-bottom:5%">
       <p>
         <center>
@@ -245,22 +247,54 @@
           also for daily attractive offers.Lorem ipsum dolor sit amet, consectetur adipiscing elit.<h4>
         </p>
     </div>
+    </div>
 
 
     <br>
     <center>
 
+
+
     <center>
           <p style="font-size: 25px;color:rgb(80, 80, 80)">Our Best Selling Products</p>
         </center>
         <hr width="90%">
+        <div class="container">
+    
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    {{# each products}}
+                        {{# each this}}
+                            <div class="item">
+                                <div class="pad15">
+                                    {{!-- <p class="lead">Multi Item Carousel</p> --}}
+                                    <center>
+                                    <img src="{{this.imagePath}}" alt="" class="img-responsive" style="max-height: 150px;">
+                                    </center>
+                                    <p style="font-size:17px;max-block-size: 30px;min-block-size:30px">{{this.title}}</p><br>
+                                    <p>₹ {{this.price}}</p>
+                                    <p>20% off</p>
+                                    <a href="cart/{{this._id}}" class="addtocart pull-center" style="background-color:#b9f8b9;color:#008000;padding:10px 12px;width:100%"><span><i class="fa fa-cart-plus" style="color:#008000;margin-bottom:16px" aria-hidden="true"></i></span> Add to cart</a>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/each}}
+                </div>
+                <button class="leftLst leftbotton"><</button>
+                <button class="rightLst rightbutton">></button>
+            </div>
+                
+            
+        </div>
+</div>
 
         
 
 
 
     <center>
-      <p style="font-size: 25px;color:rgb(80, 80, 80)">Explore by categories</p>
+      <p style="font-size: 25px;color:rgb(80, 80, 80);margin-top:30px">Explore by categories</p>
     </center>
     <hr width="90%">
     {{!-- <center>
@@ -345,25 +379,25 @@
   <!--Style one starts here-->
   <div class="container diffcategories " style="background-color: rgb(225, 250, 225);">
     <div class="row justify-content-center" style="height:50%;">
-      <div id="carddiffcat" class="col carddiffcat" style="background-image: url(/img/sq-fruits.png);background-size:cover;
+      <div id="carddiffcat" class="col-md-6 carddiffcat" style="background-image: url(/img/sq-fruits.png);background-size:cover;
   background-repeat: no-repeat;">
         {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
         {{!-- <a href="/products" id="buyProductLink"> Start Shopping </a> --}}
       </div>
       <div class="col">
         <div class="row justify-content-center" style="height:50%;">
-          <div id="carddiffcat" class="col card carddiffcat">
+          <div id="carddiffcat" class="col-md-5 card carddiffcat">
             col2
           </div>
-          <div id="carddiffcat" class="col card carddiffcat">
+          <div id="carddiffcat" class="col-md-5 card carddiffcat">
             col3
           </div>
         </div>
         <div class="row justify-content-center" style="height:50%;">
-          <div id="carddiffcat" class="col card carddiffcat">
+          <div id="carddiffcat" class="col-md-3 card carddiffcat">
             col4
           </div>
-          <div id="carddiffcat" class="col card carddiffcat">
+          <div id="carddiffcat" class="col-md-3 card carddiffcat">
             col5
           </div>
         </div>
@@ -659,7 +693,7 @@
   </div>
 
   {{>footer}}
-
+  <script src="/js/multiitemcarousel.js"></script>
 </body>
 
 </html>

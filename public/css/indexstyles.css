@@ -6,6 +6,10 @@
     margin-top:20px
 }
 
+hr{
+    background-color: rgb(173, 173, 173);
+}
+
 .headingtext{
     color: rgb(136, 136, 136);
     font-size: medium;
