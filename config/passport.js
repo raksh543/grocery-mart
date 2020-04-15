@@ -97,7 +97,7 @@ passport.use('local.signin', new LocalStrategy({
     passwordField:'password',
     passReqToCallback:true
 
-},function(req,email, password, done){
+},function(req,res, password, done){
     req.checkBody('email','Invalid email').notEmpty().isEmail();
     req.checkBody('password','Invalid password').notEmpty();
     // var errors = req.getValidationResult()
@@ -110,6 +110,7 @@ passport.use('local.signin', new LocalStrategy({
     // }
 
     Member.findOne({'email':req.body.email}, function(err, user){
+        res.send(user)
         if(err){
             return done(err)
         }
