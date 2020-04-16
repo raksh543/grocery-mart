@@ -18,7 +18,7 @@ passport.use('local.signup', new LocalStrategy({
     usernameField:'email',
     passwordField:'password',
     passReqToCallback:true
-},function(req, res, password, done){
+},function(req, email, password, done){
     req.checkBody('email','Invalid email').notEmpty().isEmail();
     req.checkBody('password','Invalid password').notEmpty().isLength({min:7});
     // var errors = req.validateErrors();
@@ -41,7 +41,6 @@ passport.use('local.signup', new LocalStrategy({
         newUser.email=req.body.email;
         newUser.password=newUser.encryptPassword(req.body.password);
         if(req.body.password==req.body.passwordTwo){
-            res.send(newUser)
             newUser.save(function(err, result){
                 console.log(newUser)
                 if(err){

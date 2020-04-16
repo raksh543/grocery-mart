@@ -11,12 +11,18 @@ var passport = require('passport')
 var flash = require('connect-flash')
 var MongoStore = require('connect-mongo')(session)
 
+
 var Cart = require('../public/models/cart')
 const UserSchema = require('../public/models/userschema')
 var ProductsSchema = require('../public/models/product')
 var OrderSchema = require('../public/models/orders')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
+
+
+var LocalStrategy=require('passport-local').Strategy;
+
+var Member=mongoose.model("Member",UserSchema);
 
 const app = express()
 const port = process.env.PORT || 3030
@@ -149,6 +155,77 @@ app.get('/signup', (req, res, next) => {
         hasErrors: messages.length > 0
     })
 })
+
+// app.post('/doSignup', function(req,res,next){
+//     passport.use('local.signup', new LocalStrategy({
+//         usernameField:'email',
+//         passwordField:'password',
+//         passReqToCallback:true
+//     },function(err,user, done){
+        
+//         req.checkBody('email','Invalid email').notEmpty().isEmail();
+//         req.checkBody('password','Invalid password').notEmpty().isLength({min:7});
+//         // var errors = req.validateErrors();
+//         // if(errors){
+//         //     var messages = [];
+//         //     errors.forEach(function(error){
+//         //         messages.push(error.msg);
+//         //     })
+//         //     return done(null, false, req.flash('error',messages))
+//         // }
+//         Member.findOne({'email':req.body.email}, function(err, user){
+//             if(err){
+//                 return done(err)
+//             }
+//             if(user){
+//                 return done(null, false, {message:'Email is already in use.'})
+//             }
+//             var newUser=new Member(); 
+//             newUser.name=req.body.name;
+//             newUser.email=req.body.email;
+//             newUser.password=newUser.encryptPassword(req.body.password);
+//             if(req.body.password==req.body.passwordTwo){
+//                 newUser.save(function(err, result){
+//                     console.log(newUser)
+//                     if(err){
+//                         return done(err)
+//                     }
+//                     if (req.session.oldUrl) {
+//                         var oldUrl = req.session.oldUrl;
+//                         req.session.oldUrl = null;
+//                         res.sendFile(newUser)
+//                         res.redirect(oldUrl);
+//                     } else {
+//                         // console.log(newUser)
+//                         // res.send(newUser)
+//                         // console.log(passport)
+//                         res.sendFile(newUser)
+//                         res.redirect('/profile')
+//                     }
+//                     return done(null, newUser)
+                    
+//                 })
+//             }else{
+//                 return done(null, false, {message:'Passwords do not match.'})
+//             }
+            
+            
+//         })
+//     }))
+// }, function (req, err, next) {
+//     if (req.session.oldUrl) {
+//         var oldUrl = req.session.oldUrl;
+//         req.session.oldUrl = null;
+//         res.sendFile(newUser)
+//         res.redirect(oldUrl);
+//     } else {
+//         // console.log(newUser)
+//         // res.send(newUser)
+//         // console.log(passport)
+//         res.sendFile(newUser)
+//         res.redirect('/profile')
+//     }
+// })
 
 app.post('/doSignup', passport.authenticate('local.signup', {
     failureRedirect: '/signup',
