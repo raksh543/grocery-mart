@@ -1,0 +1,15 @@
+.addeditem{
+    height:100px;
+    box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.addeditem:hover{
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media screen and (max-width: 600px){
+    .addeditem{
+       margin-left: 20px;
+       margin-right: 20px;
+    } 
+}

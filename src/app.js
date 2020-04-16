@@ -315,6 +315,15 @@ app.get('/reduce/:id',(req,res,next)=>{
     res.redirect('/shopping-cart')
 })
 
+app.get('/add/:id',(req,res,next)=>{
+    var productId= req.params.id;
+    var cart = new Cart((req.session.cart ? req.session.cart : {}))
+
+    cart.addByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart')
+})
+
 app.get('/remove/:id',(req,res,next)=>{
     var productId= req.params.id;
     var cart = new Cart((req.session.cart ? req.session.cart : {}))

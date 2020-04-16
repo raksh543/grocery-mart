@@ -8,6 +8,7 @@
         <link rel="icon" href="/img/grocery2.png">
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/cart.css">
+        <link rel="stylesheet" href="/css/added-to-cart.css">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -108,18 +109,22 @@
                 <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
                     <ul class="list-group">
                         {{# each products}}
-                            <li class="list-group-item">
-                                <span class="badge">{{ this.qty }}</span>
+                            <li class="list-group-item addeditem">
+                                <span class="badge" style="background-color: rgb(0, 168, 0);" ><a href="/add/{{this.item._id}}"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+                                <span class="badge" >{{ this.qty }}</span>
+                                 <span class="badge" style="background-color: rgb(255, 77, 77);" ><a href="/reduce/{{this.item._id}}"><i class="fa fa-minus" aria-hidden="true"></i></a></span>
+                                
                                 <strong>{{ this.item.title }}</strong>
-                                <span class="label label-success" style="padding: 5px 7px;;">Rs {{ this.price}}</span>
-                                <div class="btn-group" >
-                                    <button class=" btn-primary btnxs dropdown-toggle" style="border-radius:4px" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
+                                <span class="label label-success" style="padding: 5px 7px;;">Rs {{ this.price}}</span><br><br>
+                                <div class="btn-group pull-right" >
+                                    <a href="/remove/{{this.item._id}}">
+                                    <button class=" btn-primary btnxs dropdown-toggle" style="border-radius:4px" type="button">Remove All </button></a>
+                                    <!--<ul class="dropdown-menu">
                                         <li><a href="/reduce/{{this.item._id}}">Reduce by 1</a></li>
                                         <li><a href="/remove/{{this.item._id}}">Remove all</a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
-                            </li>
+                            </li><br><br>
                         {{/each}}
                         
 
