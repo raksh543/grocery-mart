@@ -109,7 +109,6 @@ passport.use('local.signin', new LocalStrategy({
     // }
 
     Member.findOne({'email':req.body.email}, function(err, user){
-        res.send(user)
         if(err){
             return done(err)
         }
