@@ -20,9 +20,9 @@
                 
         <a href="/onlineservices">Services</a>
         <a href="/shopping-cart"><span><i class="fa fa-shopping-cart" style="color: white;" aria-hidden="true"></i></span> Cart 
-        {{# if products}}
-        <span style="border-radius: 50px;background-color:gray;padding:2px 7px;">{{session.cart.totalQty}}</span>
-        {{/if}}
+          {{# if products}}
+            <span style="border-radius: 50px;background-color:gray;padding:2px 7px;">{{session.cart.totalQty}}</span>
+          {{/if}}
         </a>
         {{# if login}}
           <a id="signupButton" href="/profile" style="border: 1px;float:right;margin-right:20px"><span><i class="fa fa-user-o" style="color: white;" aria-hidden="true"></i></span> User Profile</a>
