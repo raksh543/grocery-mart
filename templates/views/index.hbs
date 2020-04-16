@@ -299,7 +299,7 @@
                     <img src="{{this.imagePath}}" alt="" class="img-responsive" style="max-height: 150px;">
                   </center>
                   <p style="font-size:17px;max-block-size: 30px;min-block-size:30px">{{this.title}}</p><br>
-                  <p>₹ {{this.price}}</p>
+                  <p style="color: maroon;">₹ {{this.price}}</p>
                   <p>20% off</p>
                   <a href="cart/{{this._id}}" class="addtocart pull-center"
                     style="background-color:#b9f8b9;color:#008000;padding:10px 12px;width:100%"><span><i
@@ -334,37 +334,29 @@
       </center>
       <hr width="90%">
       <!--Style one starts here-->
-      <div class="container diffcategories " style="background-color: #f8f6f6;">
-        <div class="row justify-content-center" style="height: 50%;">
-          <div id="carddiffcat" class="col-sm-6 col-md-6 carddiffcat bigger-50" style="padding:0;background-image: url(/img/sq-fruits.png);background-size:cover;
+      <div class="container diffcategories" style="background-color: #f8f6f6;">
+        <div class="row" style="height: 50%;">
+          <div class="col-sm-6 col-md-6 carddiffcat" id="carddiffcat" style="padding:0;background-image: url(/img/sq-fruits.png);background-size:cover;
             background-repeat: no-repeat;">
           </div>
-          <div class="col bogger-50">
+          <div class="col">
             <div class="row justify-content-center" style="height:50%;">
               <div id="carddiffcat" class="col card carddiffcat" style="padding:0;background-image: url(/img/homepage/exotic-fruits.jpg);background-size:cover;
-                background-repeat: no-repeat;background-size: 100% auto;
-                  background-position:bottom;
-                  ">
+                background-repeat: no-repeat;background-size: 100% auto;background-position:bottom;">
                 <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Exotic Fruits</i></b></span>
               </div>
               <div id="carddiffcat" class="col card carddiffcat" style="padding:0;background-image: url(/img/homepage/fresh-veggies.jpg);background-size:cover;
-                background-repeat: no-repeat;background-size: 100% auto;
-                  background-position:bottom;
-                  ">
+                background-repeat: no-repeat;background-size: 100% auto;background-position:bottom;">
                 <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Fresh veggies</i></b></span>
               </div>
             </div>
             <div class="row justify-content-center" style="height:50%;">
               <div id="carddiffcat" class="col card carddiffcat" style="padding:0;background-image: url(/img/homepage/cuts-and-sprouts.jpg);background-size:cover;
-  background-repeat: no-repeat;background-size: 100% auto;
-    background-position:top;
-    ">
+                background-repeat: no-repeat;background-size: 100% auto;background-position:top;">
                 <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Cuts & Sprouts</i></b></span>
               </div>
               <div id="carddiffcat" class="col card carddiffcat" style="padding:0;background-image: url(/img/homepage/organic.png);background-size:cover;
-  background-repeat: no-repeat;background-size: 100% auto;
-    background-position:bottom;
-    ">
+               background-repeat: no-repeat;background-size: 100% auto;background-position:bottom;">
                 <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Explore now!</i></b></span>
               </div>
             </div>
@@ -410,40 +402,42 @@
         <p id="bakery" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Bakery & Dairy</p>
       </center>
       <hr width="90%">
-      <!--style  starts here-->
-      <div class="container diffcategories" style="background-color: rgb(255, 255, 223);">
+      <!--style 3 starts here-->
+      <div class="container diffcategories" style="background-color: #f8f6f6 ">
         <div class="row" style="height:50%;">
           <div class="col">
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/breads-buns.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/breads-buns.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:top;">
-                col2
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Breads & Buns</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/cakes.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/cakes.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:top;">
-                col3
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Cakes & Pasteries</i></b></span>
               </div>
             </div>
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/ice-cream.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/ice-cream.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:top;">
-                col4
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Ice Creams</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/bakery-snacks.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/bakery-snacks.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:top;">
-                col5
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Bakery Snacks</i></b></span>
               </div>
             </div>
 
           </div>
 
           <div id="carddiffcat" class="col card carddiffcat"
-            style="border-color:yellow;background-image: url(/img/sq-snacks.png);">
-            {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
+            style="padding:0px;background-image: url(/img/bakery.jpg);background-size:cover;
+  background-repeat: no-repeat;background-size: 100% auto;
+    background-position:bottom;">
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Bakery Products</i></b></span>
           </div>
         </div>
       </div>
@@ -454,34 +448,35 @@
       </center>
       <hr width="90%">
       <!--Style one starts here-->
-      <div class="container diffcategories" style="background-color: rgb(225, 250, 225);">
+      <div class="container diffcategories" style="background-color: #f8f6f6 ">
         <div class="row" style="height:50%;">
-          <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/sq-snacks.png);">
+          <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/snacks.jpg);">
+          <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Explore Snacks now!</i></b></span>
             {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
           </div>
           <div class="col">
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/tea-coffee.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/tea-coffee.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col2
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>tea & Coffee</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/health-drinks.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/health-drinks.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col3
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Health Drinks</i></b></span>
               </div>
             </div>
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/juices.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/juices.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col4
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Juices</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/soft-drinks.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/soft-drinks.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col5
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Soft Drinks</i></b></span>
               </div>
             </div>
 
@@ -495,27 +490,27 @@
       </center>
       <hr width="90%">
       <!--Style 2 starts here-->
-      <div class="container" style="background-color: rgb(255, 235, 235);">
+      <div class="container" style="background-color: #f8f6f6 ">
         <div class="row" style="height:30%;">
-          <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/homepage/soap-handwash.jpeg);background-size:cover;
+          <div id="carddiffcat" class="col card" style="padding:0px;border-color:brown;background-image: url(/img/homepage/soap-handwash.jpeg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-            col1
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Handwash & Soaps</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/homepage/deo.jpg);background-size:cover;
+          <div id="carddiffcat" class="col card" style="padding:0px;border-color:brown;background-image: url(/img/homepage/deo.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-            col2
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Deo & Fragnance</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/homepage/makeup.png);background-size:cover;
+          <div id="carddiffcat" class="col card" style="padding:0px;border-color:brown;background-image: url(/img/homepage/makeup.png);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-            col3
+           <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Makeup Products</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/homepage/skincare.jpg);background-size:cover;
+          <div id="carddiffcat" class="col card" style="padding:0px;border-color:brown;background-image: url(/img/homepage/skincare.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-            col4
+           <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Body Care</i></b></span>
           </div>
         </div>
       </div>
@@ -526,38 +521,41 @@
       </center>
       <hr width="90%">
       <!--style 3 starts here-->
-      <div class="container diffcategories" style="background-color: rgb(255, 255, 223);">
+      <div class="container diffcategories" style="background-color: #f8f6f6 ">
         <div class="row" style="height:50%;">
           <div class="col">
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/all-purpose-cleaners.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;border-color:yellow;background-image: url(/img/homepage/all-purpose-cleaners.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:top;">
-                col2
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>All Purpose Cleaners</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/pooja-needs.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;border-color:yellow;background-image: url(/img/homepage/pooja-needs.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col3
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Puja Needs</i></b></span>
               </div>
             </div>
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/stationary.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;border-color:yellow;background-image: url(/img/homepage/stationary.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col4
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Stationary</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="border-color:yellow;background-image: url(/img/homepage/mops.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;border-color:yellow;background-image: url(/img/homepage/mops.jpg);background-size:cover;
   background-repeat: no-repeat;background-size: 100% auto;
     background-position:bottom;">
-                col5
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Mops & Scrubs</i></b></span>
               </div>
             </div>
 
           </div>
 
           <div id="carddiffcat" class="col card carddiffcat"
-            style="border-color:yellow;background-image: url(/img/sq-cleaning.png);">
+            style="padding:0px;border-color:yellow;background-image: url(/img/cleaning.jpg);background-size:cover;
+  background-repeat: no-repeat;background-size: 100% auto;
+    background-position:top;">
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Explore Now!</i></b></span>
             {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
           </div>
         </div>
@@ -569,30 +567,31 @@
       </center>
       <hr width="90%">
       <!--Style one starts here-->
-      <div class="container diffcategories" style="background-color: rgb(225, 250, 225);">
+      <div class="container diffcategories" style="background-color: #f8f6f6 ">
         <div class="row" style="height:50%;">
-          <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/sq-pets.png);">
+          <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/sq-pets.jpg);">
+          <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Explore Now!</i></b></span>
             {{!-- <img src="/img/Group-fruits.png" class="card-img-top" alt="..."> --}}
           </div>
           <div class="col">
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/utensils.jpeg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/utensils.jpeg);background-size:cover;
   background-repeat: no-repeat;">
-                col2
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Utensils</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/containers.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/containers.jpg);background-size:cover;
   background-repeat: no-repeat;">
-                col3
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Containers</i></b></span>
               </div>
             </div>
             <div class="row" style="height:50%;">
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/gardening.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/gardening.jpg);background-size:cover;
   background-repeat: no-repeat;">
-                col4
+                <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>gardening Needs</i></b></span>
               </div>
-              <div id="carddiffcat" class="col card carddiffcat" style="background-image: url(/img/homepage/pet-foods.jpg);background-size:cover;
+              <div id="carddiffcat" class="col card carddiffcat" style="padding:0px;background-image: url(/img/homepage/pet-foods.jpg);background-size:cover;
   background-repeat: no-repeat;">
-                col5
+               <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Pet Care</i></b></span>
               </div>
             </div>
 
@@ -601,23 +600,26 @@
       </div>
       <!--Style one ends here-->
       <center>
-        <p id="meat" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">Eggs, Meat & Fish</p>
+        <p id="meat" style="font-size: 25px;color:rgb(80, 80, 80);margin-top:20px">More Categories</p>
       </center>
       <hr width="90%">
       <!--Style 2 starts here-->
-      <div class="container" style="background-color: rgb(255, 235, 235);">
+      <div class="container" style="background-color: #f8f6f6 ">
         <div class="row" style="height:30%">
           <div id="carddiffcat" class="col card" style="border-color:brown;background-image: url(/img/sq-meat.png);">
-            col1
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Egg, Meat & Fish</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown" ;>
-            col2
+          <div id="carddiffcat" class="col card" style="border-color:brown;padding:0px;background-image: url(/img/homepage/diapers.png);background-size:cover;
+  background-repeat: no-repeat;">
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Baby Care</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown;">
-            col3
+          <div id="carddiffcat" class="col card" style="border-color:brown;padding:0px;background-image: url(/img/homepage/maternity-care.jpg);background-size:cover;
+  background-repeat: no-repeat;">
+            <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Maternity Care</i></b></span>
           </div>
-          <div id="carddiffcat" class="col card" style="border-color:brown;">
-            col4
+          <div id="carddiffcat" class="col card" style="border-color:brown;padding:0px;background-image: url(/img/bg_vec1.jpg);background-size:cover;
+  background-repeat: no-repeat;">
+           <span style="padding: 10px 12px;background-color:white;opacity:80%;width:100%"><b><i>Explore All!</i></b></span>
           </div>
         </div>
       </div>

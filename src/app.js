@@ -19,11 +19,6 @@ var OrderSchema = require('../public/models/orders')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
-
-var LocalStrategy=require('passport-local').Strategy;
-
-var Member=mongoose.model("Member",UserSchema);
-
 const app = express()
 const port = process.env.PORT || 3030
 
@@ -108,10 +103,15 @@ app.get('/testing', (req, res,next) => {
 app.get('/beverages', function (req, res, next) {
     Product.find(function (err, docs) {
         var productChunks = [];
-        var chunkSize = 3;
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            productChunks.push(docs.slice(i, i + chunkSize));
+        
+        for (var i = 0; i < docs.length; i ++) {
+            productChunks.push(docs);
         }
+        // var productChunks = [];
+        // var chunkSize = 3;
+        // for (var i = 0; i < docs.length; i += chunkSize) {
+        //     productChunks.push(docs.slice(i, i + chunkSize));
+        // }
         res.render('beverages', { title: 'Beverages', products: productChunks });
 
     });
