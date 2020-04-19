@@ -56,17 +56,17 @@ const AdminBroOptions = {
 
 
 const adminBro = new AdminBro(AdminBroOptions)
-const router = AdminBroExpress.buildRouter(adminBro)
+// const router = AdminBroExpress.buildRouter(adminBro)
 
-// const router = AdminBroExpress.buildAuthenticatedRouter(adminBro,{
-//   cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
-//   cookiePassword: process.env.ADMIN_COOKIE_PASS || 'coz-i-can-not-decide-a-super-long-password',
-//   authenticate: async(email, password) =>{
-//     if(email === ADMIN.email && password === ADMIN.password){
-//       return ADMIN
-//     }
-//     return null
-//   }
-// })
+const router = AdminBroExpress.buildAuthenticatedRouter(adminBro,{
+  cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
+  cookiePassword: process.env.ADMIN_COOKIE_PASS || 'coz-i-can-not-decide-a-super-long-password',
+  authenticate: async(email, password) =>{
+    if(email === ADMIN.email && password === ADMIN.password){
+      return ADMIN
+    }
+    return null
+  }
+})
 
 module.exports = router

@@ -1,7 +1,6 @@
 const express = require('express')
 var webpush=require('web-push')
 const hbs = require('hbs')
-const bodyParser=require('body-parser')
 const bcrypt = require('bcryptjs')
 const path = require('path')
 var mongoose = require('mongoose');
@@ -46,6 +45,7 @@ app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
 
 
+app.use('/admin',adminRouter)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -62,7 +62,6 @@ app.use(session(
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
-app.use('/admin',adminRouter)
 
 //this is middleware
 app.use((req, res, next) => {
