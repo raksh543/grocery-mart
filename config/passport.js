@@ -42,7 +42,6 @@ passport.use('local.signup', new LocalStrategy({
         newUser.password=newUser.encryptPassword(req.body.password);
         if(req.body.password==req.body.passwordTwo){
             newUser.save(function(err, result){
-                console.log(newUser)
                 if(err){
                     return done(err)
                 }

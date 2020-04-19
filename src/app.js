@@ -1,5 +1,7 @@
 const express = require('express')
+var webpush=require('web-push')
 const hbs = require('hbs')
+const bodyParser=require('body-parser')
 const bcrypt = require('bcryptjs')
 const path = require('path')
 var mongoose = require('mongoose');
@@ -9,6 +11,9 @@ var cookieParser = require('cookie-parser')
 var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
+
+
+
 var MongoStore = require('connect-mongo')(session)
 
 
@@ -16,16 +21,25 @@ var Cart = require('../public/models/cart')
 const UserSchema = require('../public/models/userschema')
 var ProductsSchema = require('../public/models/product')
 var OrderSchema = require('../public/models/orders')
+const adminRouter = require('../public/routes/admin-router')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
+mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority", {useNewUrlParser:true});//creating or joining to practice database
+
+
 const app = express()
+
+const publicVapidKey='BIe6mxOIVZTA9OBKXgfZzdJe_dqhqrMEU7QbPVdwHDLvdEL1hJ0Z8Qjt0x8EByWSAkGOYOKqbKc2dDJvTSF6vF0'
+const privateVapidKey='QFiiWKJPk2RSR3JauuJSFAd9jkQXTkZPWK-JPqk0FSo'
+
 const port = process.env.PORT || 3030
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
+webpush.setVapidDetails('mailto: rakshitajain777@gmail.com',publicVapidKey, privateVapidKey)
 
 app.set('view engine', 'hbs')
 app.set('views', viewPath)
@@ -39,7 +53,7 @@ app.use(validator())
 app.use(cookieParser())
 app.use(session(
     {
-        secret: 'mysupersecret',
+        secret: 'coz-i-cab-not-decide-a-super-long-password',
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({ mongooseConnection: mongoose.connection }),
@@ -48,6 +62,7 @@ app.use(session(
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+app.use('/admin',adminRouter)
 
 //this is middleware
 app.use((req, res, next) => {
@@ -57,14 +72,11 @@ app.use((req, res, next) => {
 })
 // app.use(router)
 
-mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
-
-
 flag = false;
 
 var Member = mongoose.model("Member", UserSchema);
 var Product = mongoose.model("Product", ProductsSchema);
-var Order=mongoose.model("Order",OrderSchema)
+var Order = mongoose.model("Order", OrderSchema)
 // var pruduct=mongoose.model("Product",UserSchema);
 // var usercart=mongoose.model("UserCart",UserSchema);
 
@@ -75,7 +87,21 @@ require('../config/passport')
 
 
 
-app.get('/', (req, res,next) => {
+app.post('/subscribe',(req,res)=>{
+    //get pushSubscription object
+    const subscription = req.body
+
+    //send 201 - resource created
+    res.status(201).json({})
+
+    //create payload
+    const payload = JSON.stringify({title: 'Push Test'})
+
+    //Pass object into sendNotification
+    webpush.sendNotification(subscription, payload).catch(err => console.log(err))
+})
+
+app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {
         var productChunks = [];
         var chunkSize = 3;
@@ -87,11 +113,11 @@ app.get('/', (req, res,next) => {
     });
 })
 
-app.get('/testing', (req, res,next) => {
+app.get('/testing', (req, res, next) => {
     Product.find(function (err, docs) {
         var productChunks = [];
-        
-        for (var i = 0; i < docs.length; i ++) {
+
+        for (var i = 0; i < docs.length; i++) {
             productChunks.push(docs);
         }
         res.render('testing', { title: 'Beverages', products: productChunks });
@@ -103,8 +129,8 @@ app.get('/testing', (req, res,next) => {
 app.get('/beverages', function (req, res, next) {
     Product.find(function (err, docs) {
         var productChunks = [];
-        
-        for (var i = 0; i < docs.length; i ++) {
+
+        for (var i = 0; i < docs.length; i++) {
             productChunks.push(docs);
         }
         // var productChunks = [];
@@ -123,16 +149,16 @@ app.use(csrfProtection)
 app.get('/profile', isLoggedIn, (req, res, next) => {
     Order.find({
         user: req.user
-    },(err, orders)=>{
-        if(err){
+    }, (err, orders) => {
+        if (err) {
             return res.write('Error!');
         }
         var cart;
-        orders.forEach(function(order){
+        orders.forEach(function (order) {
             cart = new Cart(order.cart)
             order.items = cart.generateArray()
         })
-        res.render('profile',{ orders:orders})
+        res.render('profile', { orders: orders })
 
     })
 })
@@ -156,76 +182,6 @@ app.get('/signup', (req, res, next) => {
     })
 })
 
-// app.post('/doSignup', function(req,res,next){
-//     passport.use('local.signup', new LocalStrategy({
-//         usernameField:'email',
-//         passwordField:'password',
-//         passReqToCallback:true
-//     },function(err,user, done){
-        
-//         req.checkBody('email','Invalid email').notEmpty().isEmail();
-//         req.checkBody('password','Invalid password').notEmpty().isLength({min:7});
-//         // var errors = req.validateErrors();
-//         // if(errors){
-//         //     var messages = [];
-//         //     errors.forEach(function(error){
-//         //         messages.push(error.msg);
-//         //     })
-//         //     return done(null, false, req.flash('error',messages))
-//         // }
-//         Member.findOne({'email':req.body.email}, function(err, user){
-//             if(err){
-//                 return done(err)
-//             }
-//             if(user){
-//                 return done(null, false, {message:'Email is already in use.'})
-//             }
-//             var newUser=new Member(); 
-//             newUser.name=req.body.name;
-//             newUser.email=req.body.email;
-//             newUser.password=newUser.encryptPassword(req.body.password);
-//             if(req.body.password==req.body.passwordTwo){
-//                 newUser.save(function(err, result){
-//                     console.log(newUser)
-//                     if(err){
-//                         return done(err)
-//                     }
-//                     if (req.session.oldUrl) {
-//                         var oldUrl = req.session.oldUrl;
-//                         req.session.oldUrl = null;
-//                         res.sendFile(newUser)
-//                         res.redirect(oldUrl);
-//                     } else {
-//                         // console.log(newUser)
-//                         // res.send(newUser)
-//                         // console.log(passport)
-//                         res.sendFile(newUser)
-//                         res.redirect('/profile')
-//                     }
-//                     return done(null, newUser)
-                    
-//                 })
-//             }else{
-//                 return done(null, false, {message:'Passwords do not match.'})
-//             }
-            
-            
-//         })
-//     }))
-// }, function (req, err, next) {
-//     if (req.session.oldUrl) {
-//         var oldUrl = req.session.oldUrl;
-//         req.session.oldUrl = null;
-//         res.sendFile(newUser)
-//         res.redirect(oldUrl);
-//     } else {
-//         // console.log(newUser)
-//         // res.send(newUser)
-//         // console.log(passport)
-//         res.sendFile(newUser)
-//         res.redirect('/profile')
-//     }
-// })
 
 app.post('/doSignup', passport.authenticate('local.signup', {
     failureRedirect: '/signup',
@@ -235,13 +191,30 @@ app.post('/doSignup', passport.authenticate('local.signup', {
         var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
         res.redirect(oldUrl);
-    } else {
-        // console.log(newUser)
-        // res.send(newUser)
+    } else {       
+        name= req.body.name
+        email= req.body.email
+        password= req.body.password
+        passwordTwo= req.body.passwordTwo
+        newuser = {
+            "name": name,
+            "email": email,
+            "password":password,
+            "passwordTwo": passwordTwo
+        }
+    console.log(newuser)
+    res.setHeader("Content-Type", "text/html");
+    res.send(newuser) 
+        next();
         // console.log(passport)
-        res.redirect('/profile')
     }
 })
+
+app.post('/doSignup',((req,res,next)=>{
+    
+    res.redirect('/profile')
+    
+}))
 
 app.get('/signin', (req, res, next) => {
     var messages = req.flash('error');
@@ -306,8 +279,8 @@ app.get('/cart/:id', (req, res, next) => {
     })
 })
 
-app.get('/reduce/:id',(req,res,next)=>{
-    var productId= req.params.id;
+app.get('/reduce/:id', (req, res, next) => {
+    var productId = req.params.id;
     var cart = new Cart((req.session.cart ? req.session.cart : {}))
 
     cart.reduceByOne(productId);
@@ -315,8 +288,8 @@ app.get('/reduce/:id',(req,res,next)=>{
     res.redirect('/shopping-cart')
 })
 
-app.get('/add/:id',(req,res,next)=>{
-    var productId= req.params.id;
+app.get('/add/:id', (req, res, next) => {
+    var productId = req.params.id;
     var cart = new Cart((req.session.cart ? req.session.cart : {}))
 
     cart.addByOne(productId);
@@ -324,8 +297,8 @@ app.get('/add/:id',(req,res,next)=>{
     res.redirect('/shopping-cart')
 })
 
-app.get('/remove/:id',(req,res,next)=>{
-    var productId= req.params.id;
+app.get('/remove/:id', (req, res, next) => {
+    var productId = req.params.id;
     var cart = new Cart((req.session.cart ? req.session.cart : {}))
 
     cart.removeItem(productId);
@@ -347,7 +320,7 @@ app.get('/checkout', isUserLoggedIn, (req, res, next) => {
     }
     var cart = new Cart(req.session.cart)
     var errMsg = req.flash('error')[0];
-    res.render('checkout', { total: cart.totalPrice, csrfToken:req.csrfToken(), errMsg: errMsg, noError: !errMsg })
+    res.render('checkout', { total: cart.totalPrice, csrfToken: req.csrfToken(), errMsg: errMsg, noError: !errMsg })
 })
 
 app.post('/checkout', isUserLoggedIn, (req, res, next) => {
@@ -380,13 +353,13 @@ app.post('/checkout', isUserLoggedIn, (req, res, next) => {
                 paymentId: charge.id
             });
             order.save((err, result) => {
-                if(err){
+                if (err) {
                     req.flash('error', 'Payment failed');
-                }else{
-                req.flash('success', 'Successfully bought product!');
-                req.session.cart = null;
-                res.redirect('/');
-            }
+                } else {
+                    req.flash('success', 'Successfully bought product!');
+                    req.session.cart = null;
+                    res.redirect('/profile');
+                }
             })
         })
 })
