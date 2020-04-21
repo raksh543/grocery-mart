@@ -167,19 +167,9 @@ app.post('/doSignupRes', (req, res) => {
     Member.findOne({ 'email': req.body.email }, function (err, user) {
         if (err) {
             handleError(res);
-        } else if (user) {
+        }if (user) {
             res.send({ _id: -1, msg: 'Username already exists!' });
-        } else {
-            // name= req.body.name
-            // email= req.body.email
-            // password= req.body.password
-            // passwordTwo= req.body.passwordTwo
-            // newuser = {
-            //     "name": name,
-            //     "email": email,
-            //     "password":password,
-            //     "passwordTwo": passwordTwo
-            // }       
+        } else {      
             var newUser = new Member();
             newUser.name = req.body.name;
             newUser.email = req.body.email;
@@ -187,13 +177,33 @@ app.post('/doSignupRes', (req, res) => {
             if (req.body.password == req.body.passwordTwo) {
                 newUser.save(function (err, result) {
                     if (err) res.send(err);
-                    else res.send(newUser);
+                    else {
+                        // res.setHeader('Content-Type', 'application/json');
+                        res.send(newUser);}
                 })
             }
             }
         })
 })
 
+// app.post('/doSigninRes', function (req, res, next) {
+    
+//     Member.findOne({'email':req.body.email}, function(err, user){
+//         if(err){
+//             return done(err)
+//         }
+//         if(!user){
+//             return done(null, false, {message:'No user found.'})
+//         }
+//         if(!user.validPassword(req.body.password)){
+//             return done(null, false, {message:'Wrong password.'})
+//         }
+//         return done(null, user)
+        
+//     })
+// }
+    
+// )
 
 
 
@@ -290,7 +300,7 @@ app.post('/doSignup', passport.authenticate('local.signup', {
 //         "passwordTwo": passwordTwo
 //     }
 // console.log(newuser)
-// res.setHeader('Content-Type', 'text/html');
+// res.setHeader('Content-Type', 'application/json');
 // res.send(newuser)
 
 // }))
