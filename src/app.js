@@ -205,6 +205,12 @@ app.post('/doSignup', passport.authenticate('local.signup', {
     }
 })
 
+app.get('/doSignupRes',(req,res,next)=>{
+    res.render('signup.res.hbs',{
+        csrfToken: req.csrfToken()
+    })
+})
+
 app.post('/doSignupRes', passport.authenticate('local.signup', {
     failureRedirect: '/signup',
     failureFlash: true
