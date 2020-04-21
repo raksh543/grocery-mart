@@ -211,30 +211,56 @@ app.get('/doSignupRes',(req,res,next)=>{
     })
 })
 
-app.post('/doSignupRes', passport.authenticate('local.signup', {
-    failureRedirect: '/signup',
-    failureFlash: true
-}), function (req, res, next) {
-    if (req.session.oldUrl) {
-        var oldUrl = req.session.oldUrl;
-        req.session.oldUrl = null;
-        res.redirect(oldUrl);
-    } else {    
-        name= req.body.name
-        email= req.body.email
-        password= req.body.password
-        passwordTwo= req.body.passwordTwo
-        newuser = {
-            "name": name,
-            "email": email,
-            "password":password,
-            "passwordTwo": passwordTwo
+const handleError = res => res.send({ msg: 'Registration Failed!' });
+
+
+app.post('/doSignupRes', (req, res) => {
+
+    Member.findOne({ 'email': req.body.email }, function (err, user) {
+        if (err) {
+            handleError(res);
+        } else if (user) {
+            res.send({ _id: -1, msg: 'Username already exists!' });
+        } else {
+            var newUser = new Member({
+                email: '',
+                name: '',
+                password: ''
+            }, { _id: false });
+            newUser.email = req.body.email;
+            newUser.name = req.body.name;
+            newUser.password = newUser.encryptPassword(req.body.password);
+            newUser.save(function (err, result) {
+                if (err) res.send(err);
+                else res.send(newUser);
+            })
         }
-    console.log(newuser)
-    res.setHeader('Content-Type', 'text/html');
-    res.send(newuser)
-    }
+    })
 })
+
+// app.post('/doSignupRes', passport.authenticate('local.signup', {
+//     failureRedirect: '/signup',
+//     failureFlash: true
+// }), function (req, res, next) {
+//     if (req.session.oldUrl) {
+//         var oldUrl = req.session.oldUrl;
+//         req.session.oldUrl = null;
+//         res.redirect(oldUrl);
+//     } else {    
+//         name= req.body.name
+//         email= req.body.email
+//         password= req.body.password
+//         passwordTwo= req.body.passwordTwo
+//         newuser = {
+//             "name": name,
+//             "email": email,
+//             "password":password,
+//             "passwordTwo": passwordTwo
+//         }
+//     console.log(newuser)
+//     res.send(newuser)
+//     }
+// })
 
 // app.post('/doSignupRes',((req,res,next)=>{
     
