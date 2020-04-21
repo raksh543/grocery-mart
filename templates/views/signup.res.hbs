@@ -11,14 +11,14 @@
 
 </head>
     <body>
-        <form id="resForm" method="POST" action="/doSignupRes">
+        <form id="resForm" method="POST" action="/doSigninRes">
 
         <div class="crow">
           <div class="ccol-25">
             <label for="name" style="color: black;">Enter name</label>
           </div>
           <div class="ccol-75">
-            <input id="resName" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
+            <input id="resName" type="text" name="name" style="color: black;" placeholder="Your name..." ></input>
           </div>
         </div>
         <div class="crow">
@@ -34,7 +34,7 @@
             <label for="subject" style="color: black;">Enter password</label>
           </div>
           <div class="ccol-75">
-            <input id="resPass" type="password" name="password" required minlength="7" style="color: black;"
+            <input id="resPass" type="password" name="password" minlength="7" style="color: black;"
               placeholder="Your password.."></input>
           </div>
         </div>
@@ -43,7 +43,7 @@
             <label for="subject" style="color: black;">Re-enter password</label>
           </div>
           <div class="ccol-75">
-            <input id="resPassTwo" type="password" name="passwordTwo" style="color: black;" required minlength="7"
+            <input id="resPassTwo" type="password" name="passwordTwo" style="color: black;" minlength="7"
               placeholder="confirm password.."></input>
             <p style="color: red;">{{msg1}}</p>
           </div>

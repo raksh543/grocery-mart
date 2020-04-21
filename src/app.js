@@ -12,8 +12,6 @@ var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
 
-global.newuser = {}
-
 var MongoStore = require('connect-mongo')(session)
 
 
@@ -22,6 +20,7 @@ const UserSchema = require('../public/models/userschema')
 var ProductsSchema = require('../public/models/product')
 var OrderSchema = require('../public/models/orders')
 const adminRouter = require('../public/routes/admin-router')
+var apiRoute = require('../public/routes/api')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
@@ -64,6 +63,7 @@ app.use(session(
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(apiRoute)
 
 //this is middleware
 app.use((req, res, next) => {
@@ -155,55 +155,6 @@ app.get('/beverages', function (req, res, next) {
 
 
 
-app.get('/doSignupRes', (req, res, next) => {
-    res.render('signup.res.hbs')
-})
-
-const handleError = res => res.send({ msg: 'Registration Failed!' });
-
-
-app.post('/doSignupRes', (req, res) => {
-
-    Member.findOne({ 'email': req.body.email }, function (err, user) {
-        if (err) {
-            handleError(res);
-        }if (user) {
-            res.send({ _id: -1, msg: 'Username already exists!' });
-        } else {      
-            var newUser = new Member();
-            newUser.name = req.body.name;
-            newUser.email = req.body.email;
-            newUser.password = newUser.encryptPassword(req.body.password);
-            if (req.body.password == req.body.passwordTwo) {
-                newUser.save(function (err, result) {
-                    if (err) res.send(err);
-                    else {
-                        // res.setHeader('Content-Type', 'application/json');
-                        res.send(newUser);}
-                })
-            }
-            }
-        })
-})
-
-// app.post('/doSigninRes', function (req, res, next) {
-    
-//     Member.findOne({'email':req.body.email}, function(err, user){
-//         if(err){
-//             return done(err)
-//         }
-//         if(!user){
-//             return done(null, false, {message:'No user found.'})
-//         }
-//         if(!user.validPassword(req.body.password)){
-//             return done(null, false, {message:'Wrong password.'})
-//         }
-//         return done(null, user)
-        
-//     })
-// }
-    
-// )
 
 
 
@@ -263,48 +214,6 @@ app.post('/doSignup', passport.authenticate('local.signup', {
 })
 
 
-// app.post('/doSignupRes', passport.authenticate('local.signup', {
-//     failureRedirect: '/signup',
-//     failureFlash: true
-// }), function (req, res, next) {
-//     if (req.session.oldUrl) {
-//         var oldUrl = req.session.oldUrl;
-//         req.session.oldUrl = null;
-//         res.redirect(oldUrl);
-//     } else {    
-//         name= req.body.name
-//         email= req.body.email
-//         password= req.body.password
-//         passwordTwo= req.body.passwordTwo
-//         newuser = {
-//             "name": name,
-//             "email": email,
-//             "password":password,
-//             "passwordTwo": passwordTwo
-//         }
-//     console.log(newuser)
-//     res.send(newuser)
-//     }
-// })
-
-// app.post('/doSignupRes',((req,res,next)=>{
-
-//     name= req.body.name
-//     email= req.body.email
-//     password= req.body.password
-//     passwordTwo= req.body.passwordTwo
-//     newuser = {
-//         "name": name,
-//         "email": email,
-//         "password":password,
-//         "passwordTwo": passwordTwo
-//     }
-// console.log(newuser)
-// res.setHeader('Content-Type', 'application/json');
-// res.send(newuser)
-
-// }))
-
 app.get('/signin', (req, res, next) => {
     var messages = req.flash('error');
     res.render('signin', {
@@ -333,25 +242,6 @@ app.get('/products', (req, res) => {
         name: 'Rakshita'
     })
 })
-
-
-// app.post('/addtocart', (req, res) => {
-//     var coffee = req.body.p1
-//     var tea = req.body.p2
-//     var orange = req.body.p3
-//     var strawberry = req.body.p4
-//     var total = (25 * parseInt(coffee)) + (20 * parseInt(tea)) + (50 * parseInt(orange)) + (50 * parseInt(strawberry))
-//     console.log(coffee)
-//     res.render('cart', {
-//         coffee: coffee,
-//         tea: tea,
-//         orange: orange,
-//         strawberry: strawberry,
-//         total: total
-//     })
-
-// })
-
 
 app.get('/cart/:id', (req, res, next) => {
     var productId = req.params.id;
