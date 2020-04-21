@@ -1,6 +1,6 @@
 const express = require('express')
-const bodyParser=require('body-parser')
-var webpush=require('web-push')
+const bodyParser = require('body-parser')
+var webpush = require('web-push')
 const hbs = require('hbs')
 const bcrypt = require('bcryptjs')
 const path = require('path')
@@ -12,7 +12,7 @@ var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
 
-global.newuser={}
+global.newuser = {}
 
 var MongoStore = require('connect-mongo')(session)
 
@@ -25,13 +25,13 @@ const adminRouter = require('../public/routes/admin-router')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
-mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority", {useNewUrlParser:true});//creating or joining to practice database
+mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority", { useNewUrlParser: true });//creating or joining to practice database
 
 
 const app = express()
 
-const publicVapidKey='BIe6mxOIVZTA9OBKXgfZzdJe_dqhqrMEU7QbPVdwHDLvdEL1hJ0Z8Qjt0x8EByWSAkGOYOKqbKc2dDJvTSF6vF0'
-const privateVapidKey='QFiiWKJPk2RSR3JauuJSFAd9jkQXTkZPWK-JPqk0FSo'
+const publicVapidKey = 'BIe6mxOIVZTA9OBKXgfZzdJe_dqhqrMEU7QbPVdwHDLvdEL1hJ0Z8Qjt0x8EByWSAkGOYOKqbKc2dDJvTSF6vF0'
+const privateVapidKey = 'QFiiWKJPk2RSR3JauuJSFAd9jkQXTkZPWK-JPqk0FSo'
 
 const port = process.env.PORT || 3030
 
@@ -39,14 +39,14 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 const viewPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-webpush.setVapidDetails('mailto: rakshitajain777@gmail.com',publicVapidKey, privateVapidKey)
+webpush.setVapidDetails('mailto: rakshitajain777@gmail.com', publicVapidKey, privateVapidKey)
 
 app.set('view engine', 'hbs')
 app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
 
 
-app.use('/admin',adminRouter)
+app.use('/admin', adminRouter)
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -88,7 +88,7 @@ require('../config/passport')
 
 
 
-app.post('/subscribe',(req,res)=>{
+app.post('/subscribe', (req, res) => {
     //get pushSubscription object
     const subscription = req.body
 
@@ -99,7 +99,7 @@ app.post('/subscribe',(req,res)=>{
     // });
 
     //create payload
-    const payload = JSON.stringify({title: 'Push Test'})
+    const payload = JSON.stringify({ title: 'Push Test' })
 
     //Pass object into sendNotification
     webpush.sendNotification(subscription, payload).catch(err => console.log(err))
@@ -107,7 +107,7 @@ app.post('/subscribe',(req,res)=>{
 
 app.get("/notify-client.js", (req, res) => {
     res.sendFile(path.resolve(__dirname, '../public/js/notify-client.js'));
-  });
+});
 
 app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {
@@ -150,6 +150,53 @@ app.get('/beverages', function (req, res, next) {
 
     });
 });
+
+
+
+
+
+app.get('/doSignupRes', (req, res, next) => {
+    res.render('signup.res.hbs')
+})
+
+const handleError = res => res.send({ msg: 'Registration Failed!' });
+
+
+app.post('/doSignupRes', (req, res) => {
+
+    Member.findOne({ 'email': req.body.email }, function (err, user) {
+        if (err) {
+            handleError(res);
+        } else if (user) {
+            res.send({ _id: -1, msg: 'Username already exists!' });
+        } else {
+            // name= req.body.name
+            // email= req.body.email
+            // password= req.body.password
+            // passwordTwo= req.body.passwordTwo
+            // newuser = {
+            //     "name": name,
+            //     "email": email,
+            //     "password":password,
+            //     "passwordTwo": passwordTwo
+            // }       
+            var newUser = new Member();
+            newUser.name = req.body.name;
+            newUser.email = req.body.email;
+            newUser.password = newUser.encryptPassword(req.body.password);
+            if (req.body.password == req.body.passwordTwo) {
+                newUser.save(function (err, result) {
+                    if (err) res.send(err);
+                    else res.send(newUser);
+                })
+            }
+            }
+        })
+})
+
+
+
+
 
 var csrfProtection = csrf();
 app.use(csrfProtection)
@@ -199,44 +246,12 @@ app.post('/doSignup', passport.authenticate('local.signup', {
         var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
         res.redirect(oldUrl);
-    } else {    
-        res.redirect('/profile');    
+    } else {
+        res.redirect('/profile');
         // console.log(passport)
     }
 })
 
-app.get('/doSignupRes',(req,res,next)=>{
-    res.render('signup.res.hbs',{
-        csrfToken: req.csrfToken()
-    })
-})
-
-const handleError = res => res.send({ msg: 'Registration Failed!' });
-
-
-app.post('/doSignupRes', (req, res) => {
-
-    Member.findOne({ 'email': req.body.email }, function (err, user) {
-        if (err) {
-            handleError(res);
-        } else if (user) {
-            res.send({ _id: -1, msg: 'Username already exists!' });
-        } else {
-            var newUser = new Member({
-                email: '',
-                name: '',
-                password: ''
-            }, { _id: false });
-            newUser.email = req.body.email;
-            newUser.name = req.body.name;
-            newUser.password = newUser.encryptPassword(req.body.password);
-            newUser.save(function (err, result) {
-                if (err) res.send(err);
-                else res.send(newUser);
-            })
-        }
-    })
-})
 
 // app.post('/doSignupRes', passport.authenticate('local.signup', {
 //     failureRedirect: '/signup',
@@ -263,7 +278,7 @@ app.post('/doSignupRes', (req, res) => {
 // })
 
 // app.post('/doSignupRes',((req,res,next)=>{
-    
+
 //     name= req.body.name
 //     email= req.body.email
 //     password= req.body.password
@@ -277,7 +292,7 @@ app.post('/doSignupRes', (req, res) => {
 // console.log(newuser)
 // res.setHeader('Content-Type', 'text/html');
 // res.send(newuser)
-    
+
 // }))
 
 app.get('/signin', (req, res, next) => {
