@@ -1,0 +1,52 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form hidden id="resForm" method="POST" action="/doSignupRes">
+
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="name" style="color: black;">Enter name</label>
+          </div>
+          <div class="ccol-75">
+            <input id="resName" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="email" style="color: black;">Email</label>
+          </div>
+          <div class="ccol-75">
+            <input id="resEmail" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="subject" style="color: black;">Enter password</label>
+          </div>
+          <div class="ccol-75">
+            <input id="resPass" type="password" name="password" required minlength="7" style="color: black;"
+              placeholder="Your password.."></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="subject" style="color: black;">Re-enter password</label>
+          </div>
+          <div class="ccol-75">
+            <input id="resPassTwo" type="password" name="passwordTwo" style="color: black;" required minlength="7"
+              placeholder="confirm password.."></input>
+            <p style="color: red;">{{msg1}}</p>
+          </div>
+        </div>
+        <div class="crow">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <button id="resClick">here</button>
+          <input id="resSubmit" type="submit" name="submit" value="Signup" style="width: 180px;color:white">
+        </div>
+
+      </form>
+
+    </body>
+</html>

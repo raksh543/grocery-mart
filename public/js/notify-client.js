@@ -9,7 +9,7 @@ if('serviceWorker' in navigator){
 async function send(){
     //Register Service Worker
     console.log('Registering Service Worker')
-    const register = await navigator.serviceWorker.register('/app.js',{
+    const register = await navigator.serviceWorker.register('notify-worker.js',{
         scope:'/'
     })
     console.log('Service Worker Registered...');

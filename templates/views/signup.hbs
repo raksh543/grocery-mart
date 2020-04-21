@@ -1,137 +1,119 @@
 <html>
-    <head>
-        <title>
-            Sign up
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="icon" href="/img/grocery2.png">
-        <link rel="stylesheet" href="/css/login_styles.css">
-        <link rel="stylesheet" href="/css/styles.css">
-        
-    </head>
-    <body>
-      
-        <div class="main-content">
-            {{>header}}
 
-            {{!-- <section >
-	<div class="column1" style="margin:0 0 0 0;padding:0 10 0 10;height:100%">
-	
-		<div id="coloured">
-				<span id="headings" id="welcome">Welcome Back!</span id="headings">
-				<p>To keep connected with us login to your personal info<p><br><br>
-				<button id="input_signin"class="colouredbutton"><a href="signin" style="color: white;text-decoration:none">Sign In</a></button>
-		</div>
-	</div>
-	
-	<div class="column2"style="background-color:#ffffff">
-		<div id="white">
-			<span id="headings">Create Account</span id="headings"><br>
-			<img src="https://i.ibb.co/2yHwRKg/fb.png">
-			<img src="https://i.ibb.co/KV23QM7/google.png">
-			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br>
-			<p>or use your emailfor registration</p><br>
-			<form method="POST" action="/doSignup">
-			Enter name <input id="n1" type="text" name="name2" style="margin-left:50;" required></input><br><br>
-			Enter email <input id="e1" type="email" name="email2" style="margin-left:50;" required></input><br><br>
-			Enter password <input id="p1" type="password" name="password" required style="margin-left:25;" minlength="7"></input><br><br><br>
-			Re-Enter password <input id="p2" type="password" name="passwordTwo" required></input><br><br><br>
-			<p style="color: red;">{{msg1}}</p>
-			<input type="submit" id="whitebutton" name="submit" />
-			</form>
-		</div>
-	</div>
-</section> --}}
-    
-  <div class="ccontainer" style="background-color: lightyellow;">
-    <div class="crow">
-      <div class="ccol-25">
-      </div>
-      <div class="ccol-75"> 
-        <p style="float: left; color:black">Already have an account?</p>       
-				<button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a href="signin" style="color: white;text-decoration:none">Log in here</a></button>
+<head>
+  <title>
+    Sign up
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="icon" href="/img/grocery2.png">
+  <link rel="stylesheet" href="/css/login_styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+
+<body>
+
+  <div class="main-content">
+    {{>header}}
+
+    <div class="ccontainer" style="background-color: lightyellow;">
+      <div class="crow">
+        <div class="ccol-25">
+        </div>
+        <div class="ccol-75">
+          <p style="float: left; color:black">Already have an account?</p>
+          <button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a
+              href="signin" style="color: white;text-decoration:none">Log in here</a></button>
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="ccontainer">
-			<form method="POST" action="/doSignup">
-      <div class="crow" style="color: black;"><center>
-        <span id="headings">Create Account</span id="headings"><br><br>
-			<img src="https://i.ibb.co/2yHwRKg/fb.png">
-			<img src="https://i.ibb.co/KV23QM7/google.png">
-			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
-			<p>or use your email for registration</p><br><br>
-        </center>
-      </div>
-        {{# if hasErrors}}
-            <div class="crow">
-              {{# each messages }}
-              <center>
-              <p  style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px"> {{this}} </p>
-              </center>
-              {{/each}}
-              
-            </div>
+      <form method="POST" action="/doSignup">
 
-        {{/if}}
-    <div class="crow">
-     
-      <div class="ccol-25">
-        <label for="name" style="color: black;">Enter name</label>
-      </div>
-      <div class="ccol-75">
-        <input id="n1" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
-      </div>
-    </div>
-    <div class="crow">
-      <div class="ccol-25">
-        <label for="email" style="color: black;">Email</label>
-      </div>
-      <div class="ccol-75">
-        <input id="e1" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
-      </div>
-    </div>
-    <div class="crow">
-      <div class="ccol-25">
-        <label for="country" style="color: black;">Country</label>
-      </div>
-      <div class="ccol-75">
-        <select id="country" name="country" style="color: black;">
-          <option value="australia">India</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
-        </select>
-      </div>
-    </div>
-    <div class="crow">
-      <div class="ccol-25">
-        <label for="subject" style="color: black;">Enter password</label>
-      </div>
-      <div class="ccol-75">
-        <input id="p1" type="password" name="password" required minlength="7" style="color: black;" placeholder="Your password.."></input>
-      </div>
-    </div>
-       <div class="crow">
-      <div class="ccol-25">
-        <label for="subject" style="color: black;">Re-enter password</label>
-      </div>
-      <div class="ccol-75">
-        <input id="p2" type="password" name="passwordTwo" style="color: black;" required minlength="7" placeholder="confirm password.."></input>
-        <p style="color: red;">{{msg1}}</p>
-      </div>
-    </div>
-    <div class="crow">
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
-      <input type="submit" name="submit" value="Signup" style="width: 180px;color:white">
-    </div>
-  </form>
-</div>
+        <div class="crow" style="color: black;">
+          <center>
+            <span id="headings">Create Account</span id="headings"><br><br>
+            <img src="https://i.ibb.co/2yHwRKg/fb.png">
+            <img src="https://i.ibb.co/KV23QM7/google.png">
+            <img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
+            <p>or use your email for registration</p><br><br>
+          </center>
+        </div>
+        {{# if hasErrors}}
+        <div class="crow">
+          {{# each messages }}
+          <center>
+            <p
+              style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+              {{this}} </p>
+          </center>
+          {{/each}}
 
         </div>
-{{>footer}}
-		<script src="/js/app.js"> </script>
 
-    </body>
+        {{/if}}
+        <div class="crow">
+
+          <div class="ccol-25">
+            <label for="name" style="color: black;">Enter name</label>
+          </div>
+          <div class="ccol-75">
+            <input id="n1" type="text" name="name" style="color: black;" placeholder="Your name..." required></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="email" style="color: black;">Email</label>
+          </div>
+          <div class="ccol-75">
+            <input id="e1" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="country" style="color: black;">Country</label>
+          </div>
+          <div class="ccol-75">
+            <select id="country" name="country" style="color: black;">
+              <option value="australia">India</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="subject" style="color: black;">Enter password</label>
+          </div>
+          <div class="ccol-75">
+            <input id="p1" type="password" name="password" required minlength="7" style="color: black;"
+              placeholder="Your password.."></input>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="subject" style="color: black;">Re-enter password</label>
+          </div>
+          <div class="ccol-75">
+            <input id="p2" type="password" name="passwordTwo" style="color: black;" required minlength="7"
+              placeholder="confirm password.."></input>
+            <p style="color: red;">{{msg1}}</p>
+          </div>
+        </div>
+        <div class="crow">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <input type="submit" onclick="sendResponse()" name="submit" value="Signup" style="width: 180px;color:white">
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+  {{>footer}}
+  <script src="/js/app.js"> </script>
+
+</body>
+
 </html>

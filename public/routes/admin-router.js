@@ -1,6 +1,7 @@
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const AdminBroMongoose = require('admin-bro-mongoose')
+// const Dashboard = require('./dashboard')
 
 const mongoose=require('mongoose')
 
@@ -47,6 +48,24 @@ const AdminBroOptions = {
     }
   },
   databases:[mongoose],
+  dashboard: {
+    handler: async () => {
+      // dashboard:{
+      //   isVisible:{show:true},
+      // render:{
+      //   show:{()=>{
+      //     const html=
+      //     <div>
+      //       this is dashboard page
+      //     </div>
+      //     return html
+      //   }
+          
+      //   }
+      // }}
+    },
+    component: AdminBro.bundle('../../dashboard.jsx')
+  },
   rootpath:'/admin',
   branding:{
     logo:'https://i.pinimg.com/originals/5d/26/a1/5d26a173f443cbd190e34481438d474b.png',

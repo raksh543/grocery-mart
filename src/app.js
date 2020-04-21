@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser=require('body-parser')
 var webpush=require('web-push')
 const hbs = require('hbs')
 const bcrypt = require('bcryptjs')
@@ -11,7 +12,7 @@ var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
 
-
+global.newuser={}
 
 var MongoStore = require('connect-mongo')(session)
 
@@ -50,6 +51,7 @@ app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(validator())
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session(
     {
@@ -92,6 +94,9 @@ app.post('/subscribe',(req,res)=>{
 
     //send 201 - resource created
     res.status(201).json({})
+    // res.writeHead(201, {
+    //     'Content-Type': 'application/javascript'
+    // });
 
     //create payload
     const payload = JSON.stringify({title: 'Push Test'})
@@ -99,6 +104,10 @@ app.post('/subscribe',(req,res)=>{
     //Pass object into sendNotification
     webpush.sendNotification(subscription, payload).catch(err => console.log(err))
 })
+
+app.get("/notify-client.js", (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../public/js/notify-client.js'));
+  });
 
 app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {
@@ -190,7 +199,21 @@ app.post('/doSignup', passport.authenticate('local.signup', {
         var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
         res.redirect(oldUrl);
-    } else {       
+    } else {    
+        res.redirect('/profile');    
+        // console.log(passport)
+    }
+})
+
+app.post('/doSignupRes', passport.authenticate('local.signup', {
+    failureRedirect: '/signup',
+    failureFlash: true
+}), function (req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {    
         name= req.body.name
         email= req.body.email
         password= req.body.password
@@ -202,18 +225,28 @@ app.post('/doSignup', passport.authenticate('local.signup', {
             "passwordTwo": passwordTwo
         }
     console.log(newuser)
-    res.setHeader("Content-Type", "text/html");
-    res.send(newuser) 
-        next();
-        // console.log(passport)
+    res.setHeader('Content-Type', 'text/html');
+    res.send(newuser)
     }
 })
 
-app.post('/doSignup',((req,res,next)=>{
+// app.post('/doSignupRes',((req,res,next)=>{
     
-    res.redirect('/profile')
+//     name= req.body.name
+//     email= req.body.email
+//     password= req.body.password
+//     passwordTwo= req.body.passwordTwo
+//     newuser = {
+//         "name": name,
+//         "email": email,
+//         "password":password,
+//         "passwordTwo": passwordTwo
+//     }
+// console.log(newuser)
+// res.setHeader('Content-Type', 'text/html');
+// res.send(newuser)
     
-}))
+// }))
 
 app.get('/signin', (req, res, next) => {
     var messages = req.flash('error');
