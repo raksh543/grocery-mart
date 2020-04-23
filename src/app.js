@@ -10,6 +10,7 @@ var csrf = require('csurf')
 var cookieParser = require('cookie-parser')
 var session = require('express-session')
 var passport = require('passport')
+var nodemailer=require('nodemailer')
 var flash = require('connect-flash')
 
 var MongoStore = require('connect-mongo')(session)
@@ -38,7 +39,6 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 const viewPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-webpush.setVapidDetails('mailto: rakshitajain777@gmail.com', publicVapidKey, privateVapidKey)
 
 app.set('view engine', 'hbs')
 app.set('views', viewPath)
@@ -65,6 +65,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(apiRoute)
 
+webpush.setVapidDetails('mailto: rakshitajain777@gmail.com', publicVapidKey, privateVapidKey)
+
 //this is middleware
 app.use((req, res, next) => {
     res.locals.login = req.isAuthenticated();
@@ -87,7 +89,6 @@ require('../config/passport')
 //-------------------------------------
 
 
-
 app.post('/subscribe', (req, res) => {
     //get pushSubscription object
     const subscription = req.body
@@ -102,12 +103,13 @@ app.post('/subscribe', (req, res) => {
     const payload = JSON.stringify({ title: 'Push Test' })
 
     //Pass object into sendNotification
-    webpush.sendNotification(subscription, payload).catch(err => console.log(err))
+    webpush.sendNotification(subscription, payload).catch(err => console.error(err))
 })
 
-app.get("/notify-client.js", (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../public/js/notify-client.js'));
-});
+// app.get("/notify-client.js", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../public/js/notify-client.js'));
+// });
+
 
 app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {
@@ -119,6 +121,11 @@ app.get('/', (req, res, next) => {
         res.render('index', { title: 'Beverages', products: productChunks });
 
     });
+})
+
+
+app.get('/notification', (req, res) => {
+    res.render('notification')
 })
 
 app.get('/testing', (req, res, next) => {
@@ -150,14 +157,6 @@ app.get('/beverages', function (req, res, next) {
 
     });
 });
-
-
-
-
-
-
-
-
 
 var csrfProtection = csrf();
 app.use(csrfProtection)
@@ -208,6 +207,51 @@ app.post('/doSignup', passport.authenticate('local.signup', {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
+
+        const email=req.body.email
+        const output = `
+        <h3> Hello ${req.body.name}</h3>
+        <p>You have successfully logged in.</p>
+        <p> Jump in right now and explore the products and get amazing offers.</p>`;
+    
+    
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'justfordemo999@gmail.com', // generated ethereal user
+                pass: 'justfordemo999@work' // generated ethereal password
+            },
+            tls:{
+                rejectUnauthorized: false
+            }
+        });
+    
+        // send mail with defined transport object
+        let mailOptions = {
+            from: '"Grocery Mart 👻😀" <justfordemo999@gmail.com>', // sender address
+            to: email, // list of receivers
+            subject: "Hello ✔🤗", // Subject line
+            text: "Hello world?", // plain text body
+            html: output // html body
+        }
+    
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error)
+            }
+            console.log("Message sent: %s", info.messageId);
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    
+            // Preview only available when sending through an Ethereal account
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        })
+    
+
+
         res.redirect('/profile');
         // console.log(passport)
     }

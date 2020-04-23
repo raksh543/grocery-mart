@@ -3,8 +3,10 @@ var router = express.Router()
 var mongoose = require('mongoose')
 
 const UserSchema = require('../models/userschema')
+const ProductsSchema = require('../models/product')
 
 var Member = mongoose.model("Member", UserSchema);
+var Product = mongoose.model("Product", ProductsSchema);
 
 router.get('/doSignupRes', (req, res, next) => {
     res.render('signup.res.hbs')
@@ -52,5 +54,22 @@ router.post('/doSigninRes', function (req, res, next) {
 }
     
 )
+
+router.get('/cartRes', (req, res, next) => {
+    var productId = req.body.title;
+    // var cart = new Cart((req.session.cart ? req.session.cart : {}))
+
+    Product.findOne({'title' : productId}, function (err, product) {
+        if (err) {
+            return res.send({ _id: -1, msg: 'Product not found' })
+        }
+        // cart.add(product, product.id)
+        // req.session.cart = cart
+        // console.log(req.session.cart)
+        if(product){
+            res.send({_id:1})
+        }
+    })
+})
 
 module.exports = router
