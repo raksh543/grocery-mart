@@ -7,14 +7,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="icon" href="/img/grocery2.png">
+  <link rel="stylesheet" href="/css/register.css">
   <link rel="stylesheet" href="/css/login_styles.css">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 </head>
 
-<body>
+<body style="background-color: rgb(233, 233, 233);">
 
-  <div class="main-content">
+<!--This will be displaiyed for large screens-->
+  <div class="main-content displayonlg">
+    {{>header}}
+
+    <div id="login-box">
+      <div class="left">
+        <h1 style="color: black;">Sign up</h1>
+        <hr>
+        <form action="/doSignup" method="POST">
+          {{# if hasErrors}}
+          <div class="crow">
+            {{# each messages }}
+            <center>
+              <p
+                style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+                {{this}} </p>
+            </center>
+            {{/each}}
+
+          </div>
+
+          {{/if}}
+
+          <input class="typeOne" type="text" name="name" placeholder="Username" required />
+          <input class="typeOne" type="email" name="email" placeholder="E-mail" required />
+          <input class="typeOne" type="password" name="password" placeholder="Password" minlength="7" required />
+          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7" required />
+          <p style="color: red;">{{msg1}}</p>
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <input type="submit" value="Sign up" />
+        </form>
+      </div>
+
+      <div class="right">
+        <form action="/doSignin" method="POST">
+          <span class="loginwith">Have an account?<br />Log In</span>
+          {{# if hasErrors}}
+          <div class="crow">
+            {{# each messages }}
+            <center>
+              <p
+                style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+                {{this}} </p>
+            </center>
+            {{/each}}
+
+          </div>
+
+          {{/if}}
+          <button class="social-signin google">Enter registered email</button>
+          <input class="typeOne" type="email" name="email" placeholder="email" />
+          <input class="typeOne" type="password" name="password" placeholder="Password" />
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <button class="social-signin google">Log In</button>
+        </form>
+      </div>
+      <div class="or"><i class="fa fa-sign-in" style="font-size:20px;margin-top:10px;color:black"></i> </div>
+    </div>
+
+  </div>
+
+
+<!--This will be displaiyed for small screens-->
+  <div class="main-content displayonsm">
     {{>header}}
 
     <div class="ccontainer" style="background-color: lightyellow;">
