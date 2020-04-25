@@ -11,7 +11,7 @@
 
 </head>
     <body>
-        <form id="resForm" method="POST" action="/doSigninRes">
+        <form id="resForm" method="POST" action="/searchRes">
 
         <div class="crow">
           <div class="ccol-25">
@@ -48,6 +48,7 @@
             <p style="color: red;">{{msg1}}</p>
           </div>
         </div>
+        <input type="text" name="searchText">
         <div class="crow">
           {{!-- <input type="hidden" name="_csrf" value="{{csrfToken}}"> --}}
           <input id="resSubmit" type="submit" name="submit" value="Signup" style="width: 180px;color:white">

@@ -49,25 +49,21 @@ router.post('/doSigninRes', function (req, res, next) {
         if(!user.validPassword(req.body.password)){
             return res.send({ _id: -2, msg: 'Wrong Password!' });
         }
-        res.send({ _id: 1, msg: 'Successfully logged in!' })  
+        res.send({ msg: 'Successfully logged in!', _id: user.id,name:user.name })  
     })
 }
     
 )
 
-router.get('/cartRes', (req, res, next) => {
-    var productId = req.body.title;
-    // var cart = new Cart((req.session.cart ? req.session.cart : {}))
-
-    Product.findOne({'title' : productId}, function (err, product) {
+router.post('/searchRes', (req, res) => {
+    var productId = req.body.searchText
+    Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
         if (err) {
-            return res.send({ _id: -1, msg: 'Product not found' })
-        }
-        // cart.add(product, product.id)
-        // req.session.cart = cart
-        // console.log(req.session.cart)
-        if(product){
-            res.send({_id:1})
+            return handleError(res);
+        } if (!products) {
+            return res.send({ _id: -1, msg: 'No product found!' });
+        } else {
+            res.send(products);
         }
     })
 })

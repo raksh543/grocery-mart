@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<title>Grocery Shopping</title>
+
+<head>
+    <link rel="stylesheet" href="/css/services.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+</head>
+
+<body>
+    {{!-- <div class="navbar">
+    <a href="#"><i class="fa fa-home" style="font-size:28px"></i></a>
+    <a href="grocery.html">Grocery Mart</a>
+    <a href="product.html">Product</a>
+    <a href="categories.html">Categories</a>
+    <a href="services.html">Services</a>
+    <a href="#"><i class="fa fa-shopping-cart" style="font-size:20px"></i>                   Cart</a>
+    <a href="register.html"><i class="fa fa-sign-in" style="font-size:20px" ></i>            Login / SignUp</a>
+    
+  </div> --}}
+    {{>header}}
+    <br>
+    <div class="main-content">
+        <div class="pricing-wrapper clearfix">
+
+            <div class="pricing-table">
+                <h3 class="pricing-title">HOME DELIVERY</h3>
+                <div class="price">HOME DELIVERY AND PICK UP</div>
+                <ul class="table-list">
+                    <li><span>Minimal delivery charges</span></li>
+                    <li><span>Delivery at your doorstep</span></li>
+                    <li><span>At your convinient time</span></li>
+                    <li><span>place your order and pick up from the store</span></li>
+                </ul>
+                <div class="table-buy">
+                    <a href="#" class="pricing-action">Place order</a>
+                </div>
+            </div>
+
+            <div class="pricing-table recommended">
+                <h3 class="pricing-title">PRIME MEMBERSHIP</h3>
+                <div class="price">PRIME BENEFITS</div>
+                <ul class="table-list">
+                    <li><span>Get prime membership</span></li>
+                    <li><span>Daily updates, offers, coupon codes and prime service</span></li>
+                    <li><span>Free Delivery </span></li>
+                    <li><span>Fast Delivery</span></li>
+                </ul>
+                <div class="table-buy">
+                    <a href="#" class="pricing-action">Get Membership</a>
+                </div>
+            </div>
+
+            <div class="pricing-table">
+                <h3 class="pricing-title">OWN A BUSINESS</h3>
+                <div class="price">BE A PARTNER</div>
+                <ul class="table-list">
+                    <li><span>Start Selling Your Products</span></li>
+                    <li><span>Home Pick Up</span></li>
+                    <li><span>Easy Payment Methods</span></li>
+                    <li><span>Connect with your customers and know their requirements</span></li>
+                </ul>
+                <div class="table-buy">
+                    <a href="#" class="pricing-action">Start Selling</a>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+
+        <div class="container">
+
+            <h2 style="color: black;font-weight: 600;font-size: 40px;font-family: 'Times New Roman', Times, serif;">
+                Frequently Asked Questions :</h2><br>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <a>How Do I get prime Membership?</a>
+                    <div class="content">
+                        <p>Apply for prime Membership and get subscription.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <a>How do I signup for selling my product?</a>
+                    <div class="content">
+                        <p>Sign yourself up for owning business.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <a>What are other prime benefits?</a>
+                    <div class="content">
+                        <p>You may check the website for it.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <a>What are other prime benefits?</a>
+                    <div class="content">
+                        <p>You may check the website for it.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <a>What are other prime benefits?</a>
+                    <div class="content">
+                        <p>You may check the website for it.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><br><br><br>
+    </div>
+    <iframe>
+        {{>footer}}
+    </iframe>
+    <script>
+        const items = document.querySelectorAll(".accordion a");
+
+        function toggleAccordion() {
+            this.classList.toggle('active');
+            this.nextElementSibling.classList.toggle('active');
+        }
+
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+    </script>
+</body>
+{{!-- <footer class="footer-distributed">
+
+  <div class="footer-left">
+
+    <i class="fa fa-shopping-cart" style="font-size:120px"></i>  
+
+    <p class="footer-links">
+      <a href="#" class="link-1">Home</a>
+      <a href="#">Faq</a>
+      
+      <a href="#">Contact</a>
+    </p>
+
+    <p class="footer-company-name">Company Name INIESTA Webtech solution</p>
+  </div>
+
+  <div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>Office number 3,Third Floor</span>H-61 Sector Noida,Uttar Pradesh</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+91 9871428181</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:support@company.com">Iniestawebtech@gmail.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span> Iniesta Restro Grocery Market</span>
+      <span>Follow us on our social media pages:</span>
+    </p>
+
+    <div class="footer-icons">
+
+      <a href="https://www.facebook.com/iniestawebtech/"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.instagram.com/iniestawebtech/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/iniesta-webtech-solution-private-limited-111b82184/"><i class="fa fa-linkedin"></i></a>
+      
+    </div>
+
+  </div>
+
+</footer> --}}
+
+</html>

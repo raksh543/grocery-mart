@@ -10,7 +10,7 @@ var csrf = require('csurf')
 var cookieParser = require('cookie-parser')
 var session = require('express-session')
 var passport = require('passport')
-var nodemailer=require('nodemailer')
+var nodemailer = require('nodemailer')
 var flash = require('connect-flash')
 
 var MongoStore = require('connect-mongo')(session)
@@ -46,6 +46,7 @@ hbs.registerPartials(partialsPath)
 
 
 app.use('/admin', adminRouter)
+app.use(express.static(path.join(__dirname, 'client_notifications')));
 app.use(express.static(publicDirectoryPath))
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -106,11 +107,6 @@ app.post('/subscribe', (req, res) => {
     webpush.sendNotification(subscription, payload).catch(err => console.error(err))
 })
 
-// app.get("/notify-client.js", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../public/js/notify-client.js'));
-// });
-
-
 app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {
         var productChunks = [];
@@ -140,6 +136,9 @@ app.get('/testing', (req, res, next) => {
     });
 })
 
+app.get('/categories',(req,res,next)=>{
+    res.render('categories')
+})
 
 app.get('/beverages', function (req, res, next) {
     Product.find(function (err, docs) {
@@ -157,6 +156,28 @@ app.get('/beverages', function (req, res, next) {
 
     });
 });
+
+app.post('/search', (req, res, next) => {
+    var productId = req.body.searchText
+    Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
+        if (err) {
+            return handleError(res);
+        } if (!products) {
+            return res.send({ _id: -1, msg: 'No product found!' });
+        } else {
+            // res.send(product)
+            // res.render('beverages',{product:product})   
+            // res.render('searchResult',{product})
+
+            var productChunks = [];
+
+            for (var i = 0; i < products.length; i++) {
+                productChunks.push(products);
+            }
+            res.render('beverages', { title: 'Beverages', products: productChunks });
+        }
+    })
+})
 
 var csrfProtection = csrf();
 app.use(csrfProtection)
@@ -208,13 +229,13 @@ app.post('/doSignup', passport.authenticate('local.signup', {
         res.redirect(oldUrl);
     } else {
 
-        const email=req.body.email
+        const email = req.body.email
         const output = `
         <h3> Hello ${req.body.name}</h3>
         <p>You have successfully logged in.</p>
         <p> Jump in right now and explore the products and get amazing offers.</p>`;
-    
-    
+
+
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
@@ -224,11 +245,11 @@ app.post('/doSignup', passport.authenticate('local.signup', {
                 user: 'justfordemo999@gmail.com', // generated ethereal user
                 pass: 'justfordemo999@work' // generated ethereal password
             },
-            tls:{
+            tls: {
                 rejectUnauthorized: false
             }
         });
-    
+
         // send mail with defined transport object
         let mailOptions = {
             from: '"Grocery Mart 👻😀" <justfordemo999@gmail.com>', // sender address
@@ -237,19 +258,19 @@ app.post('/doSignup', passport.authenticate('local.signup', {
             text: "Hello world?", // plain text body
             html: output // html body
         }
-    
+
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 return console.log(error)
             }
             console.log("Message sent: %s", info.messageId);
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-    
+
             // Preview only available when sending through an Ethereal account
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         })
-    
+
 
 
         res.redirect('/profile');
@@ -387,8 +408,8 @@ app.post('/checkout', isUserLoggedIn, (req, res, next) => {
         })
 })
 
-app.get('/online_services', (req, res) => {
-    res.render('404', {
+app.get('/services', (req, res) => {
+    res.render('services', {
         title: 'Products',
         name: 'Rakshita'
     })

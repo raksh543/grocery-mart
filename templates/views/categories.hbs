@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<title>Grocery Shopping</title>
+
+<head>
+    <link rel="stylesheet" href="/css/categories.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    {{>header}}
+    <div class="main-content">
+        <br><br><br>
+        <center>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <div class="w3-display-container w3-container">
+                        <img src="/img/photos/Untitled design (3).jpg" alt="Jeans" style="width:90%" height="500">
+                        <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+                            <h1 class="slidertext w3-jumbo w3-hide-small"
+                                style="font-family: 'Times New Roman', Times, serif;">Fruits and Vegetables</h1>
+                            <h1 class="slidertext w3-hide-large w3-hide-medium"
+                                style="font-family: 'Times New Roman', Times, serif;">Fruits and Vegetables</h1>
+                            <h1 class="slidertext w3-hide-small" style="font-family: 'Times New Roman', Times, serif;">
+                                get upto 50%off</h1><br><br>
+                            <p><a href="" class="slidertext w3-button w3-black w3-padding-large w3-large">SHOP NOW</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <div class="w3-display-container w3-container">
+                        <img src="/img/photos/Untitled design (5).jpg" alt="Jeans" style="width:90%" height="500">
+                        <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+                            <h1 class="slidertext w3-jumbo w3-hide-small"
+                                style="font-family: 'Times New Roman', Times, serif;">beverags</h1>
+                            <h1 class="slidertext w3-hide-large w3-hide-medium"
+                                style="font-family: 'Times New Roman', Times, serif;">Beveragess</h1>
+                            <h1 class="slidertext w3-hide-small" style="font-family: 'Times New Roman', Times, serif;">
+                                get upto 50%off</h1><br><br>
+                            <p><a href="" class="slidertext w3-button w3-black w3-padding-large w3-large">SHOP NOW</a>
+                            </p><br><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <div class="w3-display-container w3-container">
+                        <img src="/img/photos/Untitled design (7).jpg" alt="Jeans" style="width:90%" height="500">
+                        <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+                            <h1 class="slidertext w3-jumbo w3-hide-small"
+                                style="font-family: 'Times New Roman', Times, serif;">Personal Hygiene</h1>
+                            <h1 class="slidertext w3-hide-large w3-hide-medium"
+                                style="font-family: 'Times New Roman', Times, serif;">Personal Hygiene</h1>
+                                <h1 class="slidertext w3-hide-small"
+                                    style="font-family: 'Times New Roman', Times, serif;"> get upto 50%off</h1><br><br>
+                                <p><a href="" class="slidertext w3-button w3-black w3-padding-large w3-large">SHOP
+                                        NOW</a></p><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+        <br>
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <script>
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                setTimeout(showSlides, 4000);
+            }
+        </script><br>
+        <hr>
+        <center>
+            <p style="font-size:39px;font-family: 'Times New Roman', Times, serif;font-weight: 400;">Click to Explore by
+                Category</p>
+        </center>
+        <hr><br>
+        <div class="row">
+            <div class="column">
+                <div id="login-box1">
+                    <div class="left1">
+                        <br>
+                        <center><img src="/img/photos/bev.jpg" width="150px" height="150px"></center><br>
+                        <center>
+                            <p style="font-size: 20px;">Beverages</p>
+                        </center>
+                        <center><button type="submit" class="button">Click here to see</button></center>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div id="login-box1">
+                    <div class="left1">
+                        <br>
+                        <center><img src="/img/photos/bak.jpg" width="150px" height="150px"></center><br>
+                        <center>
+                            <p style="font-size: 20px;">Bread/Bakery</p>
+                        </center>
+                        <center><button type="submit" class="button">Click here to see</button></center>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div id="login-box1">
+                    <div class="left1"><br>
+                        <center><img src="/img/photos/can.jpg" width="150px" height="150px"></center><br>
+                        <center>
+                            <p style="font-size: 20px;">Canned Goods</p>
+                        </center>
+                        <center><button type="submit" class="button">Click here to see</button></center>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div id="login-box1">
+                    <div class="left1"><br>
+                        <center><img src="/img/photos/dry.jpg" width="150px" height="150px"></center><br>
+                        <center>
+                            <p style="font-size: 20px;">Dry/Baking Goods</p>
+                        </center>
+                        <center><button type="submit" class="button">Click here to see</button></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1">
+                    <br>
+                    <center><img src="/img/photos/dairy.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Dairy products</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1">
+                    <br>
+                    <center><img src="/img/photos/frozen.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Frozen food</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1"><br>
+                    <center><img src="/img/photos/meat.jpeg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Meat</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1"><br>
+                    <center><img src="/img/photos/fruits.png" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Produce</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1">
+                    <br>
+                    <center><img src="/img/photos/personalcare.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Personal care</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1">
+                    <br>
+                    <center><img src="/img/photos/cleaners.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Cleaners</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1"><br>
+                    <center><img src="/img/photos/papergood.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Paper goods</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="login-box1">
+                <div class="left1"><br>
+                    <center><img src="/img/photos/cart.jpg" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">Go to cart</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div><br><br>
+    </div>
+</body>
+{{>footer}}
+{{!-- <footer class="footer-distributed">
+
+    <div class="footer-left">
+
+      <i class="fa fa-shopping-cart" style="font-size:120px"></i>  
+
+      <p class="footer-links">
+        <a href="#" class="link-1">Home</a>
+        <a href="#">Faq</a>
+        
+        <a href="#">Contact</a>
+      </p>
+
+      <p class="footer-company-name">Company Name INIESTA Webtech solution</p>
+    </div>
+
+    <div class="footer-center">
+
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>Office number 3,Third Floor</span>H-61 Sector Noida,Uttar Pradesh</p>
+      </div>
+
+      <div>
+        <i class="fa fa-phone"></i>
+        <p>+91 9871428181</p>
+      </div>
+
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">Iniestawebtech@gmail.com</a></p>
+      </div>
+
+    </div>
+
+    <div class="footer-right">
+
+      <p class="footer-company-about">
+        <span> Iniesta Restro Grocery Market</span>
+       
+      </p>
+
+      <div class="footer-icons">
+
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+      </div>
+
+    </div>
+
+  </footer> --}}
+
+</html>

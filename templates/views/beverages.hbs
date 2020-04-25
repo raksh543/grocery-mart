@@ -28,7 +28,7 @@
         {{>header}}
     </div>
 
-    <div class="main-content">
+    <div class="main-content" style="min-height: 100%;">
         <div class="container-fluid">
             <div class="row content">
                 <div class=" sidenav">
@@ -63,26 +63,29 @@
 
                         <div class="row">
                             {{# each products}}
+                            {{#if @first}}
                             {{# each this}}
-                            <div class="col-sm-3 col-md-3">
-                                <div class="thumbnail product">
-                                    <img src="{{this.imagePath}}" alt="" class="img-responsive">
-                                    <div class="caption">
-                                        <h5><b>{{this.title}}</b></h5>
-                                        <span class="description"
-                                            style="color: gray;"><i>{{this.description}}</i></span>
-                                        <div class="clearfix" style="margin-top: 5px;;">
-                                            <div class="price pull-left" style="font-size: medium;color:maroon"><span><i
-                                                        class="fa fa-inr" aria-hidden="true"></i></span> {{this.price}}
+                            {{!-- {{if i==0}} --}}
+                                <div class="col-sm-3 col-md-3">
+                                    <div class="thumbnail product">
+                                        <img src="{{this.imagePath}}" alt="" class="img-responsive">
+                                        <div class="caption">
+                                            <h5><b>{{this.title}}</b></h5>
+                                            <span class="description"
+                                                style="color: gray;"><i>{{this.description}}</i></span>
+                                            <div class="clearfix" style="margin-top: 5px;;">
+                                                <div class="price pull-left" style="font-size: medium;color:maroon"><span><i
+                                                            class="fa fa-inr" aria-hidden="true"></i></span> {{this.price}}
+                                                </div>
+                                                <a href="cart/{{this._id}}" class="addtocart pull-right"
+                                                    role="button"><span><i class="fa fa-cart-plus"
+                                                            aria-hidden="true"></i></span> Add to cart</a>
                                             </div>
-                                            <a href="cart/{{this._id}}" class="addtocart pull-right"
-                                                role="button"><span><i class="fa fa-cart-plus"
-                                                        aria-hidden="true"></i></span> Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {{/each}}
+                            {{/if}}
                             {{/each}}
                         </div>
 
@@ -93,7 +96,7 @@
         </div>
     </div>
 
-    {{>footer}}
+   
 </body>
-
+ {{>footer}}
 </html>

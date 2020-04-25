@@ -4,7 +4,7 @@ var mongoose=require('mongoose')
 
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
-var products=[
+var beverages=[
     new Product({
         imagePath:'https://www.austriansupermarket.com/media/catalog/product/cache/2/image/800x800/9df78eab33525d08d6e5fb8d27136e95/n/e/nes1036_2.jpg',
         title:'Nescafe coffee',
@@ -65,10 +65,10 @@ var products=[
 ];
 var done=0;
 
-for (var i=0;i<products.length;i++){
-    products[i].save(function(err,result){
+for (var i=0;i<beverages.length;i++){
+    beverages[i].save(function(err,result){
         done++;
-        if(done===products.length){
+        if(done===beverages.length){
             exit();
         }
     });
