@@ -32,7 +32,12 @@
         <div class="container-fluid">
             <div class="row content">
                 <div class=" sidenav">
+                    <div style="margin-top: 0;color:black"> 
+                    {{>searchbox}}
+                    <br><br>
+                    </div>
                     <h4>Filter</h4>
+                    
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"><a href="#section1">Brand</a></li>
                         <li><a href="#section2">Price</a></li>
@@ -40,14 +45,14 @@
                         <li><a href="#section3">Food Preferance</a></li>
                         <li><a href="#section3">Pack</a></li>
                     </ul><br>
-                    <div class="input-group">
+                    {{!-- <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Blog..">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="other-main-content">
