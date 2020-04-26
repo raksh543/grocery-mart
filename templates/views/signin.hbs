@@ -6,13 +6,75 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/navbar.css">
         <link rel="icon" href="/img/grocery2.png">
+  <link rel="stylesheet" href="/css/register.css">
         <link rel="stylesheet" href="/css/login_styles.css">
         <link rel="stylesheet" href="/css/styles.css"> 
     </head>
     <body>
+      {{>header}}
+        <!--This will be displaiyed for large screens-->
+  <div class="main-content displayonlg">
+    
+
+    <div id="login-box">
+      <div class="left">
+        <h1 style="color: black;">Sign up</h1>
+        <hr>
+        <form action="/doSignup" method="POST">
+          {{# if hasErrors}}
+          <div class="crow">
+            {{# each messages }}
+            <center>
+              <p
+                style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+                {{this}} </p>
+            </center>
+            {{/each}}
+
+          </div>
+
+          {{/if}}
+
+          <input class="typeOne" type="text" name="name" placeholder="Username" required />
+          <input class="typeOne" type="email" name="email" placeholder="E-mail" required />
+          <input class="typeOne" type="password" name="password" placeholder="Password" minlength="7" required />
+          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7" required />
+          <p style="color: red;">{{msg1}}</p>
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <input type="submit" value="Sign up" />
+        </form>
+      </div>
+
+      <div class="right">
+        <form action="/doSignin" method="POST">
+          <span class="loginwith">Have an account?<br />Log In</span>
+          {{# if hasErrors}}
+          <div class="crow">
+            {{# each messages }}
+            <center>
+              <p
+                style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+                {{this}} </p>
+            </center>
+            {{/each}}
+
+          </div>
+
+          {{/if}}
+          <button class="social-signin google">Enter registered email</button>
+          <input class="typeOne" type="email" name="email" placeholder="email" />
+          <input class="typeOne" type="password" name="password" placeholder="Password" />
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <button class="social-signin google">Log In</button>
+        </form>
+      </div>
+      <div class="or"><i class="fa fa-sign-in" style="font-size:20px;margin-top:10px;color:black"></i> </div>
+    </div>
+
+  </div>
+
+        <div class="main-content displayonsm">
         
-        <div class="main-content">
-          {{>header}}
 
             {{!-- <section >
 	
