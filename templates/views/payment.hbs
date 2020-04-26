@@ -1,44 +1,71 @@
 <html>
-    <head>
-        <title>
-            Payment
-        </title>
-        <style>
-            .razorpay-payment-button{
-                color: green;
+
+<head>
+    <title>
+        Payment
+    </title>
+    <style>
+        .razorpay-payment-button {
+            color: white;
+            background-color: rgb(69, 211, 69);
+            border-radius: 4px;
+        }
+        @media (max-width: 880px){
+            .noneonsm{
+                display: none;
             }
-        </style>
-    </head>
-    <body>
-        
-        <form action="/payment" method="POST" id="razor-payment-form">
-        <input type="text" name="name">
-        <input type="text" name="address">
-        
-        {{!-- <input type="number" name="amount" placeholder="data-amount">
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="icon" href="/img/grocery2.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{>header}}
+    <div class=" main-content container " style="min-height: 70%;">
+        <div class="row" style="padding-left: 100px;">
+            <div class="col-md-6 col-sm-12 noneonsm">
+                <img src="/img/payment.jpg" alt="PAYMENT"  style="float: right;">
+            </div>
+            <div class="col-md-6 col-sm-12 " >
+                <form action="/payment" method="POST" id="razor-payment-form" style="width:250px;height:400px;background-color: rgb(206, 154, 255);padding:20px;border-radius:10px">
+                    <h2>Complete placing order</h2><br>
+                    <input type="text" name="name" placeholder="Name" style="color: purple;" required><br><br>
+                    <input type="text" name="address" placeholder="Address" style="color: purple;" required><br><br><br>
+
+                    {{!-- <input type="number" name="amount" placeholder="data-amount">
         <input type="text" name="data-currency" placeholder="data-currency" value="INR">
         <input type="text" name="data-order_id" placeholder="data-order_id" value={{order_id}}>
         <input type="text" name="data-name" placeholder="data-name"> 
         <input type="button" id="clickhere" value="Pay now">
         <input type="submit" id="submit" value="submit" hidden>
          --}}
-         
-<script
-    src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="rzp_test_gxXdHsXsGPtTvp" 
-    data-amount="29935" 
-    data-currency="INR"
-    data-order_id={{order_id}}
-    data-buttontext="Pay with Razorpay"
-    data-name="Acme Corp"
-    data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
-    data-image="https://example.com/your_logo.jpg"
-    data-prefill.name="Gaurav Kumar"
-    data-prefill.email="gaurav.kumar@example.com"
-    data-theme.color="#F37254"
-></script>
-<input type="hidden" custom="Hidden Element" name="hidden">
-</form>
 
-    </body>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_gxXdHsXsGPtTvp"
+                        data-amount="29935" data-currency="INR" data-order_id={{order_id}}
+                        data-buttontext="Pay with Razorpay" data-name="Acme Corp"
+                        data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+                        data-image="https://example.com/your_logo.jpg" data-prefill.name="Gaurav Kumar"
+                        data-prefill.email="gaurav.kumar@example.com" data-theme.color="#F37254"></script>
+                    <input type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+            </div>
+        </div>
+
+    </div>
+    {{>footer}}
+</body>
+
 </html>

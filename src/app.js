@@ -102,11 +102,11 @@ require('../config/passport')
 
 //------------------------for admin page--------------------------
 
-app.get('/payment', (req, res) => {
+app.get('/payment',isUserLoggedIn, (req, res) => {
     res.render('payment')
 })
 
-app.post('/payment', (req, res) => {
+app.post('/payment',isUserLoggedIn, (req, res) => {
     // console.log(req)
     razorpay_payment_id = req.body.razorpay_payment_id
     razorpay_order_id = req.body.razorpay_order_id
@@ -135,7 +135,7 @@ app.post('/payment', (req, res) => {
     
 
 })
-app.post('/success', (req, res) => {
+app.post('/success',isUserLoggedIn, (req, res) => {
     console.log(req.body.amount +"Pottiiee")
     var options = {
         amount: req.body.amount*100,  // amount in the smallest currency unit
@@ -416,11 +416,19 @@ app.get('/remove/:id', (req, res, next) => {
 })
 
 app.get('/shopping-cart', (req, res, next) => {
+    Product.find(function (err, docs) {
+    const bestproducts = [];
+
+            for (var i = 0; i < docs.length; i++) {
+                bestproducts.push(docs);
+            }
+    
     if (!req.session.cart) {
-        return res.render('shopping-cart', { products: null })
+        return res.render('shopping-cart', { products: null,bestsellingproducts: bestproducts })
     }
     var cart = new Cart(req.session.cart)
-    res.render('shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice })
+    res.render('shopping-cart', { bestsellingproducts: bestproducts,products: cart.generateArray(), totalPrice: cart.totalPrice })
+});
 })
 
 app.get('/checkout', isUserLoggedIn, (req, res, next) => {
