@@ -1,11 +1,24 @@
+.addeditemcard{
+	margin-left: 30%;
+	margin-right: 30%;
+	background-color: rgb(243, 243, 243);
+	padding:20px 15px;
+}
+
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
 
+
+
 @media screen and (max-width: 600px) {
     .btn-100{
         width: 80%;
-    }
+	}
+	.addeditemcard{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
     table#cart tbody td .form-control{
 		width:20%;
 		display: inline !important;

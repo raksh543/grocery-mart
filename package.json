@@ -33,6 +33,7 @@
     "owl.carousel": "^2.3.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "razorpay": "^2.0.6",
     "react": "^16.13.1",
     "stripe": "^8.39.2",
     "validator": "^13.0.0",

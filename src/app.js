@@ -12,6 +12,7 @@ var session = require('express-session')
 var passport = require('passport')
 var nodemailer = require('nodemailer')
 var flash = require('connect-flash')
+var Razorpay = require('razorpay')
 
 var MongoStore = require('connect-mongo')(session)
 
@@ -83,12 +84,76 @@ var Product = mongoose.model("Product", ProductsSchema);
 var Order = mongoose.model("Order", OrderSchema)
 // var pruduct=mongoose.model("Product",UserSchema);
 // var usercart=mongoose.model("UserCart",UserSchema);
+var instance = new Razorpay({
+    key_id: 'rzp_test_gxXdHsXsGPtTvp',
+    key_secret: '8Jc8j68xWN9KtL5nlMuvZdAr'
+})
+// API signature
+// {razorpayInstance}.{resourceName}.{methodName}(resourceId [, params])
+
+// example
+
+
 
 //---------------------------------in config/passport.js------
 require('../config/passport')
 
 //-------------------------------------
 
+//------------------------for admin page--------------------------
+
+app.get('/payment', (req, res) => {
+    res.render('payment')
+})
+
+app.post('/payment', (req, res) => {
+    // console.log(req)
+    razorpay_payment_id = req.body.razorpay_payment_id
+    razorpay_order_id = req.body.razorpay_order_id
+    razorpay_signature = req.body.razorpay_signature
+        if (!req.session.cart) {
+            return res.redirect('/shopping-cart')
+        }
+        var cart = new Cart(req.session.cart)
+
+        var order = new Order({
+            user: req.user,
+            name:"req.body.name",
+            address:"req.body.address",
+            paymentId: req.body.razorpay_payment_id,
+            cart: cart
+        });
+        order.save((err, result) => {
+            if (err) {
+                req.flash('error', 'Payment failed');
+            } else {
+                req.flash('success', 'Successfully bought product!');
+                req.session.cart = null;
+                res.redirect('/profile');
+            }
+        })
+    
+
+})
+app.post('/success', (req, res) => {
+    console.log(req.body.amount +"Pottiiee")
+    var options = {
+        amount: req.body.amount*100,  // amount in the smallest currency unit
+        currency: "INR",
+        receipt: "order_rcptid_11",
+        payment_capture: true
+    };
+
+    instance.orders.create(options, function (err, order) {
+        console.log((order))
+        if (err) {
+            res.send(err)
+        } if (order) {
+            // console.log('(((((((((((((((((((((((((((((((((((((((((((((((' + order.id)
+            res.render('payment', { order_id: order.id, })
+        }
+    })
+})
 
 app.post('/subscribe', (req, res) => {
     //get pushSubscription object
@@ -136,7 +201,7 @@ app.get('/testing', (req, res, next) => {
     });
 })
 
-app.get('/categories',(req,res,next)=>{
+app.get('/categories', (req, res, next) => {
     res.render('categories')
 })
 
@@ -159,7 +224,7 @@ app.get('/beverages', function (req, res, next) {
 
 app.post('/search', (req, res, next) => {
     var productId = req.body.searchText
-    Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
+    Product.find({ 'title': { $regex: productId, $options: "$i" } }, function (err, products) {
         if (err) {
             return handleError(res);
         } if (!products) {

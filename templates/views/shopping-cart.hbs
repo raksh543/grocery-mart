@@ -19,103 +19,21 @@
         {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> --}}
     </head>
-    <body style="color: black;">
+    <body style="color: black;background-color:white">
        {{>header}}
         <div class="main-content">
-            {{!-- <h3 class="heading">You have added following things in your cart</h3>
-            
-            <table style="width: 50%;height:50%;text-align:center;" border=1>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                <tr>
-                    <td>Coffee</td>
-                    <td id="am1">25</td>
-                    <td>{{coffee}}</td>
-                </tr>
-                <tr>
-                    <td>Tea</td>
-                    <td id="am1">20</td>
-                    <td>{{tea}}</td>
-                </tr>
-                <tr>
-                    <td>Orange Juice</td>
-                    <td id="am1">50</td>
-                    <td>{{orange}}</td>
-                </tr>
-                <tr>
-                    <td>Strawberry Juice</td>
-                    <td id="am1">50</td>
-                    <td>{{strawberry}}</td>
-                </tr>
-                <tr>
-                    <th colspan="2">Total Price</th>
-                    <th>{{total}}</th>
-                </tr>
-            </table>
-            <input type="submit" style=" margin-right:10%;margin-top:9%;background-color:rgb(0, 134, 40);color:white;padding:8px 16px; border-radius:5px;cursor:pointer" value="Proceed to checkout">
-         --}}
-         
-                    {{!-- <div class="container">
-            <table id="cart" class="table table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th style="width:50%">Product</th>
-                                    <th style="width:10%">Price</th>
-                                    <th style="width:8%">Quantity</th>
-                                    <th style="width:22%" class="text-center">Subtotal</th>
-                                    <th style="width:10%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-th="Product">
-                                        <div class="row">
-                                            <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
-                                            <div class="col-sm-10">
-                                                <h4 class="nomargin">Product 1</h4>
-                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td data-th="Price">$1.99</td>
-                                    <td data-th="Quantity">
-                                        <input type="number" class="form-control text-center" value="1">
-                                    </td>
-                                    <td data-th="Subtotal" class="text-center">1.99</td>
-                                    <td class="actions" data-th="">
-                                        <button style="background-color: lightblue;border-radius:4px"><i class="fa fa-refresh"></i></button>
-                                        <button style="background-color: red;border-radius:4px"><i class="fa fa-trash-o"></i></button>								
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr class="visible-xs">
-                                    <td class="text-center"><strong>Total 1.99</strong></td>
-                                </tr>
-                                <tr>
-                                    <td ><input class="btn-100" type="submit" style=" margin-right:10%;margin-top:9%;background-color:#f0ad4e;color:white;padding:8px 16px; border-radius:5px;cursor:pointer" value="< Continue Shopping"></td>
-                                    <td colspan="2" class="hidden-xs"></td>
-                                    <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                                    <td><input class="btn-100" type="submit" style=" margin-right:10%;margin-top:9%;background-color:rgb(0, 134, 40);color:white;padding:8px 16px; border-radius:5px;cursor:pointer" value="Proceed to checkout >"></i></a></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-        </div> --}}
         {{# if products}}
             <div class="row">
-                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
+                <div class="col-sn-4 col-md-4 addeditemcard">
                     <ul class="list-group">
                         {{# each products}}
                             <li class="list-group-item addeditem">
                                 <span class="badge" style="background-color: rgb(0, 168, 0);" ><a href="/add/{{this.item._id}}"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
                                 <span class="badge" >{{ this.qty }}</span>
                                  <span class="badge" style="background-color: rgb(255, 77, 77);" ><a href="/reduce/{{this.item._id}}"><i class="fa fa-minus" aria-hidden="true"></i></a></span>
-                                
-                                <strong>{{ this.item.title }}</strong>
-                                <span class="label label-success" style="padding: 5px 7px;;">Rs {{ this.price}}</span><br><br>
+                                <img src="{{this.item.imagePath}}" alt="" class="img-responsive" style="float: left;height:80px;width:80px">
+                                <strong>{{ this.item.title }}</strong><br><br>
+                                <span class="label label-success" style="padding: 5px 7px;;">Rs {{ this.price}}</span>
                                 <div class="btn-group pull-right" >
                                     <a href="/remove/{{this.item._id}}">
                                     <button class=" btn-primary btnxs dropdown-toggle" style="border-radius:4px" type="button">Remove All </button></a>
@@ -126,22 +44,19 @@
                                 </div>
                             </li><br><br>
                         {{/each}}
-                        
-
+                        <hr color="darkgray" style="height:1px">
+                        <div style="float: left;">
+                    <strong>Total: {{totalPrice}} </strong>
+                </div>
+                <div style="right;">
+                    <form action="/success" method="POST">
+                <input hidden type="text" name="amount" placeholder="data-amount" value={{totalPrice}}>
+                <input type="submit" id="submit" value="Continue to pay with Razorpay" style="float: right;background-color:#5CB85C;color:white;border-radius:4px">
+                </form>
+                </div>
                     </ul>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3">
-                    <strong>Total: {{totalPrice}} </strong>
-                </div>
-            </div> 
-            <hr>
-            <div class="row">
-                <div class="col-sn-6 col-md-6 col-md-offset-3 col-sn-offset-3"></div>
-                    <a href="/checkout" type="button" style="border-radius: 4px;padding:10px" class=" btn-success">Checkout</a>
-                </div>
             </div> 
         {{else}}
             <div class="row">
