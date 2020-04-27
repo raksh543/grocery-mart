@@ -79,9 +79,9 @@ hr{
 } */
 
 #carddiffcat{
-    border-radius: 0;
+    border-radius: 2px;
     border-color: gray;
-    border-width: 4px;
+    border-width: 3px;
     margin: 2% 2% 2% 2%;
     background-size:cover;
   background-repeat: no-repeat;
@@ -187,5 +187,9 @@ hr{
 #hideonsm{
     display: none;
 }
+#noneonsm{
+    display: none;
+}
+
 
 }
