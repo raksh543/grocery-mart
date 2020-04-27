@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/beverages-styles.css">
+    <link rel="icon" href="/img/grocery2.png">
     <link rel="stylesheet" href="/css/product-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -32,12 +33,12 @@
         <div class="container-fluid">
             <div class="row content">
                 <div class=" sidenav">
-                    <div style="margin-top: 0;color:black"> 
-                    {{>searchbox}}
-                    <br><br>
+                    <div style="margin-top: 0;color:black">
+                        {{>searchbox}}
+                        <br><br>
                     </div>
                     <h4>Filter</h4>
-                    
+
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"><a href="#section1">Brand</a></li>
                         <li><a href="#section2">Price</a></li>
@@ -71,24 +72,24 @@
                             {{#if @first}}
                             {{# each this}}
                             {{!-- {{if i==0}} --}}
-                                <div class="col-sm-3 col-md-3">
-                                    <div class="thumbnail product">
-                                        <img src="{{this.imagePath}}" alt="" class="img-responsive">
-                                        <div class="caption">
-                                            <h5><b>{{this.title}}</b></h5>
-                                            <span class="description"
-                                                style="color: gray;"><i>{{this.description}}</i></span>
-                                            <div class="clearfix" style="margin-top: 5px;;">
-                                                <div class="price pull-left" style="font-size: medium;color:maroon"><span><i
-                                                            class="fa fa-inr" aria-hidden="true"></i></span> {{this.price}}
-                                                </div>
-                                                <a href="cart/{{this._id}}" class="addtocart pull-right"
-                                                    role="button"><span><i class="fa fa-cart-plus"
-                                                            aria-hidden="true"></i></span> Add to cart</a>
+                            <div class="col-sm-3 col-md-3">
+                                <div class="thumbnail product">
+                                    <img src="{{this.imagePath}}" alt="" class="img-responsive">
+                                    <div class="caption">
+                                        <h5><b>{{this.title}}</b></h5>
+                                        <span class="description"
+                                            style="color: gray;"><i>{{this.description}}</i></span>
+                                        <div class="clearfix" style="margin-top: 5px;;">
+                                            <div class="price pull-left" style="font-size: medium;color:maroon"><span><i
+                                                        class="fa fa-inr" aria-hidden="true"></i></span> {{this.price}}
                                             </div>
+                                            <a href="cart/{{this._id}}" class="addtocart pull-right"
+                                                role="button"><span><i class="fa fa-cart-plus"
+                                                        aria-hidden="true"></i></span> Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             {{/each}}
                             {{/if}}
                             {{/each}}
@@ -101,7 +102,8 @@
         </div>
     </div>
 
-   
+
 </body>
- {{>footer}}
+{{>footer}}
+
 </html>

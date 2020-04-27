@@ -1,20 +1,22 @@
 <html>
-    <head>
-        <title>
-           Sign In
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="icon" href="/img/grocery2.png">
+
+<head>
+  <title>
+    Sign In
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="icon" href="/img/grocery2.png">
   <link rel="stylesheet" href="/css/register.css">
-        <link rel="stylesheet" href="/css/login_styles.css">
-        <link rel="stylesheet" href="/css/styles.css"> 
-    </head>
-    <body>
-      {{>header}}
-        <!--This will be displaiyed for large screens-->
+  <link rel="stylesheet" href="/css/login_styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  {{>header}}
+  <!--This will be displaiyed for large screens-->
   <div class="main-content displayonlg">
-    
+
 
     <div id="login-box">
       <div class="left">
@@ -38,7 +40,8 @@
           <input class="typeOne" type="text" name="name" placeholder="Username" required />
           <input class="typeOne" type="email" name="email" placeholder="E-mail" required />
           <input class="typeOne" type="password" name="password" placeholder="Password" minlength="7" required />
-          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7" required />
+          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7"
+            required />
           <p style="color: red;">{{msg1}}</p>
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
           <input type="submit" value="Sign up" />
@@ -73,10 +76,10 @@
 
   </div>
 
-        <div class="main-content displayonsm">
-        
+  <div class="main-content displayonsm">
 
-            {{!-- <section >
+
+    {{!-- <section >
 	
 	<div class="column2"style="background-color:#ffffff">
 		<div id="white">
@@ -105,64 +108,72 @@
 		</div>
 	</div>
 </section> --}}
-            <div class="ccontainer" style="background-color: lightyellow;">
-    <div class="crow">
-      <div class="ccol-25">
-      </div>
-      <div class="ccol-75"> 
-        <p style="float: left; color:black">Create new account?</p>       
-				<button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a href="signup" style="color: white;text-decoration:none">Sign up here</a></button>
+    <div class="ccontainer" style="background-color: lightyellow;">
+      <div class="crow">
+        <div class="ccol-25">
+        </div>
+        <div class="ccol-75">
+          <p style="float: left; color:black">Create new account?</p>
+          <button id="input_signin" style="background-color: green;float:right;margin-right:5%;border-radius:4px"><a
+              href="signup" style="color: white;text-decoration:none">Sign up here</a></button>
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="ccontainer">
-			<form method="POST" action="/doSignIn">
-      <div class="crow" style="color: black;"><center>
-        <span id="headings">Log in to your account</span id="headings"><br><br>
-			<img src="https://i.ibb.co/2yHwRKg/fb.png">
-			<img src="https://i.ibb.co/KV23QM7/google.png">
-			<img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
-			<p>or use your email for login</p><br><br></center>
-      </div>
+      <form method="POST" action="/doSignIn">
+        <div class="crow" style="color: black;">
+          <center>
+            <span id="headings">Log in to your account</span id="headings"><br><br>
+            <img src="https://i.ibb.co/2yHwRKg/fb.png">
+            <img src="https://i.ibb.co/KV23QM7/google.png">
+            <img src="https://i.ibb.co/G2J5c5B/linkedin.png"><br><br>
+            <p>or use your email for login</p><br><br>
+          </center>
+        </div>
         {{# if hasErrors}}
-            <div class="crow">
-              {{# each messages }}
-                <center>
-                <p  style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px"> {{this}} </p>
-                </center>
-              {{/each}}
-              
-            </div>
+        <div class="crow">
+          {{# each messages }}
+          <center>
+            <p
+              style="color: maroon; border-color:maroon;border-radius:4px;width:100%;background-color:rgb(250, 161, 161);padding:10px">
+              {{this}} </p>
+          </center>
+          {{/each}}
+
+        </div>
 
         {{/if}}
-    <div class="crow">
-      <div class="ccol-25">
-        <label for="email" style="color: black;">Enter email</label>
-      </div>
-      <div class="ccol-75">
-        <input id="input_email" type="email" name="email" style="color: black;" placeholder="Your email.." required></input>
-      </div>
-    </div>
-
-    <div class="crow">
-      <div class="ccol-25">
-        <label for="subject" style="color: black;">Enter password</label>
-      </div>
-      <div class="ccol-75">
-        <input id="input_password" type="password" name="password" required minlength="7" style="color: black;" placeholder="Your password.."></input>
-        <p style="color: red;">{{message}}</p>
-      </div>
-    </div>
- 
-    <div class="crow">
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
-     <input type="submit" value="Login" style="width: 180px;color:white">
-    </div>
-  </form>
-</div>
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="email" style="color: black;">Enter email</label>
+          </div>
+          <div class="ccol-75">
+            <input id="input_email" type="email" name="email" style="color: black;" placeholder="Your email.."
+              required></input>
+          </div>
         </div>
-	 {{>footer}}
-		<script src="/js/app.js"> </script>
-    </body>
+
+        <div class="crow">
+          <div class="ccol-25">
+            <label for="subject" style="color: black;">Enter password</label>
+          </div>
+          <div class="ccol-75">
+            <input id="input_password" type="password" name="password" required minlength="7" style="color: black;"
+              placeholder="Your password.."></input>
+            <p style="color: red;">{{message}}</p>
+          </div>
+        </div>
+
+        <div class="crow">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <input type="submit" value="Login" style="width: 180px;color:white">
+        </div>
+      </form>
+    </div>
+  </div>
+  {{>footer}}
+  <script src="/js/app.js"> </script>
+</body>
+
 </html>

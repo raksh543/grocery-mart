@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="icon" href="/img/grocery2.png">
     <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/multiitemcarousel.css">
+    <link rel="stylesheet" href="/css/multiitemcarousel.css">
     <link rel="stylesheet" href="/css/cart.css">
     <link rel="stylesheet" href="/css/added-to-cart.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -58,45 +58,45 @@
                         </div>
                     </li><br><br>
                     {{/each}}
-                    
+
                 </ul>
             </div>
             <div class="col-sm-4 col-md-4 addeditemcard" style="padding: 30px;">
                 <div>
-                        <h3><strong>Total amount: ₹ {{totalPrice}} </strong></h3>
-                        <br>
-                        <h4><strong><i> Summary</i></strong></h4>
-                        <hr color="darkgray" style="height:1px">
-                        <table>
-                            <tr >
-                                <th style="padding-top:8px;padding:8px 10px;">Items</th>
-                                <th style="padding-top:8px;padding:8px 10px;">Quantity</th>
-                                <th style="padding-top:8px;padding:8px 10px;">Total Price</th>
-                            </tr>
+                    <h3><strong>Total amount: ₹ {{totalPrice}} </strong></h3>
+                    <br>
+                    <h4><strong><i> Summary</i></strong></h4>
+                    <hr color="darkgray" style="height:1px">
+                    <table>
+                        <tr>
+                            <th style="padding-top:8px;padding:8px 10px;">Items</th>
+                            <th style="padding-top:8px;padding:8px 10px;">Quantity</th>
+                            <th style="padding-top:8px;padding:8px 10px;">Total Price</th>
+                        </tr>
                         {{# each products}}
-                            <tr >
-                                <td style="text-align: justify;padding:8px 10px;">
-                                    {{this.item.title}}
-                                </td>
-                                <td style="text-align: center;padding:8px 10px;">
-                                    {{this.qty}}
-                                </td>
-                                <td style="text-align: center;padding:8px 10px;">
-                                    ₹ {{this.price}}
-                                </td>
-                            </tr>
+                        <tr>
+                            <td style="text-align: justify;padding:8px 10px;">
+                                {{this.item.title}}
+                            </td>
+                            <td style="text-align: center;padding:8px 10px;">
+                                {{this.qty}}
+                            </td>
+                            <td style="text-align: center;padding:8px 10px;">
+                                ₹ {{this.price}}
+                            </td>
+                        </tr>
                         {{/each}}
-                        </table>
-                        
-                {{!-- <img src="/img/pay.jpg" alt="PROCEED" height="200px"> --}}
-                    </div>
-                    <div ><br><br>
-                        <form action="/success" method="POST">
-                            <input hidden type="text" name="amount" placeholder="data-amount" value={{totalPrice}}>
-                            <input type="submit" id="submit" value="Proceed to checkout"
-                                style="background-color:#5CB85C;color:white;border-radius:4px">
-                        </form>
-                    </div>
+                    </table>
+
+                    {{!-- <img src="/img/pay.jpg" alt="PROCEED" height="200px"> --}}
+                </div>
+                <div><br><br>
+                    <form action="/success" method="POST">
+                        <input hidden type="text" name="amount" placeholder="data-amount" value={{totalPrice}}>
+                        <input type="submit" id="submit" value="Proceed to checkout"
+                            style="background-color:#5CB85C;color:white;border-radius:4px">
+                    </form>
+                </div>
             </div>
         </div>
 

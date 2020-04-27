@@ -20,7 +20,7 @@
 
 <body style="background-color: rgb(233, 233, 233);">
 
-<!--This will be displaiyed for large screens-->
+  <!--This will be displaiyed for large screens-->
   <div class="main-content displayonlg">
     {{>header}}
 
@@ -46,7 +46,8 @@
           <input class="typeOne" type="text" name="name" placeholder="Username" required />
           <input class="typeOne" type="email" name="email" placeholder="E-mail" required />
           <input class="typeOne" type="password" name="password" placeholder="Password" minlength="7" required />
-          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7" required />
+          <input class="typeOne" type="password" name="passwordTwo" placeholder="confirm password" minlength="7"
+            required />
           <p style="color: red;">{{msg1}}</p>
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
           <input type="submit" value="Sign up" />
@@ -82,7 +83,7 @@
   </div>
 
 
-<!--This will be displaiyed for small screens-->
+  <!--This will be displaiyed for small screens-->
   <div class="main-content displayonsm">
     {{>header}}
 

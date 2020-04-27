@@ -10,14 +10,16 @@
             background-color: rgb(69, 211, 69);
             border-radius: 4px;
         }
-        @media (max-width: 880px){
-            .noneonsm{
+
+        @media (max-width: 880px) {
+            .noneonsm {
                 display: none;
             }
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="icon" href="/img/grocery2.png">
     <link rel="icon" href="/img/grocery2.png">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -37,10 +39,11 @@
     <div class=" main-content container " style="min-height: 70%;">
         <div class="row" style="padding-left: 100px;">
             <div class="col-md-6 col-sm-12 noneonsm">
-                <img src="/img/payment.jpg" alt="PAYMENT"  style="float: right;">
+                <img src="/img/payment.jpg" alt="PAYMENT" style="float: right;">
             </div>
-            <div class="col-md-6 col-sm-12 " >
-                <form action="/payment" method="POST" id="razor-payment-form" style="width:250px;height:400px;background-color: rgb(206, 154, 255);padding:20px;border-radius:10px">
+            <div class="col-md-6 col-sm-12 ">
+                <form action="/payment" method="POST" id="razor-payment-form"
+                    style="width:250px;height:400px;background-color: rgb(206, 154, 255);padding:20px;border-radius:10px">
                     <h2>Complete placing order</h2><br>
                     <input type="text" name="name" placeholder="Name" style="color: purple;" required><br><br>
                     <input type="text" name="address" placeholder="Address" style="color: purple;" required><br><br><br>
