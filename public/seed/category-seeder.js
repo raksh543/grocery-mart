@@ -7,15 +7,15 @@ var Product = mongoose.model("Product", ProductsSchema);
 
 mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority");//creating or joining to practice database
 
+productChunks = [];
 Product.find(function (err, docs) {
-    productChunks = [];
+   
     for (var i = 0; i < docs.length; i++) {
         productChunks.push(docs);
     }
 })
 
-var Categories=
-    new Category({
+var Categories=new Category({
         titlehead:'Beverages',
         products:productChunks
     })

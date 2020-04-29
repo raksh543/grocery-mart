@@ -136,7 +136,6 @@ app.post('/payment', isUserLoggedIn, (req, res) => {
 
 })
 app.post('/success', isUserLoggedIn, (req, res) => {
-    console.log(req.body.amount + "Pottiiee")
     var options = {
         amount: req.body.amount * 100,  // amount in the smallest currency unit
         currency: "INR",
