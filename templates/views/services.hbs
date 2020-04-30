@@ -75,7 +75,7 @@
         </div>
         <br><br><br>
 
-        <div class="container">
+        <div class="scontainer">
 
             <h2 style="color: black;font-weight: 600;font-size: 40px;font-family: 'Times New Roman', Times, serif;">
                 Frequently Asked Questions :</h2><br>
@@ -114,8 +114,8 @@
             </div>
 
         </div><br><br><br>
-    </div>
 
+        
 
     <script>
         const items = document.querySelectorAll(".accordion a");
@@ -127,6 +127,11 @@
 
         items.forEach(item => item.addEventListener('click', toggleAccordion));
     </script>
+    </div>
+
+
+    {{>footer}}
+    
 </body>
 {{!-- <footer class="footer-distributed">
 
