@@ -55,15 +55,29 @@ router.post('/doSigninRes', function (req, res, next) {
     
 )
 
-router.post('/searchRes', (req, res) => {
-    var productId = req.body.searchText
+// router.post('/searchRes', (req, res) => {
+//     var productId = req.body.searchText
+//     Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
+//         if (err) {
+//             return res.send(err)
+//         } if (!products) {
+//             return res.send({ _id: -1, msg: 'No product found!' });
+//         } else {
+//             res.send({products:products});
+//         }
+//     })
+// })
+
+router.get('/searchRes', (req, res) => {
+    var productId = req.query.searchText
+    console.log(req)
     Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
         if (err) {
             return handleError(res);
         } if (!products) {
             return res.send({ _id: -1, msg: 'No product found!' });
         } else {
-            res.send({products:products});
+            res.send(products);
         }
     })
 })
