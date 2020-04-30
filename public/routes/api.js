@@ -63,7 +63,7 @@ router.post('/searchRes', (req, res) => {
         } if (!products) {
             return res.send({ _id: -1, msg: 'No product found!' });
         } else {
-            res.send(products);
+            res.send({products:products});
         }
     })
 })
