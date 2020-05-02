@@ -84,4 +84,18 @@ router.get('/getCategories',(req,res)=>{
     })
 })
 
+router.get('/searchByCategory',(req,res)=>{
+    var searchCategory=req.query.searchText
+    Product.find({'category':{$regex: searchCategory, $options: "$i"}},(err,products)=>{
+        if(err){
+            return handleError(res)
+        }
+        if(!products){
+            return res.send({_id: -1, msg:"No products found!"})
+        }else{
+            res.send(products)
+        }
+    })
+})
+
 module.exports = router

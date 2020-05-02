@@ -24,6 +24,10 @@ var ProductsSchema=new schema({
         type:Number,
         required:true,
         trim:true
+    },
+    category:{
+        type:String,
+        trim:true
     }
 
 
