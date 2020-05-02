@@ -115,6 +115,23 @@
 
 
     <div class="conatiner">
+        <div class="row" style="margin-left: 25px;margin-right:25px">
+            {{# each categories}}
+            {{#if @first}}
+            {{# each this}}
+            <div class="col-md-3">
+                <div class="card">
+                    <center><img src="{{this.imagePath}}" width="150px" height="150px"></center><br>
+                    <center>
+                        <p style="font-size: 20px;">{{this.titlehead}}</p>
+                    </center>
+                    <center><button type="submit" class="button">Click here to see</button></center>
+                </div>
+            </div>
+            {{/each}}
+            {{/if}}
+            {{/each}}
+        </div>
 
         <div class="row" style="margin-left: 25px;margin-right:25px">
             <div class="col-md-3">
@@ -233,6 +250,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
     </div>
 </body>

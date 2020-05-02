@@ -16,10 +16,11 @@ var Razorpay = require('razorpay')
 
 var MongoStore = require('connect-mongo')(session)
 
-
+var CategorySchema = require('../public/models/categories')
 var Cart = require('../public/models/cart')
 const UserSchema = require('../public/models/userschema')
 var ProductsSchema = require('../public/models/product')
+
 var OrderSchema = require('../public/models/orders')
 const adminRouter = require('../public/routes/admin-router')
 var apiRoute = require('../public/routes/api')
@@ -81,7 +82,9 @@ flag = false;
 
 var Member = mongoose.model("Member", UserSchema);
 var Product = mongoose.model("Product", ProductsSchema);
+var Category = mongoose.model("Category", CategorySchema)
 var Order = mongoose.model("Order", OrderSchema)
+// var Category = mongoose.model("Category", CategorySchema)
 // var pruduct=mongoose.model("Product",UserSchema);
 // var usercart=mongoose.model("UserCart",UserSchema);
 var instance = new Razorpay({
@@ -201,7 +204,16 @@ app.get('/testing', (req, res, next) => {
 })
 
 app.get('/categories', (req, res, next) => {
-    res.render('categories')
+    Category.find(function (err, docs) {
+        var categoryChunks = [];
+
+        for (var i = 0; i < docs.length; i++) {
+            categoryChunks.push(docs);
+        }
+        res.render('categories', { title: 'Categories', categories: categoryChunks });
+
+    });
+    
 })
 
 app.get('/beverages', function (req, res, next) {

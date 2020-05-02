@@ -4,9 +4,11 @@ var mongoose = require('mongoose')
 
 const UserSchema = require('../models/userschema')
 const ProductsSchema = require('../models/product')
+const CategorySchema = require('../models/categories')
 
 var Member = mongoose.model("Member", UserSchema);
 var Product = mongoose.model("Product", ProductsSchema);
+var Category = mongoose.model("Category", CategorySchema);
 
 router.get('/doSignupRes', (req, res, next) => {
     res.render('signup.res.hbs')
@@ -55,18 +57,6 @@ router.post('/doSigninRes', function (req, res, next) {
     
 )
 
-// router.post('/searchRes', (req, res) => {
-//     var productId = req.body.searchText
-//     Product.find({ 'title': {$regex: productId, $options: "$i"} }, function (err, products) {
-//         if (err) {
-//             return res.send(err)
-//         } if (!products) {
-//             return res.send({ _id: -1, msg: 'No product found!' });
-//         } else {
-//             res.send({products:products});
-//         }
-//     })
-// })
 
 router.get('/searchRes', (req, res) => {
     var productId = req.query.searchText
@@ -78,6 +68,18 @@ router.get('/searchRes', (req, res) => {
             return res.send({ _id: -1, msg: 'No product found!' });
         } else {
             res.send(products);
+        }
+    })
+})
+
+router.get('/getCategories',(req,res)=>{
+    Category.find((err,categories)=>{
+        if(err){
+            return handleError(res)
+        }if(!categories){
+            return res.send({_id: -1, msg: 'No categories found!'})
+        }else{
+            res.send(categories)
         }
     })
 })

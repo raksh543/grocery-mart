@@ -1,18 +1,22 @@
 const mongoose=require('mongoose')
-var Schema=mongoose.Schema;
+var schema=mongoose.Schema;
 
-var CategorySchema=new Schema({
+var CategorySchema=new schema({
 
    products:{
-       type:Object,
-       required:true
+       type:Array,
    },
    titlehead:{
        type:String,
        required:true
    },
+   imagePath:{
+    type:String,
+    required:true
+}
 
 
 });
-module.exports=CategorySchema
+module.exports = CategorySchema
+// module.exports = Category = mongoose.model('Category', CategorySchema)
 // module.exports=mongoose.model('Product', ProductsSchema)
