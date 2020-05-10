@@ -341,9 +341,6 @@ app.post('/doSignup', passport.authenticate('local.signup', {
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         })
-
-
-
         res.redirect('/profile');
         // console.log(passport)
     }
@@ -492,6 +489,10 @@ app.get('/services', (req, res) => {
         title: 'Products',
         name: 'Rakshita'
     })
+})
+
+app.get('/policy',(req,res,next)=>{
+    res.render('policy')
 })
 
 app.get('*', (req, res) => {
