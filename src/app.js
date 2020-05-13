@@ -47,6 +47,7 @@ app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
 
 
+//------------------------for admin page--------------------------
 app.use('/admin', adminRouter)
 app.use(express.static(path.join(__dirname, 'client_notifications')));
 app.use(express.static(publicDirectoryPath))
@@ -103,7 +104,6 @@ require('../config/passport')
 
 //-------------------------------------
 
-//------------------------for admin page--------------------------
 
 app.get('/payment', isUserLoggedIn, (req, res) => {
     res.render('payment')

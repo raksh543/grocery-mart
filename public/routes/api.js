@@ -5,10 +5,13 @@ var mongoose = require('mongoose')
 const UserSchema = require('../models/userschema')
 const ProductsSchema = require('../models/product')
 const CategorySchema = require('../models/categories')
+const OrderSchema = require('../models/orders')
 
 var Member = mongoose.model("Member", UserSchema);
 var Product = mongoose.model("Product", ProductsSchema);
 var Category = mongoose.model("Category", CategorySchema);
+var Order = mongoose.model("Order", OrderSchema);
+var Cart = require('../models/cart')
 
 router.get('/doSignupRes', (req, res, next) => {
     res.render('signup.res.hbs')
@@ -96,6 +99,28 @@ router.get('/searchByCategory',(req,res)=>{
             res.send(products)
         }
     })
+})
+
+router.get('/profileRes', (req, res) => {
+    Member.findOne({'email':req.query.user}, (err, user)=>{
+        var userid = user._id
+        console.log(userid)
+        Order.find({
+            user: userid
+        }, (err, orders) => {
+            if (err) {
+                return res.write('Error!');
+            }
+            var cart;
+            orders.forEach(function (order) {
+                cart = new Cart(order.cart)
+                order.items = cart.generateArray()
+            })
+            res.send(orders)
+    
+        })
+    })
+
 })
 
 module.exports = router
