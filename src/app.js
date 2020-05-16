@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-var webpush = require('web-push')
+// var webpush = require('web-push')
 const hbs = require('hbs')
 const bcrypt = require('bcryptjs')
 const path = require('path')
@@ -69,7 +69,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(apiRoute)
 
-webpush.setVapidDetails('mailto: rakshitajain777@gmail.com', publicVapidKey, privateVapidKey)
+// webpush.setVapidDetails('mailto: rakshitajain777@gmail.com', publicVapidKey, privateVapidKey)
 
 //this is middleware
 app.use((req, res, next) => {
@@ -157,22 +157,22 @@ app.post('/success', isUserLoggedIn, (req, res) => {
     })
 })
 
-app.post('/subscribe', (req, res) => {
-    //get pushSubscription object
-    const subscription = req.body
+// app.post('/subscribe', (req, res) => {
+//     //get pushSubscription object
+//     const subscription = req.body
 
-    //send 201 - resource created
-    res.status(201).json({})
-    // res.writeHead(201, {
-    //     'Content-Type': 'application/javascript'
-    // });
+//     //send 201 - resource created
+//     res.status(201).json({})
+//     // res.writeHead(201, {
+//     //     'Content-Type': 'application/javascript'
+//     // });
 
-    //create payload
-    const payload = JSON.stringify({ title: 'Push Test' })
+//     //create payload
+//     const payload = JSON.stringify({ title: 'Push Test' })
 
-    //Pass object into sendNotification
-    webpush.sendNotification(subscription, payload).catch(err => console.error(err))
-})
+//     //Pass object into sendNotification
+//     webpush.sendNotification(subscription, payload).catch(err => console.error(err))
+// })
 
 app.get('/', (req, res, next) => {
     Product.find(function (err, docs) {

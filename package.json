@@ -36,7 +36,6 @@
     "razorpay": "^2.0.6",
     "react": "^16.13.1",
     "stripe": "^8.39.2",
-    "validator": "^13.0.0",
-    "web-push": "^3.4.3"
+    "validator": "^13.0.0"
   }
 }

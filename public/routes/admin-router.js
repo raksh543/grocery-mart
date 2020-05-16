@@ -64,7 +64,7 @@ const AdminBroOptions = {
       //   }
       // }}
     },
-    component: AdminBro.bundle('../../dashboard.jsx')
+    // component: AdminBro.bundle('../../dashboard.jsx')
   },
   rootpath:'/admin',
   branding:{

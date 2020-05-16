@@ -13,9 +13,9 @@ var Category = mongoose.model("Category", CategorySchema);
 var Order = mongoose.model("Order", OrderSchema);
 var Cart = require('../models/cart')
 
-router.get('/doSignupRes', (req, res, next) => {
-    res.render('signup.res.hbs')
-})
+// router.get('/doSignupRes', (req, res, next) => {
+//     res.render('signup.res.hbs')
+// })
 
 const handleError = res => res.send({ msg: 'Registration Failed!' });
 
