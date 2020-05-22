@@ -123,4 +123,15 @@ router.get('/profileRes', (req, res) => {
 
 })
 
+router.post('/saveOrder',(req,res)=>{
+    var order = new Order (req.query.orderObject)
+    order.save((err,result)=>{
+        if(err){
+            res.send({ _id: -1, msg: 'Some problem occured in saving order! Please try again.' })
+        }else{
+            res.send({ _id: 1, msg: 'Order saved successfully.' });
+        }
+    })
+})
+
 module.exports = router
