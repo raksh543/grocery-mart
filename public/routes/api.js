@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var mongoose = require('mongoose')
+const querystring = require('querystring');
 
 const UserSchema = require('../models/userschema')
 const ProductsSchema = require('../models/product')
@@ -102,7 +103,8 @@ router.get('/searchByCategory',(req,res)=>{
 })
 
 router.get('/profileRes', (req, res) => {
-    Member.findOne({'email':req.query.user}, (err, user)=>{
+    // Member.findOne({'email':req.query.user}, (err, user)=>{
+        Member.findOne({'email':"Rakshitajain777@gmail.com"}, (err, user)=>{
         var userid = user._id
         console.log(userid)
         Order.find({
@@ -123,15 +125,21 @@ router.get('/profileRes', (req, res) => {
 
 })
 
-router.post('/saveOrder',(req,res)=>{
-    var order = new Order (req.query.orderObject)
-    order.save((err,result)=>{
+router.get('/saveOrder',(req,res)=>{
+    
+    var order = req.query.orderObject
+    var orderr = new Order (JSON.parse(order))
+    console.log(JSON.parse(order))
+    // console.log(order._id)
+    orderr.save((err,result)=>{
         if(err){
-            res.send({ _id: -1, msg: 'Some problem occured in saving order! Please try again.' })
+            res.send({error:err, _id: -1, msg: 'Some problem occured in saving order! Please try again.'+ err })
         }else{
-            res.send({ _id: 1, msg: 'Order saved successfully.' });
+            res.send({ _id: 1, msg: 'Order saved successfully.' })
         }
     })
+
+// console.log(order)
 })
 
 module.exports = router
