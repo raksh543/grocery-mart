@@ -128,7 +128,7 @@ router.get('/profileRes', (req, res) => {
 router.get('/saveOrder',(req,res)=>{
     
     var order = req.query.orderObject
-    var orderr = new Order (Json.parse(order))
+    var orderr = new Order (JSON.parse(order))
     console.log(JSON.parse(order))
     // console.log(order._id)
     orderr.save((err,result)=>{
