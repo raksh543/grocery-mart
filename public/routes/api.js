@@ -127,11 +127,11 @@ router.get('/profileRes', (req, res) => {
 
 router.post('/saveOrder',(req,res)=>{
     
-    var order = req.query.orderObject
-    console.log("Before parsing-----------"+order)
-    var stringOrder = JSON.parse(JSON.stringify(order))
-    var orderr = new Order (JSON.parse(stringOrder))
-    console.log("After parsing--------"+orderr)
+    var order = req.body.orderObject
+    // console.log("Before parsing-----------"+order)
+    // var stringOrder = JSON.parse(JSON.stringify(order))
+    var orderr = new Order (JSON.parse(order))
+    // console.log("After parsing--------"+orderr)
     // console.log(order._id)
     orderr.save((err,result)=>{
         if(err){
