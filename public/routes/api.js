@@ -103,8 +103,8 @@ router.get('/searchByCategory',(req,res)=>{
 })
 
 router.get('/profileRes', (req, res) => {
-    // Member.findOne({'email':req.query.user}, (err, user)=>{
-        Member.findOne({'email':"Rakshitajain777@gmail.com"}, (err, user)=>{
+    Member.findOne({'email':req.query.user}, (err, user)=>{
+        // Member.findOne({'email':"Rakshitajain777@gmail.com"}, (err, user)=>{
         var userid = user._id
         console.log(userid)
         Order.find({
