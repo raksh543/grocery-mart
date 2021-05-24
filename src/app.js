@@ -27,7 +27,7 @@ var apiRoute = require('../public/routes/api')
 //const MongoClient = require('mongodb').MongoClient;
 // var router=require('../public/routes/index')
 
-mongoose.connect("mongodb+srv://monchu:monchu@cluster0-dgfgi.mongodb.net/Grocery?retryWrites=true&w=majority", { useNewUrlParser: true });//creating or joining to practice database
+mongoose.connect(*******************);//creating or joining to practice database
 
 
 const app = express()
