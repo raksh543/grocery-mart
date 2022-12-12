@@ -21,7 +21,7 @@
     "core-js": "^3.6.5",
     "create-react-app": "^3.4.1",
     "csurf": "^1.11.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.0",
     "express-validator": "^5.3.1",
